@@ -3,6 +3,7 @@ module github.com/sv-tools/gochecker
 go 1.20
 
 require (
+	github.com/bkielbasa/cyclop v1.2.0
 	github.com/gordonklaus/ineffassign v0.0.0-20230107090616-13ace0543b28
 	github.com/kisielk/errcheck v1.6.3
 	golang.org/x/tools v0.6.0
