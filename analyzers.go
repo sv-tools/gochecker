@@ -64,6 +64,8 @@ import (
 	"github.com/sivchari/containedctx"
 	"github.com/tdakkota/asciicheck"
 	"github.com/timakin/bodyclose/passes/bodyclose"
+	"github.com/uudashr/gocognit"
+	"gitlab.com/bosi/decorder"
 )
 
 var analyzers = []*analysis.Analyzer{
@@ -133,4 +135,5 @@ var analyzers = []*analysis.Analyzer{
 	ginkgolinter.Analyzer,              // https://github.com/nunnatsa/ginkgolinter
 	checkcompilerdirectives.Analyzer(), // https://github.com/leighmcculloch/gocheckcompilerdirectives
 	checknoglobals.Analyzer(),          // https://github.com/leighmcculloch/gochecknoglobals
+	gocognit.Analyzer,                  // https://github.com/uudashr/gocognit
 }
