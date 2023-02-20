@@ -49,6 +49,7 @@ import (
 	"github.com/breml/bidichk/pkg/bidichk"
 	"github.com/breml/errchkjson"
 	"github.com/charithe/durationcheck"
+	gci "github.com/daixiang0/gci/pkg/analyzer"
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/gostaticanalysis/forcetypeassert"
 	"github.com/kisielk/errcheck/errcheck"
@@ -126,4 +127,5 @@ var analyzers = []*analysis.Analyzer{
 	exportloopref.Analyzer,   // https://github.com/kyoh86/exportloopref
 	forbidigo.NewAnalyzer(),  // https://github.com/ashanbrown/forbidigo
 	forcetypeassert.Analyzer, // https://github.com/gostaticanalysis/forcetypeassert
+	gci.Analyzer,             // https://github.com/daixiang0/gci
 }
