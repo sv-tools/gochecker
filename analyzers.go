@@ -67,6 +67,7 @@ import (
 	"github.com/junk1tm/musttag"
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
+	"github.com/kunwardeep/paralleltest/pkg/paralleltest"
 	"github.com/kyoh86/exportloopref"
 	grouper "github.com/leonklingele/grouper/pkg/analyzer"
 	"github.com/lufeee/execinquery"
@@ -172,4 +173,5 @@ var analyzers = []*analysis.Analyzer{
 	noctx.Analyzer,                                         // https://github.com/sonatard/noctx
 	nonamedreturns.Analyzer,                                // https://github.com/firefart/nonamedreturns
 	nosprintfhostport.Analyzer,                             // https://github.com/stbenjam/no-sprintf-host-port
+	paralleltest.Analyzer,                                  // https://github.com/kunwardeep/paralleltest
 }

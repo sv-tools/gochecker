@@ -86,6 +86,8 @@ github.com/kisielk/errcheck v1.6.3 h1:dEKh+GLHcWm2oN34nMvDzn1sqI0i0WxPvrgiJA5JuM
 github.com/kisielk/errcheck v1.6.3/go.mod h1:nXw/i/MfnvRHqXa7XXmQMUB0oNFGuBrNI8d8NLy0LPw=
 github.com/kkHAIKE/contextcheck v1.1.3 h1:l4pNvrb8JSwRd51ojtcOxOeHJzHek+MtOyXbaR0uvmw=
 github.com/kkHAIKE/contextcheck v1.1.3/go.mod h1:PG/cwd6c0705/LM0KTr1acO2gORUxkSVWyLJOFW5qoo=
+github.com/kunwardeep/paralleltest v1.0.6 h1:FCKYMF1OF2+RveWlABsdnmsvJrei5aoyZoaGS+Ugg8g=
+github.com/kunwardeep/paralleltest v1.0.6/go.mod h1:Y0Y0XISdZM5IKm3TREQMZ6iteqn1YuwCsJO/0kL9Zes=
 github.com/kyoh86/exportloopref v0.1.11 h1:1Z0bcmTypkL3Q4k+IDHMWTcnCliEZcaPiIe0/ymEyhQ=
 github.com/kyoh86/exportloopref v0.1.11/go.mod h1:qkV4UF1zGl6EkF1ox8L5t9SwyeBAZ3qLMd6up458uqA=
 github.com/leonklingele/grouper v1.1.1 h1:suWXRU57D4/Enn6pXR0QVqqWWrnJ9Osrz+5rjt8ivzU=
