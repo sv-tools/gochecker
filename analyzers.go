@@ -57,6 +57,7 @@ import (
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/gostaticanalysis/forcetypeassert"
 	goprintffuncname "github.com/jirfag/go-printf-func-name/pkg/analyzer"
+	"github.com/julz/importas"
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
 	"github.com/kyoh86/exportloopref"
@@ -145,5 +146,6 @@ var analyzers = []*analysis.Analyzer{
 	err113.NewAnalyzer(),               // https://github.com/Djarvur/go-err113.git
 	magic_numbers.Analyzer,             // https://github.com/tommy-muehle/go-mnd
 	goprintffuncname.Analyzer,          // https://github.com/jirfag/go-printf-func-name
-	grouper.Analyzer,                   // https://github.com/leonklingele/grouper
+	grouper.New(),                      // https://github.com/leonklingele/grouper
+	importas.Analyzer,                  // https://github.com/julz/importas
 }
