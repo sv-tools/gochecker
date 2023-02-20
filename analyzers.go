@@ -45,6 +45,7 @@ import (
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
+	"github.com/sivchari/containedctx"
 )
 
 var analyzers = []*analysis.Analyzer{
@@ -94,4 +95,6 @@ var analyzers = []*analysis.Analyzer{
 	ineffassign.Analyzer, // https://github.com/gordonklaus/ineffassign
 	cyclop.NewAnalyzer(), // https://github.com/bkielbasa/cyclop
 	contextcheck.NewAnalyzer(contextcheck.Configuration{}), // https://github.com/kkHAIKE/contextcheck
+	containedctx.Analyzer, // https://github.com/sivchari/containedctx
+
 }
