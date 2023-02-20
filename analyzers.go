@@ -43,6 +43,7 @@ import (
 
 	"github.com/Abirdcfly/dupword"
 	errname "github.com/Antonboom/errname/pkg/analyzer"
+	exhaustruct "github.com/GaijinEntertainment/go-exhaustruct/pkg/analyzer"
 	cyclop "github.com/bkielbasa/cyclop/pkg/analyzer"
 	"github.com/breml/bidichk/pkg/bidichk"
 	"github.com/breml/errchkjson"
@@ -118,4 +119,5 @@ var analyzers = []*analysis.Analyzer{
 	errorlint.NewAnalyzer(),  // https://github.com/polyfloyd/go-errorlint
 	execinquery.Analyzer,     // https://github.com/1uf3/execinquery
 	exhaustive.Analyzer,      // https://github.com/nishanths/exhaustive
+	exhaustruct.Analyzer,     // https://github.com/GaijinEntertainment/go-exhaustruct
 }
