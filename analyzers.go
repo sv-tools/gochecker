@@ -1,6 +1,7 @@
 package main
 
 import (
+	"gitlab.com/bosi/decorder"
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/asmdecl"
 	"golang.org/x/tools/go/analysis/passes/assign"
@@ -71,9 +72,9 @@ import (
 	"github.com/sivchari/containedctx"
 	"github.com/tdakkota/asciicheck"
 	"github.com/timakin/bodyclose/passes/bodyclose"
+	"github.com/timonwong/loggercheck"
 	"github.com/tommy-muehle/go-mnd/v2"
 	"github.com/uudashr/gocognit"
-	"gitlab.com/bosi/decorder"
 )
 
 var analyzers = []*analysis.Analyzer{
@@ -152,4 +153,5 @@ var analyzers = []*analysis.Analyzer{
 	importas.Analyzer,                  // https://github.com/julz/importas
 	interfacebloat.New(),               // https://github.com/sashamelentyev/interfacebloat
 	ireturn.NewAnalyzer(),              // https://github.com/butuzov/ireturn
+	loggercheck.NewAnalyzer(),          // https://github.com/timonwong/loggercheck
 }
