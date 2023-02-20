@@ -41,6 +41,7 @@ import (
 	"golang.org/x/tools/go/analysis/passes/unusedwrite"
 	"golang.org/x/tools/go/analysis/passes/usesgenerics"
 
+	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/kisielk/errcheck/errcheck"
 )
 
@@ -87,5 +88,6 @@ var analyzers = []*analysis.Analyzer{
 	usesgenerics.Analyzer,
 
 	// custom analyzers (linters)
-	errcheck.Analyzer, // https://github.com/kisielk/errcheck
+	errcheck.Analyzer,    // https://github.com/kisielk/errcheck
+	ineffassign.Analyzer, // https://github.com/gordonklaus/ineffassign
 }
