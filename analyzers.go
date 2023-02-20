@@ -60,6 +60,7 @@ import (
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
 	"github.com/kyoh86/exportloopref"
+	grouper "github.com/leonklingele/grouper/pkg/analyzer"
 	"github.com/lufeee/execinquery"
 	"github.com/nishanths/exhaustive"
 	"github.com/nunnatsa/ginkgolinter"
@@ -144,4 +145,5 @@ var analyzers = []*analysis.Analyzer{
 	err113.NewAnalyzer(),               // https://github.com/Djarvur/go-err113.git
 	magic_numbers.Analyzer,             // https://github.com/tommy-muehle/go-mnd
 	goprintffuncname.Analyzer,          // https://github.com/jirfag/go-printf-func-name
+	grouper.Analyzer,                   // https://github.com/leonklingele/grouper
 }

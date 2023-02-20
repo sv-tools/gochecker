@@ -22,6 +22,7 @@ require (
 	github.com/kisielk/errcheck v1.6.3
 	github.com/kkHAIKE/contextcheck v1.1.3
 	github.com/kyoh86/exportloopref v0.1.11
+	github.com/leonklingele/grouper v1.1.1
 	github.com/lufeee/execinquery v1.2.1
 	github.com/nishanths/exhaustive v0.9.5
 	github.com/nunnatsa/ginkgolinter v0.8.1
