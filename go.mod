@@ -11,6 +11,7 @@ require (
 	github.com/breml/bidichk v0.2.3
 	github.com/breml/errchkjson v0.3.0
 	github.com/charithe/durationcheck v0.0.9
+	github.com/daixiang0/gci v0.9.1
 	github.com/gordonklaus/ineffassign v0.0.0-20230107090616-13ace0543b28
 	github.com/gostaticanalysis/forcetypeassert v0.1.0
 	github.com/kisielk/errcheck v1.6.3
@@ -30,8 +31,13 @@ require (
 require (
 	github.com/gostaticanalysis/analysisutil v0.7.1 // indirect
 	github.com/gostaticanalysis/comment v1.4.2 // indirect
+	github.com/hexops/gotextdiff v1.0.3 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	go.uber.org/atomic v1.7.0 // indirect
+	go.uber.org/multierr v1.6.0 // indirect
+	go.uber.org/zap v1.17.0 // indirect
 	golang.org/x/mod v0.8.0 // indirect
+	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
-	gopkg.in/yaml.v2 v2.2.2 // indirect
+	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
