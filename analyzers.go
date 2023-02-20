@@ -44,6 +44,7 @@ import (
 	"github.com/Abirdcfly/dupword"
 	cyclop "github.com/bkielbasa/cyclop/pkg/analyzer"
 	"github.com/breml/bidichk/pkg/bidichk"
+	"github.com/breml/errchkjson"
 	"github.com/charithe/durationcheck"
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/kisielk/errcheck/errcheck"
@@ -102,10 +103,11 @@ var analyzers = []*analysis.Analyzer{
 	bodyclose.Analyzer,       // https://github.com/timakin/bodyclose
 	containedctx.Analyzer,    // https://github.com/sivchari/containedctx
 	contextcheck.NewAnalyzer(contextcheck.Configuration{}), // https://github.com/kkHAIKE/contextcheck
-	cyclop.NewAnalyzer(),   // https://github.com/bkielbasa/cyclop
-	decorder.Analyzer,      // https://gitlab.com/bosi/decorder
-	dupword.NewAnalyzer(),  // https://github.com/Abirdcfly/dupword
-	durationcheck.Analyzer, // https://github.com/charithe/durationcheck
-	errcheck.Analyzer,      // https://github.com/kisielk/errcheck
-	ineffassign.Analyzer,   // https://github.com/gordonklaus/ineffassign
+	cyclop.NewAnalyzer(),     // https://github.com/bkielbasa/cyclop
+	decorder.Analyzer,        // https://gitlab.com/bosi/decorder
+	dupword.NewAnalyzer(),    // https://github.com/Abirdcfly/dupword
+	durationcheck.Analyzer,   // https://github.com/charithe/durationcheck
+	errcheck.Analyzer,        // https://github.com/kisielk/errcheck
+	errchkjson.NewAnalyzer(), // https://github.com/breml/errchkjson
+	ineffassign.Analyzer,     // https://github.com/gordonklaus/ineffassign
 }
