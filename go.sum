@@ -1,5 +1,7 @@
 github.com/Abirdcfly/dupword v0.0.9 h1:MxprGjKq3yDBICXDgEEsyGirIXfMYXkLNT/agPsE1tk=
 github.com/Abirdcfly/dupword v0.0.9/go.mod h1:PzmHVLLZ27MvHSzV7eFmMXSFArWXZPZmfuuziuUrf2g=
+github.com/Antonboom/errname v0.1.7 h1:mBBDKvEYwPl4WFFNwec1CZO096G6vzK9vvDQzAwkako=
+github.com/Antonboom/errname v0.1.7/go.mod h1:g0ONh16msHIPgJSGsecu1G/dcF2hlYR/0SddnIAGavU=
 github.com/bkielbasa/cyclop v1.2.0 h1:7Jmnh0yL2DjKfw28p86YTd/B4lRGcNuu12sKE35sM7A=
 github.com/bkielbasa/cyclop v1.2.0/go.mod h1:qOI0yy6A7dYC4Zgsa72Ppm9kONl0RoIlPbzot9mhmeI=
 github.com/breml/bidichk v0.2.3 h1:qe6ggxpTfA8E75hdjWPZ581sY3a2lnl0IRxLQFelECI=
