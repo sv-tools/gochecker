@@ -50,6 +50,7 @@ import (
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
+	"github.com/lufeee/execinquery"
 	"github.com/polyfloyd/go-errorlint/errorlint"
 	"github.com/sivchari/containedctx"
 	"github.com/tdakkota/asciicheck"
@@ -114,4 +115,5 @@ var analyzers = []*analysis.Analyzer{
 	ineffassign.Analyzer,     // https://github.com/gordonklaus/ineffassign
 	errname.New(),            // https://github.com/Antonboom/errname
 	errorlint.NewAnalyzer(),  // https://github.com/polyfloyd/go-errorlint
+	execinquery.Analyzer,     // https://github.com/1uf3/execinquery
 }
