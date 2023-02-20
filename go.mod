@@ -18,6 +18,7 @@ require (
 	github.com/butuzov/ireturn v0.1.1
 	github.com/charithe/durationcheck v0.0.9
 	github.com/daixiang0/gci v0.9.1
+	github.com/firefart/nonamedreturns v1.0.4
 	github.com/go-critic/go-critic v0.6.7
 	github.com/gordonklaus/ineffassign v0.0.0-20230107090616-13ace0543b28
 	github.com/gostaticanalysis/forcetypeassert v0.1.0
