@@ -66,6 +66,7 @@ import (
 	"github.com/nishanths/exhaustive"
 	"github.com/nunnatsa/ginkgolinter"
 	"github.com/polyfloyd/go-errorlint/errorlint"
+	interfacebloat "github.com/sashamelentyev/interfacebloat/pkg/analyzer"
 	"github.com/sivchari/containedctx"
 	"github.com/tdakkota/asciicheck"
 	"github.com/timakin/bodyclose/passes/bodyclose"
@@ -148,4 +149,5 @@ var analyzers = []*analysis.Analyzer{
 	goprintffuncname.Analyzer,          // https://github.com/jirfag/go-printf-func-name
 	grouper.New(),                      // https://github.com/leonklingele/grouper
 	importas.Analyzer,                  // https://github.com/julz/importas
+	interfacebloat.New(),               // https://github.com/sashamelentyev/interfacebloat
 }
