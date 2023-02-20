@@ -4,6 +4,7 @@ go 1.20
 
 require (
 	4d63.com/gocheckcompilerdirectives v1.2.1
+	4d63.com/gochecknoglobals v0.2.1
 	github.com/Abirdcfly/dupword v0.0.9
 	github.com/Antonboom/errname v0.1.7
 	github.com/GaijinEntertainment/go-exhaustruct v1.0.0

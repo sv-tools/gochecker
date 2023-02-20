@@ -42,6 +42,7 @@ import (
 	"golang.org/x/tools/go/analysis/passes/usesgenerics"
 
 	"4d63.com/gocheckcompilerdirectives/checkcompilerdirectives"
+	"4d63.com/gochecknoglobals/checknoglobals"
 	"github.com/Abirdcfly/dupword"
 	errname "github.com/Antonboom/errname/pkg/analyzer"
 	exhaustruct "github.com/GaijinEntertainment/go-exhaustruct/pkg/analyzer"
@@ -131,4 +132,5 @@ var analyzers = []*analysis.Analyzer{
 	gci.Analyzer,                       // https://github.com/daixiang0/gci
 	ginkgolinter.Analyzer,              // https://github.com/nunnatsa/ginkgolinter
 	checkcompilerdirectives.Analyzer(), // https://github.com/leighmcculloch/gocheckcompilerdirectives
+	checknoglobals.Analyzer(),          // https://github.com/leighmcculloch/gochecknoglobals
 }
