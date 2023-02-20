@@ -41,6 +41,7 @@ import (
 	"golang.org/x/tools/go/analysis/passes/unusedwrite"
 	"golang.org/x/tools/go/analysis/passes/usesgenerics"
 
+	"github.com/Abirdcfly/dupword"
 	cyclop "github.com/bkielbasa/cyclop/pkg/analyzer"
 	"github.com/breml/bidichk/pkg/bidichk"
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
@@ -104,4 +105,5 @@ var analyzers = []*analysis.Analyzer{
 	bidichk.NewAnalyzer(),    // https://github.com/breml/bidichk
 	asciicheck.NewAnalyzer(), // https://github.com/tdakkota/asciicheck
 	decorder.Analyzer,        // https://gitlab.com/bosi/decorder
+	dupword.NewAnalyzer(),    // https://github.com/Abirdcfly/dupword
 }

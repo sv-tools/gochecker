@@ -3,6 +3,7 @@ module github.com/sv-tools/gochecker
 go 1.20
 
 require (
+	github.com/Abirdcfly/dupword v0.0.9
 	github.com/bkielbasa/cyclop v1.2.0
 	github.com/breml/bidichk v0.2.3
 	github.com/gordonklaus/ineffassign v0.0.0-20230107090616-13ace0543b28
