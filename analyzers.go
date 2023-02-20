@@ -41,6 +41,7 @@ import (
 	"golang.org/x/tools/go/analysis/passes/unusedwrite"
 	"golang.org/x/tools/go/analysis/passes/usesgenerics"
 
+	"4d63.com/gocheckcompilerdirectives/checkcompilerdirectives"
 	"github.com/Abirdcfly/dupword"
 	errname "github.com/Antonboom/errname/pkg/analyzer"
 	exhaustruct "github.com/GaijinEntertainment/go-exhaustruct/pkg/analyzer"
@@ -112,21 +113,22 @@ var analyzers = []*analysis.Analyzer{
 	bodyclose.Analyzer,       // https://github.com/timakin/bodyclose
 	containedctx.Analyzer,    // https://github.com/sivchari/containedctx
 	contextcheck.NewAnalyzer(contextcheck.Configuration{}), // https://github.com/kkHAIKE/contextcheck
-	cyclop.NewAnalyzer(),     // https://github.com/bkielbasa/cyclop
-	decorder.Analyzer,        // https://gitlab.com/bosi/decorder
-	dupword.NewAnalyzer(),    // https://github.com/Abirdcfly/dupword
-	durationcheck.Analyzer,   // https://github.com/charithe/durationcheck
-	errcheck.Analyzer,        // https://github.com/kisielk/errcheck
-	errchkjson.NewAnalyzer(), // https://github.com/breml/errchkjson
-	ineffassign.Analyzer,     // https://github.com/gordonklaus/ineffassign
-	errname.New(),            // https://github.com/Antonboom/errname
-	errorlint.NewAnalyzer(),  // https://github.com/polyfloyd/go-errorlint
-	execinquery.Analyzer,     // https://github.com/1uf3/execinquery
-	exhaustive.Analyzer,      // https://github.com/nishanths/exhaustive
-	exhaustruct.Analyzer,     // https://github.com/GaijinEntertainment/go-exhaustruct
-	exportloopref.Analyzer,   // https://github.com/kyoh86/exportloopref
-	forbidigo.NewAnalyzer(),  // https://github.com/ashanbrown/forbidigo
-	forcetypeassert.Analyzer, // https://github.com/gostaticanalysis/forcetypeassert
-	gci.Analyzer,             // https://github.com/daixiang0/gci
-	ginkgolinter.Analyzer,    // https://github.com/nunnatsa/ginkgolinter
+	cyclop.NewAnalyzer(),               // https://github.com/bkielbasa/cyclop
+	decorder.Analyzer,                  // https://gitlab.com/bosi/decorder
+	dupword.NewAnalyzer(),              // https://github.com/Abirdcfly/dupword
+	durationcheck.Analyzer,             // https://github.com/charithe/durationcheck
+	errcheck.Analyzer,                  // https://github.com/kisielk/errcheck
+	errchkjson.NewAnalyzer(),           // https://github.com/breml/errchkjson
+	ineffassign.Analyzer,               // https://github.com/gordonklaus/ineffassign
+	errname.New(),                      // https://github.com/Antonboom/errname
+	errorlint.NewAnalyzer(),            // https://github.com/polyfloyd/go-errorlint
+	execinquery.Analyzer,               // https://github.com/1uf3/execinquery
+	exhaustive.Analyzer,                // https://github.com/nishanths/exhaustive
+	exhaustruct.Analyzer,               // https://github.com/GaijinEntertainment/go-exhaustruct
+	exportloopref.Analyzer,             // https://github.com/kyoh86/exportloopref
+	forbidigo.NewAnalyzer(),            // https://github.com/ashanbrown/forbidigo
+	forcetypeassert.Analyzer,           // https://github.com/gostaticanalysis/forcetypeassert
+	gci.Analyzer,                       // https://github.com/daixiang0/gci
+	ginkgolinter.Analyzer,              // https://github.com/nunnatsa/ginkgolinter
+	checkcompilerdirectives.Analyzer(), // https://github.com/leighmcculloch/gocheckcompilerdirectives
 }
