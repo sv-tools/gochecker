@@ -45,6 +45,7 @@ import (
 	"4d63.com/gochecknoglobals/checknoglobals"
 	"github.com/Abirdcfly/dupword"
 	errname "github.com/Antonboom/errname/pkg/analyzer"
+	"github.com/Djarvur/go-err113"
 	exhaustruct "github.com/GaijinEntertainment/go-exhaustruct/pkg/analyzer"
 	forbidigo "github.com/ashanbrown/forbidigo/pkg/analyzer"
 	cyclop "github.com/bkielbasa/cyclop/pkg/analyzer"
@@ -138,4 +139,5 @@ var analyzers = []*analysis.Analyzer{
 	checknoglobals.Analyzer(),          // https://github.com/leighmcculloch/gochecknoglobals
 	gocognit.Analyzer,                  // https://github.com/uudashr/gocognit
 	critic.Analyzer,                    // https://github.com/go-critic/go-critic
+	err113.NewAnalyzer(),               // https://github.com/Djarvur/go-err113.git
 }
