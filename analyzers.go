@@ -42,6 +42,7 @@ import (
 	"golang.org/x/tools/go/analysis/passes/usesgenerics"
 
 	"github.com/Abirdcfly/dupword"
+	errname "github.com/Antonboom/errname/pkg/analyzer"
 	cyclop "github.com/bkielbasa/cyclop/pkg/analyzer"
 	"github.com/breml/bidichk/pkg/bidichk"
 	"github.com/breml/errchkjson"
@@ -110,4 +111,5 @@ var analyzers = []*analysis.Analyzer{
 	errcheck.Analyzer,        // https://github.com/kisielk/errcheck
 	errchkjson.NewAnalyzer(), // https://github.com/breml/errchkjson
 	ineffassign.Analyzer,     // https://github.com/gordonklaus/ineffassign
+	errname.New(),            // https://github.com/Antonboom/errname
 }

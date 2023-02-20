@@ -4,6 +4,7 @@ go 1.20
 
 require (
 	github.com/Abirdcfly/dupword v0.0.9
+	github.com/Antonboom/errname v0.1.7
 	github.com/bkielbasa/cyclop v1.2.0
 	github.com/breml/bidichk v0.2.3
 	github.com/breml/errchkjson v0.3.0
