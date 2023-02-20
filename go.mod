@@ -7,6 +7,7 @@ require (
 	4d63.com/gochecknoglobals v0.2.1
 	github.com/Abirdcfly/dupword v0.0.9
 	github.com/Antonboom/errname v0.1.7
+	github.com/Antonboom/nilnil v0.1.1
 	github.com/Djarvur/go-err113 v0.1.0
 	github.com/GaijinEntertainment/go-exhaustruct v1.0.0
 	github.com/ashanbrown/forbidigo v1.4.0

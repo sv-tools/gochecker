@@ -46,6 +46,7 @@ import (
 	"4d63.com/gochecknoglobals/checknoglobals"
 	"github.com/Abirdcfly/dupword"
 	errname "github.com/Antonboom/errname/pkg/analyzer"
+	nilnil "github.com/Antonboom/nilnil/pkg/analyzer"
 	"github.com/Djarvur/go-err113"
 	exhaustruct "github.com/GaijinEntertainment/go-exhaustruct/pkg/analyzer"
 	forbidigo "github.com/ashanbrown/forbidigo/pkg/analyzer"
@@ -162,4 +163,5 @@ var analyzers = []*analysis.Analyzer{
 	makezero.NewAnalyzer(),                                 // https://github.com/ashanbrown/makezero
 	musttag.New(),                                          // https://github.com/junk1tm/musttag
 	nilerr.Analyzer,                                        // https://github.com/gostaticanalysis/nilerr
+	nilnil.New(),                                           // https://github.com/Antonboom/nilnil
 }
