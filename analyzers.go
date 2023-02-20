@@ -50,6 +50,7 @@ import (
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
+	"github.com/polyfloyd/go-errorlint/errorlint"
 	"github.com/sivchari/containedctx"
 	"github.com/tdakkota/asciicheck"
 	"github.com/timakin/bodyclose/passes/bodyclose"
@@ -112,4 +113,5 @@ var analyzers = []*analysis.Analyzer{
 	errchkjson.NewAnalyzer(), // https://github.com/breml/errchkjson
 	ineffassign.Analyzer,     // https://github.com/gordonklaus/ineffassign
 	errname.New(),            // https://github.com/Antonboom/errname
+	errorlint.NewAnalyzer(),  // https://github.com/polyfloyd/go-errorlint
 }
