@@ -63,6 +63,7 @@ import (
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/gostaticanalysis/forcetypeassert"
 	"github.com/gostaticanalysis/nilerr"
+	"github.com/jingyugao/rowserrcheck/passes/rowserr"
 	goprintffuncname "github.com/jirfag/go-printf-func-name/pkg/analyzer"
 	"github.com/julz/importas"
 	"github.com/junk1tm/musttag"
@@ -178,4 +179,5 @@ var analyzers = []*analysis.Analyzer{
 	paralleltest.Analyzer,                                  // https://github.com/kunwardeep/paralleltest
 	predeclared.Analyzer,                                   // https://github.com/nishanths/predeclared
 	reassign.NewAnalyzer(),                                 // https://github.com/curioswitch/go-reassign
+	rowserr.NewAnalyzer(),                                  // https://github.com/jingyugao/rowserrcheck
 }
