@@ -19,6 +19,7 @@ require (
 	github.com/gordonklaus/ineffassign v0.0.0-20230107090616-13ace0543b28
 	github.com/gostaticanalysis/forcetypeassert v0.1.0
 	github.com/jirfag/go-printf-func-name v0.0.0-20200119135958-7558a9eaa5af
+	github.com/julz/importas v0.1.0
 	github.com/kisielk/errcheck v1.6.3
 	github.com/kkHAIKE/contextcheck v1.1.3
 	github.com/kyoh86/exportloopref v0.1.11
