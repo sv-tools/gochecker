@@ -7,10 +7,15 @@ analyzers:
     buildtag: {}
     cgocall: {}
     composites:
-        whitelist: true
+        whitelist: "true"
     copylocks: {}
     deepequalerrors: {}
     directive: {}
+    errcheck:
+        assert: "false"
+        blank: "false"
+        exclude: ""
+        excludeonly: "false"
     errorsas: {}
     fieldalignment: {}
     framepointer: {}
@@ -47,4 +52,4 @@ cpuprofile: ""
 memprofile: ""
 trace: ""
 test: false
-fix: true
+fix: false
