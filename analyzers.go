@@ -51,6 +51,7 @@ import (
 	cyclop "github.com/bkielbasa/cyclop/pkg/analyzer"
 	"github.com/breml/bidichk/pkg/bidichk"
 	"github.com/breml/errchkjson"
+	ireturn "github.com/butuzov/ireturn/analyzer"
 	"github.com/charithe/durationcheck"
 	gci "github.com/daixiang0/gci/pkg/analyzer"
 	critic "github.com/go-critic/go-critic/checkers/analyzer"
@@ -150,4 +151,5 @@ var analyzers = []*analysis.Analyzer{
 	grouper.New(),                      // https://github.com/leonklingele/grouper
 	importas.Analyzer,                  // https://github.com/julz/importas
 	interfacebloat.New(),               // https://github.com/sashamelentyev/interfacebloat
+	ireturn.NewAnalyzer(),              // https://github.com/butuzov/ireturn
 }
