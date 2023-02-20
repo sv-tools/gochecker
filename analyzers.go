@@ -41,6 +41,7 @@ import (
 	"golang.org/x/tools/go/analysis/passes/unusedwrite"
 	"golang.org/x/tools/go/analysis/passes/usesgenerics"
 
+	cyclop "github.com/bkielbasa/cyclop/pkg/analyzer"
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/kisielk/errcheck/errcheck"
 )
@@ -90,4 +91,5 @@ var analyzers = []*analysis.Analyzer{
 	// custom analyzers (linters)
 	errcheck.Analyzer,    // https://github.com/kisielk/errcheck
 	ineffassign.Analyzer, // https://github.com/gordonklaus/ineffassign
+	cyclop.NewAnalyzer(), // https://github.com/bkielbasa/cyclop
 }
