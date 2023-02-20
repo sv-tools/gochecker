@@ -72,6 +72,7 @@ import (
 	grouper "github.com/leonklingele/grouper/pkg/analyzer"
 	"github.com/lufeee/execinquery"
 	"github.com/nishanths/exhaustive"
+	"github.com/nishanths/predeclared/passes/predeclared"
 	"github.com/nunnatsa/ginkgolinter"
 	"github.com/polyfloyd/go-errorlint/errorlint"
 	interfacebloat "github.com/sashamelentyev/interfacebloat/pkg/analyzer"
@@ -174,4 +175,5 @@ var analyzers = []*analysis.Analyzer{
 	nonamedreturns.Analyzer,                                // https://github.com/firefart/nonamedreturns
 	nosprintfhostport.Analyzer,                             // https://github.com/stbenjam/no-sprintf-host-port
 	paralleltest.Analyzer,                                  // https://github.com/kunwardeep/paralleltest
+	predeclared.Analyzer,                                   // https://github.com/nishanths/predeclared
 }
