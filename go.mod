@@ -11,6 +11,7 @@ require (
 	github.com/sivchari/containedctx v1.0.2
 	github.com/tdakkota/asciicheck v0.1.1
 	github.com/timakin/bodyclose v0.0.0-20221125081123-e39cf3fc478e
+	gitlab.com/bosi/decorder v0.2.3
 	golang.org/x/tools v0.6.0
 	gopkg.in/yaml.v3 v3.0.1
 )
