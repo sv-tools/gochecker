@@ -12,6 +12,7 @@ require (
 	github.com/breml/errchkjson v0.3.0
 	github.com/charithe/durationcheck v0.0.9
 	github.com/gordonklaus/ineffassign v0.0.0-20230107090616-13ace0543b28
+	github.com/gostaticanalysis/forcetypeassert v0.1.0
 	github.com/kisielk/errcheck v1.6.3
 	github.com/kkHAIKE/contextcheck v1.1.3
 	github.com/kyoh86/exportloopref v0.1.11

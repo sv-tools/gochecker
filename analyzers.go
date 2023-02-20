@@ -50,6 +50,7 @@ import (
 	"github.com/breml/errchkjson"
 	"github.com/charithe/durationcheck"
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
+	"github.com/gostaticanalysis/forcetypeassert"
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
 	"github.com/kyoh86/exportloopref"
@@ -124,4 +125,5 @@ var analyzers = []*analysis.Analyzer{
 	exhaustruct.Analyzer,     // https://github.com/GaijinEntertainment/go-exhaustruct
 	exportloopref.Analyzer,   // https://github.com/kyoh86/exportloopref
 	forbidigo.NewAnalyzer(),  // https://github.com/ashanbrown/forbidigo
+	forcetypeassert.Analyzer, // https://github.com/gostaticanalysis/forcetypeassert
 }
