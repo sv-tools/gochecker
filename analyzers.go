@@ -40,6 +40,8 @@ import (
 	"golang.org/x/tools/go/analysis/passes/unusedresult"
 	"golang.org/x/tools/go/analysis/passes/unusedwrite"
 	"golang.org/x/tools/go/analysis/passes/usesgenerics"
+
+	"github.com/kisielk/errcheck/errcheck"
 )
 
 var analyzers = []*analysis.Analyzer{
@@ -83,4 +85,7 @@ var analyzers = []*analysis.Analyzer{
 	unusedresult.Analyzer,
 	unusedwrite.Analyzer,
 	usesgenerics.Analyzer,
+
+	// custom analyzers (linters)
+	errcheck.Analyzer, // https://github.com/kisielk/errcheck
 }

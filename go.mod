@@ -3,6 +3,7 @@ module github.com/sv-tools/gochecker
 go 1.20
 
 require (
+	github.com/kisielk/errcheck v1.6.3
 	golang.org/x/tools v0.6.0
 	gopkg.in/yaml.v3 v3.0.1
 )
