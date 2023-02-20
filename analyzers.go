@@ -49,6 +49,7 @@ import (
 	"github.com/sivchari/containedctx"
 	"github.com/tdakkota/asciicheck"
 	"github.com/timakin/bodyclose/passes/bodyclose"
+	"gitlab.com/bosi/decorder"
 )
 
 var analyzers = []*analysis.Analyzer{
@@ -102,4 +103,5 @@ var analyzers = []*analysis.Analyzer{
 	bodyclose.Analyzer,       // https://github.com/timakin/bodyclose
 	bidichk.NewAnalyzer(),    // https://github.com/breml/bidichk
 	asciicheck.NewAnalyzer(), // https://github.com/tdakkota/asciicheck
+	decorder.Analyzer,        // https://gitlab.com/bosi/decorder
 }
