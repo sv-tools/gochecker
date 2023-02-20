@@ -19,16 +19,17 @@ require (
 	github.com/kyoh86/exportloopref v0.1.11
 	github.com/lufeee/execinquery v1.2.1
 	github.com/nishanths/exhaustive v0.9.5
+	github.com/nunnatsa/ginkgolinter v0.8.1
 	github.com/polyfloyd/go-errorlint v1.1.0
 	github.com/sivchari/containedctx v1.0.2
 	github.com/tdakkota/asciicheck v0.1.1
 	github.com/timakin/bodyclose v0.0.0-20221125081123-e39cf3fc478e
-	gitlab.com/bosi/decorder v0.2.3
 	golang.org/x/tools v0.6.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
+	github.com/go-toolsmith/astcopy v1.0.2 // indirect
 	github.com/gostaticanalysis/analysisutil v0.7.1 // indirect
 	github.com/gostaticanalysis/comment v1.4.2 // indirect
 	github.com/hexops/gotextdiff v1.0.3 // indirect
@@ -36,6 +37,7 @@ require (
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	go.uber.org/zap v1.17.0 // indirect
+	golang.org/x/exp/typeparams v0.0.0-20220428152302-39d4317da171 // indirect
 	golang.org/x/mod v0.8.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
