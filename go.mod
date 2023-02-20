@@ -20,6 +20,7 @@ require (
 	github.com/go-critic/go-critic v0.6.7
 	github.com/gordonklaus/ineffassign v0.0.0-20230107090616-13ace0543b28
 	github.com/gostaticanalysis/forcetypeassert v0.1.0
+	github.com/gostaticanalysis/nilerr v0.1.1
 	github.com/jirfag/go-printf-func-name v0.0.0-20200119135958-7558a9eaa5af
 	github.com/julz/importas v0.1.0
 	github.com/junk1tm/musttag v0.4.5

@@ -59,6 +59,7 @@ import (
 	critic "github.com/go-critic/go-critic/checkers/analyzer"
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/gostaticanalysis/forcetypeassert"
+	"github.com/gostaticanalysis/nilerr"
 	goprintffuncname "github.com/jirfag/go-printf-func-name/pkg/analyzer"
 	"github.com/julz/importas"
 	"github.com/junk1tm/musttag"
@@ -160,4 +161,5 @@ var analyzers = []*analysis.Analyzer{
 	maintidx.Analyzer,                                      // https://github.com/yagipy/maintidx
 	makezero.NewAnalyzer(),                                 // https://github.com/ashanbrown/makezero
 	musttag.New(),                                          // https://github.com/junk1tm/musttag
+	nilerr.Analyzer,                                        // https://github.com/gostaticanalysis/nilerr
 }
