@@ -13,6 +13,7 @@ require (
 	github.com/gordonklaus/ineffassign v0.0.0-20230107090616-13ace0543b28
 	github.com/kisielk/errcheck v1.6.3
 	github.com/kkHAIKE/contextcheck v1.1.3
+	github.com/kyoh86/exportloopref v0.1.11
 	github.com/lufeee/execinquery v1.2.1
 	github.com/nishanths/exhaustive v0.9.5
 	github.com/polyfloyd/go-errorlint v1.1.0
