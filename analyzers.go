@@ -44,6 +44,7 @@ import (
 	"github.com/Abirdcfly/dupword"
 	cyclop "github.com/bkielbasa/cyclop/pkg/analyzer"
 	"github.com/breml/bidichk/pkg/bidichk"
+	"github.com/charithe/durationcheck"
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
@@ -96,14 +97,15 @@ var analyzers = []*analysis.Analyzer{
 	usesgenerics.Analyzer,
 
 	// custom analyzers (linters)
-	errcheck.Analyzer,    // https://github.com/kisielk/errcheck
-	ineffassign.Analyzer, // https://github.com/gordonklaus/ineffassign
-	cyclop.NewAnalyzer(), // https://github.com/bkielbasa/cyclop
-	contextcheck.NewAnalyzer(contextcheck.Configuration{}), // https://github.com/kkHAIKE/contextcheck
-	containedctx.Analyzer,    // https://github.com/sivchari/containedctx
-	bodyclose.Analyzer,       // https://github.com/timakin/bodyclose
-	bidichk.NewAnalyzer(),    // https://github.com/breml/bidichk
 	asciicheck.NewAnalyzer(), // https://github.com/tdakkota/asciicheck
-	decorder.Analyzer,        // https://gitlab.com/bosi/decorder
-	dupword.NewAnalyzer(),    // https://github.com/Abirdcfly/dupword
+	bidichk.NewAnalyzer(),    // https://github.com/breml/bidichk
+	bodyclose.Analyzer,       // https://github.com/timakin/bodyclose
+	containedctx.Analyzer,    // https://github.com/sivchari/containedctx
+	contextcheck.NewAnalyzer(contextcheck.Configuration{}), // https://github.com/kkHAIKE/contextcheck
+	cyclop.NewAnalyzer(),   // https://github.com/bkielbasa/cyclop
+	decorder.Analyzer,      // https://gitlab.com/bosi/decorder
+	dupword.NewAnalyzer(),  // https://github.com/Abirdcfly/dupword
+	durationcheck.Analyzer, // https://github.com/charithe/durationcheck
+	errcheck.Analyzer,      // https://github.com/kisielk/errcheck
+	ineffassign.Analyzer,   // https://github.com/gordonklaus/ineffassign
 }
