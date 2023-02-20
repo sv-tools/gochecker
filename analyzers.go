@@ -83,6 +83,7 @@ import (
 	"github.com/timonwong/loggercheck"
 	"github.com/tommy-muehle/go-mnd/v2"
 	"github.com/uudashr/gocognit"
+	"github.com/yagipy/maintidx"
 )
 
 var analyzers = []*analysis.Analyzer{
