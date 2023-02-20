@@ -51,6 +51,7 @@ import (
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
 	"github.com/lufeee/execinquery"
+	"github.com/nishanths/exhaustive"
 	"github.com/polyfloyd/go-errorlint/errorlint"
 	"github.com/sivchari/containedctx"
 	"github.com/tdakkota/asciicheck"
@@ -116,4 +117,5 @@ var analyzers = []*analysis.Analyzer{
 	errname.New(),            // https://github.com/Antonboom/errname
 	errorlint.NewAnalyzer(),  // https://github.com/polyfloyd/go-errorlint
 	execinquery.Analyzer,     // https://github.com/1uf3/execinquery
+	exhaustive.Analyzer,      // https://github.com/nishanths/exhaustive
 }
