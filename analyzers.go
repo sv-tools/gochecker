@@ -46,6 +46,7 @@ import (
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
 	"github.com/sivchari/containedctx"
+	"github.com/timakin/bodyclose/passes/bodyclose"
 )
 
 var analyzers = []*analysis.Analyzer{
@@ -96,5 +97,5 @@ var analyzers = []*analysis.Analyzer{
 	cyclop.NewAnalyzer(), // https://github.com/bkielbasa/cyclop
 	contextcheck.NewAnalyzer(contextcheck.Configuration{}), // https://github.com/kkHAIKE/contextcheck
 	containedctx.Analyzer, // https://github.com/sivchari/containedctx
-
+	bodyclose.Analyzer,    // https://github.com/timakin/bodyclose
 }
