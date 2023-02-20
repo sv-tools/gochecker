@@ -61,6 +61,7 @@ import (
 	"github.com/gostaticanalysis/forcetypeassert"
 	goprintffuncname "github.com/jirfag/go-printf-func-name/pkg/analyzer"
 	"github.com/julz/importas"
+	"github.com/junk1tm/musttag"
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
 	"github.com/kyoh86/exportloopref"
@@ -158,4 +159,5 @@ var analyzers = []*analysis.Analyzer{
 	magic_numbers.Analyzer,                                 // https://github.com/tommy-muehle/go-mnd
 	maintidx.Analyzer,                                      // https://github.com/yagipy/maintidx
 	makezero.NewAnalyzer(),                                 // https://github.com/ashanbrown/makezero
+	musttag.New(),                                          // https://github.com/junk1tm/musttag
 }
