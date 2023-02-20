@@ -74,6 +74,7 @@ import (
 	"github.com/polyfloyd/go-errorlint/errorlint"
 	interfacebloat "github.com/sashamelentyev/interfacebloat/pkg/analyzer"
 	"github.com/sivchari/containedctx"
+	"github.com/sonatard/noctx"
 	"github.com/ssgreg/nlreturn/v2/pkg/nlreturn"
 	"github.com/tdakkota/asciicheck"
 	"github.com/timakin/bodyclose/passes/bodyclose"
@@ -166,4 +167,5 @@ var analyzers = []*analysis.Analyzer{
 	nilerr.Analyzer,                                        // https://github.com/gostaticanalysis/nilerr
 	nilnil.New(),                                           // https://github.com/Antonboom/nilnil
 	nlreturn.NewAnalyzer(),                                 // https://github.com/ssgreg/nlreturn
+	noctx.Analyzer,                                         // https://github.com/sonatard/noctx
 }
