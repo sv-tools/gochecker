@@ -46,9 +46,25 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: ${{ matrix.go }}
-      - name: gofmt
-        run: diff -u <(echo -n) <(gofmt -l . )
+      - name: go fmt
+        run: |
+          go fmt ./...
+          DELTA="$(git diff --numstat)"
+          if [ -n "${DELTA}" ]
+          then
+            echo "${DELTA}"
+            git diff
+            exit 1
+          fi
       - name: go vet
         run: go vet ./...
       - name: generate config
-        run: diff -u <(echo -n) <(go run ./... generate-config >config.yaml )
+        run: |
+          go run ./... generate-config > config_examples/config.yaml
+          DELTA="$(git diff --numstat)"
+          if [ -n "${DELTA}" ]
+          then
+            echo "${DELTA}"
+            git diff
+            exit 1
+          fi
