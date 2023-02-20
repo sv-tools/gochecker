@@ -52,6 +52,7 @@ import (
 	"github.com/breml/errchkjson"
 	"github.com/charithe/durationcheck"
 	gci "github.com/daixiang0/gci/pkg/analyzer"
+	critic "github.com/go-critic/go-critic/checkers/analyzer"
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/gostaticanalysis/forcetypeassert"
 	"github.com/kisielk/errcheck/errcheck"
@@ -136,4 +137,5 @@ var analyzers = []*analysis.Analyzer{
 	checkcompilerdirectives.Analyzer(), // https://github.com/leighmcculloch/gocheckcompilerdirectives
 	checknoglobals.Analyzer(),          // https://github.com/leighmcculloch/gochecknoglobals
 	gocognit.Analyzer,                  // https://github.com/uudashr/gocognit
+	critic.Analyzer,                    // https://github.com/go-critic/go-critic
 }
