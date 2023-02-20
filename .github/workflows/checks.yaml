@@ -1,0 +1,54 @@
+name: "Code Analysis"
+
+on:
+  push:
+    tags:
+      - v*
+    branches:
+      - main
+  pull_request:
+  schedule:
+    - cron: "0 0 * * 0"
+
+concurrency:
+  group: ${{ format('{0}-{1}', github.workflow, github.head_ref) }}
+  cancel-in-progress: true
+
+jobs:
+  CodeQL:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: go
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+
+  Checks:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go:
+          - "1.18"
+          - "1.19"
+          - "1.20"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ matrix.go }}
+      - name: gofmt
+        run: diff -u <(echo -n) <(gofmt -l . )
+      - name: go vet
+        run: go vet ./...
+      - name: generate config
+        run: diff -u <(echo -n) <(go run ./... generate-config >config.yaml )
