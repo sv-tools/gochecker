@@ -75,6 +75,7 @@ import (
 	"github.com/timonwong/loggercheck"
 	"github.com/tommy-muehle/go-mnd/v2"
 	"github.com/uudashr/gocognit"
+	"github.com/yagipy/maintidx"
 )
 
 var analyzers = []*analysis.Analyzer{
@@ -154,4 +155,5 @@ var analyzers = []*analysis.Analyzer{
 	ireturn.NewAnalyzer(),                                  // https://github.com/butuzov/ireturn
 	loggercheck.NewAnalyzer(),                              // https://github.com/timonwong/loggercheck
 	magic_numbers.Analyzer,                                 // https://github.com/tommy-muehle/go-mnd
+	maintidx.Analyzer,                                      // https://github.com/yagipy/maintidx
 }
