@@ -77,12 +77,12 @@ import (
 	"github.com/sivchari/containedctx"
 	"github.com/sonatard/noctx"
 	"github.com/ssgreg/nlreturn/v2/pkg/nlreturn"
+	nosprintfhostport "github.com/stbenjam/no-sprintf-host-port/pkg/analyzer"
 	"github.com/tdakkota/asciicheck"
 	"github.com/timakin/bodyclose/passes/bodyclose"
 	"github.com/timonwong/loggercheck"
 	"github.com/tommy-muehle/go-mnd/v2"
 	"github.com/uudashr/gocognit"
-	"github.com/yagipy/maintidx"
 )
 
 var analyzers = []*analysis.Analyzer{
@@ -170,4 +170,5 @@ var analyzers = []*analysis.Analyzer{
 	nlreturn.NewAnalyzer(),                                 // https://github.com/ssgreg/nlreturn
 	noctx.Analyzer,                                         // https://github.com/sonatard/noctx
 	nonamedreturns.Analyzer,                                // https://github.com/firefart/nonamedreturns
+	nosprintfhostport.Analyzer,                             // https://github.com/stbenjam/no-sprintf-host-port
 }
