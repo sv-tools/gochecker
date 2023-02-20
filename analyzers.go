@@ -56,6 +56,7 @@ import (
 	"github.com/breml/errchkjson"
 	ireturn "github.com/butuzov/ireturn/analyzer"
 	"github.com/charithe/durationcheck"
+	"github.com/curioswitch/go-reassign"
 	gci "github.com/daixiang0/gci/pkg/analyzer"
 	nonamedreturns "github.com/firefart/nonamedreturns/analyzer"
 	critic "github.com/go-critic/go-critic/checkers/analyzer"
@@ -176,4 +177,5 @@ var analyzers = []*analysis.Analyzer{
 	nosprintfhostport.Analyzer,                             // https://github.com/stbenjam/no-sprintf-host-port
 	paralleltest.Analyzer,                                  // https://github.com/kunwardeep/paralleltest
 	predeclared.Analyzer,                                   // https://github.com/nishanths/predeclared
+	reassign.NewAnalyzer(),                                 // https://github.com/curioswitch/go-reassign
 }
