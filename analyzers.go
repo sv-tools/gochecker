@@ -42,6 +42,7 @@ import (
 	"golang.org/x/tools/go/analysis/passes/usesgenerics"
 
 	cyclop "github.com/bkielbasa/cyclop/pkg/analyzer"
+	"github.com/breml/bidichk/pkg/bidichk"
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
@@ -98,4 +99,5 @@ var analyzers = []*analysis.Analyzer{
 	contextcheck.NewAnalyzer(contextcheck.Configuration{}), // https://github.com/kkHAIKE/contextcheck
 	containedctx.Analyzer, // https://github.com/sivchari/containedctx
 	bodyclose.Analyzer,    // https://github.com/timakin/bodyclose
+	bidichk.NewAnalyzer(), // https://github.com/breml/bidichk.git
 }
