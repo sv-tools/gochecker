@@ -57,6 +57,7 @@ import (
 	ireturn "github.com/butuzov/ireturn/analyzer"
 	"github.com/charithe/durationcheck"
 	gci "github.com/daixiang0/gci/pkg/analyzer"
+	nonamedreturns "github.com/firefart/nonamedreturns/analyzer"
 	critic "github.com/go-critic/go-critic/checkers/analyzer"
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/gostaticanalysis/forcetypeassert"
@@ -168,4 +169,5 @@ var analyzers = []*analysis.Analyzer{
 	nilnil.New(),                                           // https://github.com/Antonboom/nilnil
 	nlreturn.NewAnalyzer(),                                 // https://github.com/ssgreg/nlreturn
 	noctx.Analyzer,                                         // https://github.com/sonatard/noctx
+	nonamedreturns.Analyzer,                                // https://github.com/firefart/nonamedreturns
 }
