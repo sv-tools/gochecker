@@ -44,6 +44,7 @@ import (
 	"github.com/Abirdcfly/dupword"
 	errname "github.com/Antonboom/errname/pkg/analyzer"
 	exhaustruct "github.com/GaijinEntertainment/go-exhaustruct/pkg/analyzer"
+	forbidigo "github.com/ashanbrown/forbidigo/pkg/analyzer"
 	cyclop "github.com/bkielbasa/cyclop/pkg/analyzer"
 	"github.com/breml/bidichk/pkg/bidichk"
 	"github.com/breml/errchkjson"
@@ -122,4 +123,5 @@ var analyzers = []*analysis.Analyzer{
 	exhaustive.Analyzer,      // https://github.com/nishanths/exhaustive
 	exhaustruct.Analyzer,     // https://github.com/GaijinEntertainment/go-exhaustruct
 	exportloopref.Analyzer,   // https://github.com/kyoh86/exportloopref
+	forbidigo.NewAnalyzer(),  // https://github.com/ashanbrown/forbidigo
 }

@@ -6,6 +6,7 @@ require (
 	github.com/Abirdcfly/dupword v0.0.9
 	github.com/Antonboom/errname v0.1.7
 	github.com/GaijinEntertainment/go-exhaustruct v1.0.0
+	github.com/ashanbrown/forbidigo v1.4.0
 	github.com/bkielbasa/cyclop v1.2.0
 	github.com/breml/bidichk v0.2.3
 	github.com/breml/errchkjson v0.3.0
@@ -28,6 +29,8 @@ require (
 require (
 	github.com/gostaticanalysis/analysisutil v0.7.1 // indirect
 	github.com/gostaticanalysis/comment v1.4.2 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
 	golang.org/x/mod v0.8.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
+	gopkg.in/yaml.v2 v2.2.2 // indirect
 )
