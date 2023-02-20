@@ -13,6 +13,7 @@ require (
 	github.com/bkielbasa/cyclop v1.2.0
 	github.com/breml/bidichk v0.2.3
 	github.com/breml/errchkjson v0.3.0
+	github.com/butuzov/ireturn v0.1.1
 	github.com/charithe/durationcheck v0.0.9
 	github.com/daixiang0/gci v0.9.1
 	github.com/go-critic/go-critic v0.6.7
