@@ -14,6 +14,7 @@ require (
 	github.com/breml/errchkjson v0.3.0
 	github.com/charithe/durationcheck v0.0.9
 	github.com/daixiang0/gci v0.9.1
+	github.com/go-critic/go-critic v0.6.7
 	github.com/gordonklaus/ineffassign v0.0.0-20230107090616-13ace0543b28
 	github.com/gostaticanalysis/forcetypeassert v0.1.0
 	github.com/kisielk/errcheck v1.6.3
@@ -33,15 +34,25 @@ require (
 )
 
 require (
+	github.com/go-toolsmith/astcast v1.1.0 // indirect
 	github.com/go-toolsmith/astcopy v1.0.2 // indirect
+	github.com/go-toolsmith/astequal v1.1.0 // indirect
+	github.com/go-toolsmith/astfmt v1.1.0 // indirect
+	github.com/go-toolsmith/astp v1.1.0 // indirect
+	github.com/go-toolsmith/strparse v1.1.0 // indirect
+	github.com/go-toolsmith/typep v1.1.0 // indirect
 	github.com/gostaticanalysis/analysisutil v0.7.1 // indirect
 	github.com/gostaticanalysis/comment v1.4.2 // indirect
 	github.com/hexops/gotextdiff v1.0.3 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/quasilyte/go-ruleguard v0.3.19 // indirect
+	github.com/quasilyte/gogrep v0.5.0 // indirect
+	github.com/quasilyte/regex/syntax v0.0.0-20200407221936-30656e2c4a95 // indirect
+	github.com/quasilyte/stdinfo v0.0.0-20220114132959-f7386bf02567 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	go.uber.org/zap v1.17.0 // indirect
-	golang.org/x/exp/typeparams v0.0.0-20220428152302-39d4317da171 // indirect
+	golang.org/x/exp/typeparams v0.0.0-20230203172020-98cc5a0785f9 // indirect
 	golang.org/x/mod v0.8.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
