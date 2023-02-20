@@ -57,11 +57,11 @@ import (
 	"github.com/kyoh86/exportloopref"
 	"github.com/lufeee/execinquery"
 	"github.com/nishanths/exhaustive"
+	"github.com/nunnatsa/ginkgolinter"
 	"github.com/polyfloyd/go-errorlint/errorlint"
 	"github.com/sivchari/containedctx"
 	"github.com/tdakkota/asciicheck"
 	"github.com/timakin/bodyclose/passes/bodyclose"
-	"gitlab.com/bosi/decorder"
 )
 
 var analyzers = []*analysis.Analyzer{
@@ -128,4 +128,5 @@ var analyzers = []*analysis.Analyzer{
 	forbidigo.NewAnalyzer(),  // https://github.com/ashanbrown/forbidigo
 	forcetypeassert.Analyzer, // https://github.com/gostaticanalysis/forcetypeassert
 	gci.Analyzer,             // https://github.com/daixiang0/gci
+	ginkgolinter.Analyzer,    // https://github.com/nunnatsa/ginkgolinter
 }
