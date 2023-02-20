@@ -66,6 +66,7 @@ import (
 	"github.com/sivchari/containedctx"
 	"github.com/tdakkota/asciicheck"
 	"github.com/timakin/bodyclose/passes/bodyclose"
+	"github.com/tommy-muehle/go-mnd/v2"
 	"github.com/uudashr/gocognit"
 	"gitlab.com/bosi/decorder"
 )
@@ -140,4 +141,5 @@ var analyzers = []*analysis.Analyzer{
 	gocognit.Analyzer,                  // https://github.com/uudashr/gocognit
 	critic.Analyzer,                    // https://github.com/go-critic/go-critic
 	err113.NewAnalyzer(),               // https://github.com/Djarvur/go-err113.git
+	magic_numbers.Analyzer,             // https://github.com/tommy-muehle/go-mnd
 }
