@@ -10,6 +10,7 @@ require (
 	github.com/Djarvur/go-err113 v0.1.0
 	github.com/GaijinEntertainment/go-exhaustruct v1.0.0
 	github.com/ashanbrown/forbidigo v1.4.0
+	github.com/ashanbrown/makezero v1.1.1
 	github.com/bkielbasa/cyclop v1.2.0
 	github.com/breml/bidichk v0.2.3
 	github.com/breml/errchkjson v0.3.0

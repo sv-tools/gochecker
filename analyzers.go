@@ -49,6 +49,7 @@ import (
 	"github.com/Djarvur/go-err113"
 	exhaustruct "github.com/GaijinEntertainment/go-exhaustruct/pkg/analyzer"
 	forbidigo "github.com/ashanbrown/forbidigo/pkg/analyzer"
+	makezero "github.com/ashanbrown/makezero/pkg/analyzer"
 	cyclop "github.com/bkielbasa/cyclop/pkg/analyzer"
 	"github.com/breml/bidichk/pkg/bidichk"
 	"github.com/breml/errchkjson"
@@ -156,4 +157,5 @@ var analyzers = []*analysis.Analyzer{
 	loggercheck.NewAnalyzer(),                              // https://github.com/timonwong/loggercheck
 	magic_numbers.Analyzer,                                 // https://github.com/tommy-muehle/go-mnd
 	maintidx.Analyzer,                                      // https://github.com/yagipy/maintidx
+	makezero.NewAnalyzer(),                                 // https://github.com/ashanbrown/makezero
 }
