@@ -35,6 +35,7 @@ require (
 	github.com/polyfloyd/go-errorlint v1.1.0
 	github.com/sashamelentyev/interfacebloat v1.1.0
 	github.com/sivchari/containedctx v1.0.2
+	github.com/ssgreg/nlreturn/v2 v2.2.1
 	github.com/tdakkota/asciicheck v0.1.1
 	github.com/timakin/bodyclose v0.0.0-20221125081123-e39cf3fc478e
 	github.com/timonwong/loggercheck v0.9.3
