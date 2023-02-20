@@ -51,6 +51,7 @@ import (
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
+	"github.com/kyoh86/exportloopref"
 	"github.com/lufeee/execinquery"
 	"github.com/nishanths/exhaustive"
 	"github.com/polyfloyd/go-errorlint/errorlint"
@@ -120,4 +121,5 @@ var analyzers = []*analysis.Analyzer{
 	execinquery.Analyzer,     // https://github.com/1uf3/execinquery
 	exhaustive.Analyzer,      // https://github.com/nishanths/exhaustive
 	exhaustruct.Analyzer,     // https://github.com/GaijinEntertainment/go-exhaustruct
+	exportloopref.Analyzer,   // https://github.com/kyoh86/exportloopref
 }
