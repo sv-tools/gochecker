@@ -44,6 +44,7 @@ require (
 	github.com/nunnatsa/ginkgolinter v0.8.1
 	github.com/polyfloyd/go-errorlint v1.1.0
 	github.com/ryanrolds/sqlclosecheck v0.4.0
+	github.com/sanposhiho/wastedassign v1.0.0
 	github.com/sashamelentyev/interfacebloat v1.1.0
 	github.com/sashamelentyev/usestdlibvars v1.23.0
 	github.com/sivchari/containedctx v1.0.2

@@ -83,6 +83,7 @@ import (
 	"github.com/nunnatsa/ginkgolinter"
 	"github.com/polyfloyd/go-errorlint/errorlint"
 	sqlclosecheck "github.com/ryanrolds/sqlclosecheck/pkg/analyzer"
+	"github.com/sanposhiho/wastedassign"
 	interfacebloat "github.com/sashamelentyev/interfacebloat/pkg/analyzer"
 	usestdlibvars "github.com/sashamelentyev/usestdlibvars/pkg/analyzer"
 	"github.com/sivchari/containedctx"
@@ -196,4 +197,5 @@ var analyzers = []*analysis.Analyzer{
 	tparallel.Analyzer,                                     // https://github.com/moricho/tparallel
 	usestdlibvars.New(),                                    // https://github.com/sashamelentyev/usestdlibvars
 	varnamelen.NewAnalyzer(),                               // https://github.com/blizzy78/varnamelen
+	wastedassign.Analyzer,                                  // https://github.com/sanposhiho/wastedassign
 }
