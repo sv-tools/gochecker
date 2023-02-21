@@ -69,6 +69,7 @@ import (
 	"github.com/junk1tm/musttag"
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
+	thelper "github.com/kulti/thelper/pkg/analyzer"
 	"github.com/kunwardeep/paralleltest/pkg/paralleltest"
 	"github.com/kyoh86/exportloopref"
 	grouper "github.com/leonklingele/grouper/pkg/analyzer"
@@ -188,4 +189,5 @@ var analyzers = []*analysis.Analyzer{
 	tenv.Analyzer,                                          // https://github.com/sivchari/tenv
 	testableexamples.NewAnalyzer(),                         // https://github.com/maratori/testableexamples
 	testpackage.NewAnalyzer(),                              // https://github.com/maratori/testpackage
+	thelper.NewAnalyzer(),                                  // https://github.com/kulti/thelper
 }
