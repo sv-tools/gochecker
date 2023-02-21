@@ -73,6 +73,7 @@ import (
 	"github.com/kyoh86/exportloopref"
 	grouper "github.com/leonklingele/grouper/pkg/analyzer"
 	"github.com/lufeee/execinquery"
+	"github.com/maratori/testableexamples/pkg/testableexamples"
 	"github.com/nishanths/exhaustive"
 	"github.com/nishanths/predeclared/passes/predeclared"
 	"github.com/nunnatsa/ginkgolinter"
@@ -184,4 +185,5 @@ var analyzers = []*analysis.Analyzer{
 	rowserr.NewAnalyzer(),                                  // https://github.com/jingyugao/rowserrcheck
 	sqlclosecheck.NewAnalyzer(),                            // https://github.com/ryanrolds/sqlclosecheck
 	tenv.Analyzer,                                          // https://github.com/sivchari/tenv
+	testableexamples.NewAnalyzer(),                         // https://github.com/maratori/testableexamples
 }
