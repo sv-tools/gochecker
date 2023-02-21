@@ -11,7 +11,7 @@ on:
     - cron: "0 0 * * 0"
 
 concurrency:
-  group: ${{ format('{0}-{1}', github.workflow, github.head_ref) }}
+  group: ${{ format('{0}-{1}-{2}', github.workflow, github.ref_name) }}
   cancel-in-progress: true
 
 jobs:
