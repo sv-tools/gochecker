@@ -76,6 +76,7 @@ import (
 	"github.com/lufeee/execinquery"
 	"github.com/maratori/testableexamples/pkg/testableexamples"
 	"github.com/maratori/testpackage/pkg/testpackage"
+	"github.com/moricho/tparallel"
 	"github.com/nishanths/exhaustive"
 	"github.com/nishanths/predeclared/passes/predeclared"
 	"github.com/nunnatsa/ginkgolinter"
@@ -190,4 +191,5 @@ var analyzers = []*analysis.Analyzer{
 	testableexamples.NewAnalyzer(),                         // https://github.com/maratori/testableexamples
 	testpackage.NewAnalyzer(),                              // https://github.com/maratori/testpackage
 	thelper.NewAnalyzer(),                                  // https://github.com/kulti/thelper
+	tparallel.Analyzer,                                     // https://github.com/moricho/tparallel
 }
