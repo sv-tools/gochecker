@@ -77,6 +77,7 @@ import (
 	"github.com/nishanths/predeclared/passes/predeclared"
 	"github.com/nunnatsa/ginkgolinter"
 	"github.com/polyfloyd/go-errorlint/errorlint"
+	sqlclosecheck "github.com/ryanrolds/sqlclosecheck/pkg/analyzer"
 	interfacebloat "github.com/sashamelentyev/interfacebloat/pkg/analyzer"
 	"github.com/sivchari/containedctx"
 	"github.com/sonatard/noctx"
@@ -180,4 +181,5 @@ var analyzers = []*analysis.Analyzer{
 	predeclared.Analyzer,                                   // https://github.com/nishanths/predeclared
 	reassign.NewAnalyzer(),                                 // https://github.com/curioswitch/go-reassign
 	rowserr.NewAnalyzer(),                                  // https://github.com/jingyugao/rowserrcheck
+	sqlclosecheck.NewAnalyzer(),                            // https://github.com/ryanrolds/sqlclosecheck
 }

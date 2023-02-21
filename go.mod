@@ -38,6 +38,7 @@ require (
 	github.com/nishanths/predeclared v0.2.2
 	github.com/nunnatsa/ginkgolinter v0.8.1
 	github.com/polyfloyd/go-errorlint v1.1.0
+	github.com/ryanrolds/sqlclosecheck v0.4.0
 	github.com/sashamelentyev/interfacebloat v1.1.0
 	github.com/sivchari/containedctx v1.0.2
 	github.com/sonatard/noctx v0.0.1
