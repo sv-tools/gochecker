@@ -66,7 +66,6 @@ import (
 	"github.com/gostaticanalysis/nilerr"
 	"github.com/jingyugao/rowserrcheck/passes/rowserr"
 	goprintffuncname "github.com/jirfag/go-printf-func-name/pkg/analyzer"
-	"github.com/julz/importas"
 	"github.com/junk1tm/musttag"
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
@@ -170,7 +169,6 @@ var analyzers = []*analysis.Analyzer{
 	gocognit.Analyzer,                                      // https://github.com/uudashr/gocognit
 	goprintffuncname.Analyzer,                              // https://github.com/jirfag/go-printf-func-name
 	grouper.New(),                                          // https://github.com/leonklingele/grouper
-	importas.Analyzer,                                      // https://github.com/julz/importas
 	ineffassign.Analyzer,                                   // https://github.com/gordonklaus/ineffassign
 	interfacebloat.New(),                                   // https://github.com/sashamelentyev/interfacebloat
 	ireturn.NewAnalyzer(),                                  // https://github.com/butuzov/ireturn

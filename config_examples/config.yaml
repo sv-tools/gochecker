@@ -1,31 +1,233 @@
 analyzers:
-    asmdecl:
-    assign:
-    atomic:
-    bools:
-    buildtag:
-    cgocall:
+    asciicheck: {}
+    asmdecl: {}
+    assign: {}
+    atomic: {}
+    atomicalign: {}
+    bidichk:
+        V: ""
+        disallowed-runes: FIRST-STRONG-ISOLATE,LEFT-TO-RIGHT-EMBEDDING,LEFT-TO-RIGHT-ISOLATE,LEFT-TO-RIGHT-OVERRIDE,POP-DIRECTIONAL-FORMATTING,POP-DIRECTIONAL-ISOLATE,RIGHT-TO-LEFT-EMBEDDING,RIGHT-TO-LEFT-ISOLATE,RIGHT-TO-LEFT-OVERRIDE
+    bodyclose: {}
+    bools: {}
+    buildtag: {}
+    cgocall: {}
     composites:
-    copylocks:
-    errorsas:
-    framepointer:
-    httpresponse:
-    ifaceassert:
-    loopclosure:
-    lostcancel:
-    nilfunc:
-    nilness:
+        whitelist: "true"
+    containedctx: {}
+    contextcheck:
+        pkgprefix: ""
+    copylocks: {}
+    cyclop:
+        maxComplexity: "10"
+        packageAverage: "0"
+        skipTests: "false"
+    decorder:
+        dec-order: type,const,var,func
+        disable-dec-num-check: "false"
+        disable-dec-order-check: "false"
+        disable-init-func-first-check: "false"
+    deepequalerrors: {}
+    directive: {}
+    dupword:
+        V: ""
+        keyword: ""
+    durationcheck: {}
+    err113: {}
+    errcheck:
+        assert: "false"
+        blank: "false"
+        exclude: ""
+        excludeonly: "false"
+    errchkjson:
+        V: ""
+        omit-safe: "false"
+        report-no-exported: "false"
+    errname: {}
+    errorlint:
+        asserts: "true"
+        comparison: "true"
+        errorf: "false"
+    errorsas: {}
+    execinquery: {}
+    exhaustive:
+        check: switch
+        check-generated: "false"
+        checking-strategy: ""
+        default-signifies-exhaustive: "false"
+        explicit-exhaustive-map: "false"
+        explicit-exhaustive-switch: "false"
+        ignore-enum-members: ""
+        ignore-enum-types: ""
+        ignore-pattern: ""
+        package-scope-only: "false"
+    exhaustruct:
+        exclude: ""
+        include: ""
+    exportloopref: {}
+    fieldalignment: {}
+    forbidigo:
+        analyze_types: "false"
+        examples: "false"
+        p: ""
+        permit: "true"
+    forcetypeassert: {}
+    framepointer: {}
+    gci:
+        SectionSeparators: ""
+        Sections: ""
+        noInlineComments: "false"
+        noPrefixComments: "false"
+        skipGenerated: "false"
+    ginkgolinter:
+        suppress-err-assertion: "false"
+        suppress-len-assertion: "false"
+        suppress-nil-assertion: "false"
+    gocheckcompilerdirectives: {}
+    gochecknoglobals:
+        t: "false"
+    gocognit:
+        over: "0"
+    goprintffuncname: {}
+    grouper:
+        const-require-grouping: "false"
+        const-require-single-const: "false"
+        import-require-grouping: "false"
+        import-require-single-import: "false"
+        type-require-grouping: "false"
+        type-require-single-type: "false"
+        var-require-grouping: "false"
+        var-require-single-var: "false"
+    httpresponse: {}
+    ifaceassert: {}
+    ineffassign: {}
+    interfacebloat:
+        max: "10"
+    ireturn:
+        allow: ""
+        reject: ""
+    loggercheck:
+        disable: kitlog
+        noprintflike: "false"
+        requirestringkey: "false"
+        rulefile: ""
+    loopclosure: {}
+    lostcancel: {}
+    maintidx:
+        under: "20"
+    makezero:
+        always: "false"
+    mnd:
+        checks: argument,case,condition,operation,return,assign
+        excludes: ""
+        ignored-files: ""
+        ignored-functions: ""
+        ignored-numbers: ""
+    musttag:
+        fn: ""
+    nilerr: {}
+    nilfunc: {}
+    nilness: {}
+    nilnil:
+        checked-types: chan,func,iface,map,ptr
+    nlreturn:
+        block-size: "1"
+    noctx: {}
+    nonamedreturns:
+        report-error-in-defer: "false"
+    nosprintfhostport: {}
+    paralleltest:
+        i: "false"
+    predeclared:
+        ignore: ""
+        q: "false"
     printf:
-    shift:
-    sigchanyzer:
-    stdmethods:
-    stringintconv:
-    structtag:
-    testinggoroutine:
-    tests:
-    timeformat:
-    unmarshal:
-    unreachable:
-    unsafeptr:
+        funcs: (*log.Logger).Fatal,(*log.Logger).Fatalf,(*log.Logger).Fatalln,(*log.Logger).Panic,(*log.Logger).Panicf,(*log.Logger).Panicln,(*log.Logger).Print,(*log.Logger).Printf,(*log.Logger).Println,(*testing.common).Error,(*testing.common).Errorf,(*testing.common).Fatal,(*testing.common).Fatalf,(*testing.common).Log,(*testing.common).Logf,(*testing.common).Skip,(*testing.common).Skipf,(testing.TB).Error,(testing.TB).Errorf,(testing.TB).Fatal,(testing.TB).Fatalf,(testing.TB).Log,(testing.TB).Logf,(testing.TB).Skip,(testing.TB).Skipf,fmt.Errorf,fmt.Fprint,fmt.Fprintf,fmt.Fprintln,fmt.Print,fmt.Printf,fmt.Println,fmt.Sprint,fmt.Sprintf,fmt.Sprintln,log.Fatal,log.Fatalf,log.Fatalln,log.Panic,log.Panicf,log.Panicln,log.Print,log.Printf,log.Println,runtime/trace.Logf
+    reassign:
+        pattern: ^(Err.*|EOF)$
+    reflectvaluecompare: {}
+    rowserrcheck: {}
+    ruleguard:
+        '@captLocal.paramsOnly': "true"
+        '@elseif.skipBalanced': "true"
+        '@hugeParam.sizeThreshold': "80"
+        '@ifElseChain.minThreshold': "2"
+        '@nestingReduce.bodyWidth': "5"
+        '@rangeExprCopy.sizeThreshold': "512"
+        '@rangeExprCopy.skipTestFuncs': "true"
+        '@rangeValCopy.sizeThreshold': "128"
+        '@rangeValCopy.skipTestFuncs': "true"
+        '@ruleguard.debug': ""
+        '@ruleguard.disable': ""
+        '@ruleguard.enable': <all>
+        '@ruleguard.failOn': ""
+        '@ruleguard.failOnError': "false"
+        '@ruleguard.rules': ""
+        '@tooManyResultsChecker.maxResults': "5"
+        '@truncateCmp.skipArchDependent': "true"
+        '@underef.skipRecvDeref': "true"
+        '@unnamedResult.checkExported': "false"
+        debug-init: "false"
+        disable: <default>
+        enable: '#diagnostic,#style,#security'
+        enable-all: "false"
+        go: ""
+    shadow:
+        strict: "false"
+    shift: {}
+    sigchanyzer: {}
+    sortslice: {}
+    sqlclosecheck: {}
+    stdmethods: {}
+    stringintconv: {}
+    structtag: {}
+    tenv:
+        all: "false"
+    testableexamples: {}
+    testinggoroutine: {}
+    testpackage:
+        allow-packages: main
+        skip-regexp: (export|internal)_test\.go
+    tests: {}
+    thelper:
+        checks: b_begin,b_first,b_name,f_begin,f_first,f_name,t_begin,t_first,t_name,tb_begin,tb_first,tb_name
+    timeformat: {}
+    tparallel: {}
+    unmarshal: {}
+    unreachable: {}
+    unsafeptr: {}
     unusedresult:
-test: true
+        funcs: context.WithCancel,context.WithDeadline,context.WithTimeout,context.WithValue,errors.New,fmt.Errorf,fmt.Sprint,fmt.Sprintf,sort.Reverse
+        stringmethods: Error,String
+    unusedwrite: {}
+    usesgenerics: {}
+    usestdlibvars:
+        constant-kind: "false"
+        crypto-hash: "false"
+        http-method: "true"
+        http-status-code: "true"
+        os-dev-null: "false"
+        rpc-default-path: "false"
+        sql-isolation-level: "false"
+        syslog-priority: "false"
+        time-layout: "false"
+        time-month: "false"
+        time-weekday: "false"
+        tls-signature-scheme: "false"
+    varnamelen:
+        checkReceiver: "false"
+        checkReturn: "false"
+        checkTypeParam: "false"
+        ignoreChanRecvOk: "false"
+        ignoreDecls: ""
+        ignoreMapIndexOk: "false"
+        ignoreNames: ""
+        ignoreTypeAssertOk: "false"
+        maxDistance: "5"
+        minNameLength: "3"
+    wastedassign: {}
+debug: ""
+cpuprofile: ""
+memprofile: ""
+trace: ""
+test: false
+fix: false
