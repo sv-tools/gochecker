@@ -52,6 +52,7 @@ import (
 	forbidigo "github.com/ashanbrown/forbidigo/pkg/analyzer"
 	makezero "github.com/ashanbrown/makezero/pkg/analyzer"
 	cyclop "github.com/bkielbasa/cyclop/pkg/analyzer"
+	"github.com/blizzy78/varnamelen"
 	"github.com/breml/bidichk/pkg/bidichk"
 	"github.com/breml/errchkjson"
 	ireturn "github.com/butuzov/ireturn/analyzer"
@@ -194,4 +195,5 @@ var analyzers = []*analysis.Analyzer{
 	thelper.NewAnalyzer(),                                  // https://github.com/kulti/thelper
 	tparallel.Analyzer,                                     // https://github.com/moricho/tparallel
 	usestdlibvars.New(),                                    // https://github.com/sashamelentyev/usestdlibvars
+	varnamelen.NewAnalyzer(),                               // https://github.com/blizzy78/varnamelen
 }
