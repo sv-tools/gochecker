@@ -34,6 +34,7 @@ require (
 	github.com/kyoh86/exportloopref v0.1.11
 	github.com/leonklingele/grouper v1.1.1
 	github.com/lufeee/execinquery v1.2.1
+	github.com/maratori/testableexamples v1.0.0
 	github.com/nishanths/exhaustive v0.9.5
 	github.com/nishanths/predeclared v0.2.2
 	github.com/nunnatsa/ginkgolinter v0.8.1
