@@ -80,6 +80,7 @@ import (
 	sqlclosecheck "github.com/ryanrolds/sqlclosecheck/pkg/analyzer"
 	interfacebloat "github.com/sashamelentyev/interfacebloat/pkg/analyzer"
 	"github.com/sivchari/containedctx"
+	"github.com/sivchari/tenv"
 	"github.com/sonatard/noctx"
 	"github.com/ssgreg/nlreturn/v2/pkg/nlreturn"
 	nosprintfhostport "github.com/stbenjam/no-sprintf-host-port/pkg/analyzer"
@@ -182,4 +183,5 @@ var analyzers = []*analysis.Analyzer{
 	reassign.NewAnalyzer(),                                 // https://github.com/curioswitch/go-reassign
 	rowserr.NewAnalyzer(),                                  // https://github.com/jingyugao/rowserrcheck
 	sqlclosecheck.NewAnalyzer(),                            // https://github.com/ryanrolds/sqlclosecheck
+	tenv.Analyzer,                                          // https://github.com/sivchari/tenv
 }

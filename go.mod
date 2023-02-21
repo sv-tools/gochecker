@@ -41,6 +41,7 @@ require (
 	github.com/ryanrolds/sqlclosecheck v0.4.0
 	github.com/sashamelentyev/interfacebloat v1.1.0
 	github.com/sivchari/containedctx v1.0.2
+	github.com/sivchari/tenv v1.7.1
 	github.com/sonatard/noctx v0.0.1
 	github.com/ssgreg/nlreturn/v2 v2.2.1
 	github.com/stbenjam/no-sprintf-host-port v0.1.1
