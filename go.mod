@@ -53,7 +53,7 @@ require (
 	github.com/stbenjam/no-sprintf-host-port v0.1.1
 	github.com/tdakkota/asciicheck v0.1.1
 	github.com/timakin/bodyclose v0.0.0-20221125081123-e39cf3fc478e
-	github.com/timonwong/loggercheck v0.9.3
+	github.com/timonwong/loggercheck v0.9.4
 	github.com/tommy-muehle/go-mnd/v2 v2.5.1
 	github.com/uudashr/gocognit v1.0.6
 	github.com/yagipy/maintidx v1.0.0
