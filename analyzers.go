@@ -74,6 +74,7 @@ import (
 	grouper "github.com/leonklingele/grouper/pkg/analyzer"
 	"github.com/lufeee/execinquery"
 	"github.com/maratori/testableexamples/pkg/testableexamples"
+	"github.com/maratori/testpackage/pkg/testpackage"
 	"github.com/nishanths/exhaustive"
 	"github.com/nishanths/predeclared/passes/predeclared"
 	"github.com/nunnatsa/ginkgolinter"
@@ -186,4 +187,5 @@ var analyzers = []*analysis.Analyzer{
 	sqlclosecheck.NewAnalyzer(),                            // https://github.com/ryanrolds/sqlclosecheck
 	tenv.Analyzer,                                          // https://github.com/sivchari/tenv
 	testableexamples.NewAnalyzer(),                         // https://github.com/maratori/testableexamples
+	testpackage.NewAnalyzer(),                              // https://github.com/maratori/testpackage
 }
