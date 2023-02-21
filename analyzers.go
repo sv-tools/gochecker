@@ -83,6 +83,7 @@ import (
 	"github.com/polyfloyd/go-errorlint/errorlint"
 	sqlclosecheck "github.com/ryanrolds/sqlclosecheck/pkg/analyzer"
 	interfacebloat "github.com/sashamelentyev/interfacebloat/pkg/analyzer"
+	usestdlibvars "github.com/sashamelentyev/usestdlibvars/pkg/analyzer"
 	"github.com/sivchari/containedctx"
 	"github.com/sivchari/tenv"
 	"github.com/sonatard/noctx"
@@ -192,4 +193,5 @@ var analyzers = []*analysis.Analyzer{
 	testpackage.NewAnalyzer(),                              // https://github.com/maratori/testpackage
 	thelper.NewAnalyzer(),                                  // https://github.com/kulti/thelper
 	tparallel.Analyzer,                                     // https://github.com/moricho/tparallel
+	usestdlibvars.New(),                                    // https://github.com/sashamelentyev/usestdlibvars
 }
