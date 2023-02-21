@@ -48,7 +48,7 @@ jobs:
           go-version: ${{ matrix.go }}
       - name: go fmt
         run: |
-          go fmt ./...
+          make fmt
           DELTA="$(git diff --numstat)"
           if [ -n "${DELTA}" ]
           then
@@ -57,10 +57,10 @@ jobs:
             exit 1
           fi
       - name: go vet
-        run: go vet ./...
+        run: make lint
       - name: generate config
         run: |
-          go run ./... generate-config > config_examples/config.yaml
+          make generate-config
           DELTA="$(git diff --numstat)"
           if [ -n "${DELTA}" ]
           then
