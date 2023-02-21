@@ -141,6 +141,8 @@ github.com/quasilyte/stdinfo v0.0.0-20220114132959-f7386bf02567 h1:M8mH9eK4OUR4l
 github.com/quasilyte/stdinfo v0.0.0-20220114132959-f7386bf02567/go.mod h1:DWNGW8A4Y+GyBgPuaQJuWiy0XYftx4Xm/y5Jqk9I6VQ=
 github.com/ryanrolds/sqlclosecheck v0.4.0 h1:i8SX60Rppc1wRuyQjMciLqIzV3xnoHB7/tXbr6RGYNI=
 github.com/ryanrolds/sqlclosecheck v0.4.0/go.mod h1:TBRRjzL31JONc9i4XMinicuo+s+E8yKZ5FN8X3G6CKQ=
+github.com/sanposhiho/wastedassign v1.0.0 h1:dB+7OV0iJ5b0SpGwKjKlPCr8GDZJX6Ylm3YG+66xGpc=
+github.com/sanposhiho/wastedassign v1.0.0/go.mod h1:LGpq5Hsv74QaqM47WtIsRSF/ik9kqk07kchgv66tLVE=
 github.com/sashamelentyev/interfacebloat v1.1.0 h1:xdRdJp0irL086OyW1H/RTZTr1h/tMEOsumirXcOJqAw=
 github.com/sashamelentyev/interfacebloat v1.1.0/go.mod h1:+Y9yU5YdTkrNvoX0xHc84dxiN1iBi9+G8zZIhPVoNjQ=
 github.com/sashamelentyev/usestdlibvars v1.23.0 h1:01h+/2Kd+NblNItNeux0veSL5cBF1jbEOPrEhDzGYq0=
