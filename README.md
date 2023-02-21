@@ -1,9 +1,14 @@
 # gochecker
+
+[![Code Analysis](https://github.com/sv-tools/gochecker/actions/workflows/checks.yaml/badge.svg)](https://github.com/sv-tools/gochecker/actions/workflows/checks.yaml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/sv-tools/gochecker.svg)](https://pkg.go.dev/github.com/sv-tools/gochecker)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/sv-tools/gochecker?style=flat)](https://github.com/sv-tools/gochecker/releases)
+
 Go tool to check the code (linter)
 
 Another variation of the go linters.
 The `gochecker` is a wrapper for [multichecker](https://pkg.go.dev/golang.org/x/tools/go/analysis/multichecker).
-The `gochecker` supports `go vet` interface and includes all official [analiyzers](https://pkg.go.dev/golang.org/x/tools/go/analysis/passes)
+The `gochecker` supports `go vet` interface and includes all official [analyzers](https://pkg.go.dev/golang.org/x/tools/go/analysis/passes)
 and some custom linters, see [analyzers.go](analyzers.go) file for the full list.
 In theory the `gochecker` can support any analyzers which implement [Analyzer type](https://pkg.go.dev/golang.org/x/tools/go/analysis#Analyzer).
 
@@ -63,7 +68,7 @@ All the passes are added as individual analyzers, which allows more precisely co
 - [sortslice](https://pkg.go.dev/golang.org/x/tools/go/analysis/passes/sortslice) checks for calls to sort.Slice that do not use a slice type as first argument.
 - [stdmethods](https://pkg.go.dev/golang.org/x/tools/go/analysis/passes/stdmethods) checks for misspellings in the signatures of methods similar to well-known interfaces.
 - [stringintconv](https://pkg.go.dev/golang.org/x/tools/go/analysis/passes/stringintconv) flags type conversions from integers to strings.
-- [structtag](https://pkg.go.dev/golang.org/x/tools/go/analysis/passes/structtag) checks struct field tags are well formed.
+- [structtag](https://pkg.go.dev/golang.org/x/tools/go/analysis/passes/structtag) checks struct field tags are well-formed.
 - [testinggoroutine](https://pkg.go.dev/golang.org/x/tools/go/analysis/passes/testinggoroutine) report calls to (*testing.T).Fatal from goroutines started by a test.
 - [tests](https://pkg.go.dev/golang.org/x/tools/go/analysis/passes/tests) checks for common mistaken usages of tests and examples.
 - [timeformat](https://pkg.go.dev/golang.org/x/tools/go/analysis/passes/timeformat) checks for the use of time.Format or time.Parse calls with a bad format.
@@ -91,7 +96,7 @@ and then each analyzer was checked and imported if it provides an object of the 
 - [durationcheck](https://github.com/charithe/durationcheck) detects cases where two `time.Duration` values are being multiplied in possibly erroneous ways.
 - [err113](https://github.com/Djarvur/go-err113) checks the errors handling expressions.
 - [errcheck](https://github.com/kisielk/errcheck) checks for unchecked errors in go programs.
-- [errchkjson](https://github.com/breml/errchkjson) Cchecks types passed to the json encoding functions. Reports unsupported types and reports occurrences where the check for the returned error can be omitted.
+- [errchkjson](https://github.com/breml/errchkjson) checks types passed to the json encoding functions. Reports unsupported types and reports occurrences where the check for the returned error can be omitted.
 - [errname](https://github.com/Antonboom/errname) checks that sentinel errors are prefixed with the `Err` and error types are suffixed with the `Error`.
 - [errorlint](https://github.com/polyfloyd/go-errorlint) finds code that will cause problems with the error wrapping scheme introduced in Go 1.13.
 - [execinquery](https://github.com/lufeee/execinquery) is a simple query string checker in Query function.
