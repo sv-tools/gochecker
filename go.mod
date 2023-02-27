@@ -10,7 +10,7 @@ require (
 	github.com/Antonboom/nilnil v0.1.1
 	github.com/Djarvur/go-err113 v0.1.0
 	github.com/GaijinEntertainment/go-exhaustruct v1.0.0
-	github.com/ashanbrown/forbidigo v1.4.0
+	github.com/ashanbrown/forbidigo v1.5.1
 	github.com/ashanbrown/makezero v1.1.1
 	github.com/bkielbasa/cyclop v1.2.0
 	github.com/blizzy78/varnamelen v0.8.0
@@ -70,10 +70,10 @@ require (
 	github.com/go-toolsmith/astp v1.1.0 // indirect
 	github.com/go-toolsmith/strparse v1.1.0 // indirect
 	github.com/go-toolsmith/typep v1.1.0 // indirect
+	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/gostaticanalysis/analysisutil v0.7.1 // indirect
 	github.com/gostaticanalysis/comment v1.4.2 // indirect
 	github.com/hexops/gotextdiff v1.0.3 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/quasilyte/go-ruleguard v0.3.19 // indirect
 	github.com/quasilyte/gogrep v0.5.0 // indirect
 	github.com/quasilyte/regex/syntax v0.0.0-20200407221936-30656e2c4a95 // indirect
@@ -85,5 +85,5 @@ require (
 	golang.org/x/mod v0.8.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
-	gopkg.in/yaml.v2 v2.2.8 // indirect
+	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
