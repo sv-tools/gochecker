@@ -86,8 +86,8 @@ github.com/jingyugao/rowserrcheck v1.1.1 h1:zibz55j/MJtLsjP1OF4bSdgXxwL1b+Vn7Tjz
 github.com/jingyugao/rowserrcheck v1.1.1/go.mod h1:4yvlZSDb3IyDTUZJUmpZfm2Hwok+Dtp+nu2qOq+er9c=
 github.com/jirfag/go-printf-func-name v0.0.0-20200119135958-7558a9eaa5af h1:KA9BjwUk7KlCh6S9EAGWBt1oExIUv9WyNCiRz5amv48=
 github.com/jirfag/go-printf-func-name v0.0.0-20200119135958-7558a9eaa5af/go.mod h1:HEWGJkRDzjJY2sqdDwxccsGicWEf9BQOZsq2tV+xzM0=
-github.com/junk1tm/musttag v0.4.5 h1:d+mpJ1vn6WFEVKHwkgJiIedis1u/EawKOuUTygAUtCo=
-github.com/junk1tm/musttag v0.4.5/go.mod h1:XkcL/9O6RmD88JBXb+I15nYRl9W4ExhgQeCBEhfMC8U=
+github.com/junk1tm/musttag v0.5.0 h1:bV1DTdi38Hi4pG4OVWa7Kap0hi0o7EczuK6wQt9zPOM=
+github.com/junk1tm/musttag v0.5.0/go.mod h1:PcR7BA+oREQYvHwgjIDmw3exJeds5JzRcvEJTfjrA0M=
 github.com/kisielk/errcheck v1.6.3 h1:dEKh+GLHcWm2oN34nMvDzn1sqI0i0WxPvrgiJA5JuM8=
 github.com/kisielk/errcheck v1.6.3/go.mod h1:nXw/i/MfnvRHqXa7XXmQMUB0oNFGuBrNI8d8NLy0LPw=
 github.com/kkHAIKE/contextcheck v1.1.3 h1:l4pNvrb8JSwRd51ojtcOxOeHJzHek+MtOyXbaR0uvmw=
