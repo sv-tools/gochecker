@@ -230,5 +230,6 @@ debug: ""
 cpuprofile: ""
 memprofile: ""
 trace: ""
+output: ""
 test: false
 fix: false

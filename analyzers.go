@@ -1,7 +1,6 @@
 package main
 
 import (
-	"gitlab.com/bosi/decorder"
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/asmdecl"
 	"golang.org/x/tools/go/analysis/passes/assign"
@@ -96,6 +95,7 @@ import (
 	"github.com/tommy-muehle/go-mnd/v2"
 	"github.com/uudashr/gocognit"
 	"github.com/yagipy/maintidx"
+	"gitlab.com/bosi/decorder"
 )
 
 var analyzers = []*analysis.Analyzer{
