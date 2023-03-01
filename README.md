@@ -143,7 +143,8 @@ and then each analyzer was checked and imported if it provides an object of the 
 
 - [x] go analyzers
 - [x] custom analyzers (linters)
-- [ ] `diff` output
+- [x] `console` output
+- [ ] `diff` output for suggested fixes
 - [ ] `github` output
 - [ ] `nolint` and/or global exclude rules
 

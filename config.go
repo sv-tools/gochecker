@@ -1,14 +1,23 @@
 package main
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
 	"log"
 	"os"
 	"strings"
 
+	"golang.org/x/tools/go/analysis/multichecker"
 	"gopkg.in/yaml.v3"
 )
+
+const (
+	ConsoleOutput = "console"
+	JSONOutput    = "json"
+)
+
+var oneOfOutputFormats = strings.Join([]string{ConsoleOutput, JSONOutput}, ", ")
 
 type Config struct {
 	Analyzers  map[string]map[string]string `json:"analyzers" yaml:"analyzers"`
@@ -16,67 +25,69 @@ type Config struct {
 	CPUProfile string                       `json:"cpuprofile" yaml:"cpuprofile"`
 	MemProfile string                       `json:"memprofile" yaml:"memprofile"`
 	Trace      string                       `json:"trace" yaml:"trace"`
+	Output     string                       `json:"output" yaml:"output"`
+	Args       []string                     `json:"-" yaml:"-"`
 	Test       bool                         `json:"test" yaml:"test"`
 	Fix        bool                         `json:"fix" yaml:"fix"`
 }
 
-const progname = "gochecker"
-
-func parseConfig() {
-	os.Args[0] = progname
-	log.SetFlags(0)
-	log.SetPrefix(progname + ": ")
-
+func parseConfig() *Config {
 	var (
 		configPath string
 		config     Config
 	)
-	configFlagSet := flag.NewFlagSet(progname, flag.ContinueOnError)
-	configFlagSet.Usage = func() {} // preventing the help output
-	for _, set := range []*flag.FlagSet{flag.CommandLine, configFlagSet} {
+	fs := flag.NewFlagSet(progname, flag.ContinueOnError)
+	fs.SetOutput(&bytes.Buffer{}) // mute any prints
+	for _, set := range []*flag.FlagSet{flag.CommandLine, fs} {
 		set.StringVar(&configPath, "config", "", "A path to a config file in json or yaml format.")
+		set.StringVar(&config.Output, "output", "", "Output format, one of: "+oneOfOutputFormats)
 	}
 	// default flags multichecker flags
-	configFlagSet.StringVar(&config.Debug, "debug", "", "")
-	configFlagSet.StringVar(&config.CPUProfile, "cpuprofile", "", "")
-	configFlagSet.StringVar(&config.MemProfile, "memprofile", "", "")
-	configFlagSet.StringVar(&config.Trace, "trace", "", "")
-	configFlagSet.BoolVar(&config.Test, "test", true, "")
-	configFlagSet.BoolVar(&config.Fix, "fix", false, "")
-	// analyzer flags
+	fs.StringVar(&config.Debug, "debug", "", "")
+	fs.StringVar(&config.CPUProfile, "cpuprofile", "", "")
+	fs.StringVar(&config.MemProfile, "memprofile", "", "")
+	fs.StringVar(&config.Trace, "trace", "", "")
+	fs.BoolVar(&config.Test, "test", true, "")
+	fs.BoolVar(&config.Fix, "fix", false, "")
+	var jsonFlag bool
+	fs.BoolVar(&jsonFlag, "json", false, "")
+	// analyzer's flags
 	for _, analyzer := range analyzers {
-		configFlagSet.Bool(analyzer.Name, false, "")
+		fs.Bool(analyzer.Name, false, "")
 		analyzer.Flags.VisitAll(func(f *flag.Flag) {
-			configFlagSet.Var(f.Value, strings.Join([]string{analyzer.Name, f.Name}, "."), "")
+			fs.Var(f.Value, strings.Join([]string{analyzer.Name, f.Name}, "."), "")
 		})
 	}
-	if err := configFlagSet.Parse(os.Args[1:]); err != nil {
-		return // let the multichecker report about any errors
+	if err := fs.Parse(os.Args[1:]); err != nil {
+		// let the multichecker report about any parser errors
+		multichecker.Main(analyzers...)
 	}
-
-	if largs := configFlagSet.Args(); len(largs) > 0 {
-		switch largs[0] {
-		case "generate-config":
-			generateConfig()
-			os.Exit(0)
+	if configPath != "" {
+		f, err := os.Open(configPath)
+		if err != nil {
+			log.Fatal(err)
+		}
+		d := yaml.NewDecoder(f)
+		d.KnownFields(true)
+		if err := d.Decode(&config); err != nil {
+			log.Fatal(err)
 		}
 	}
+	if jsonFlag {
+		config.Output = "json"
+	}
+	config.Output = strings.ToLower(config.Output)
+	switch config.Output {
+	case "":
+		config.Output = ConsoleOutput
+	case ConsoleOutput, JSONOutput:
+	default:
+		log.Fatal("output must be one of: " + oneOfOutputFormats)
+	}
 
-	if configPath == "" {
-		return // no config provided
-	}
-	f, err := os.Open(configPath)
-	if err != nil {
-		log.Fatal(err)
-	}
-	d := yaml.NewDecoder(f)
-	d.KnownFields(true)
-	if err := d.Decode(&config); err != nil {
-		log.Fatal(err)
-	}
-	configFlagSet.Visit(func(f *flag.Flag) {
+	fs.Visit(func(f *flag.Flag) {
 		switch f.Name {
-		case "config", "debug", "cpuprofile", "memprofile", "trace", "test", "fix":
+		case "config", "debug", "cpuprofile", "memprofile", "trace", "test", "fix", "json", "output":
 			return
 		}
 		parts := strings.SplitN(f.Name, ".", 2)
@@ -89,9 +100,8 @@ func parseConfig() {
 			flags[parts[1]] = f.Value.String()
 		}
 		config.Analyzers[name] = flags
-
 	})
-	args := []string{progname}
+	args := []string{"-json"}
 	if config.Test {
 		args = append(args, "-test")
 	}
@@ -125,8 +135,8 @@ func parseConfig() {
 			}
 		}
 	}
-	args = append(args, configFlagSet.Args()...)
-	os.Args = args
+	config.Args = append(args, fs.Args()...)
+	return &config
 }
 
 func generateConfig() {
@@ -142,4 +152,5 @@ func generateConfig() {
 	if err := yaml.NewEncoder(os.Stdout).Encode(config); err != nil {
 		log.Fatal(err)
 	}
+	os.Exit(0)
 }

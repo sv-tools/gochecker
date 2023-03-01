@@ -1,10 +1,13 @@
-all: tidy fmt generate-config lint
+all: tidy fmt generate-config fix
 
 fmt:
 	@go fmt ./...
 
-lint:
-	@go run ./... -config config_examples/vet_config.yaml ./...
+fix:
+	@go run ./... -config gochecker.yaml -fix ./...
+
+vet:
+	@go run ./... -config gochecker.yaml ./...
 
 test-all:
 	@go run ./... -config config_examples/config.yaml ./...

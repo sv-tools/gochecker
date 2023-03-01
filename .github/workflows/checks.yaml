@@ -57,7 +57,7 @@ jobs:
             exit 1
           fi
       - name: go vet
-        run: make lint
+        run: make vet
       - name: generate config
         run: |
           make generate-config

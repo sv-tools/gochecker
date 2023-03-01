@@ -1,0 +1,35 @@
+analyzers:
+    # go vet analyzers
+    asmdecl:
+    assign:
+    atomic:
+    bools:
+    buildtag:
+    cgocall:
+    composites:
+    copylocks:
+    errorsas:
+    framepointer:
+    httpresponse:
+    ifaceassert:
+    loopclosure:
+    lostcancel:
+    nilfunc:
+    nilness:
+    printf:
+    shift:
+    sigchanyzer:
+    stdmethods:
+    stringintconv:
+    structtag:
+    testinggoroutine:
+    tests:
+    timeformat:
+    unmarshal:
+    unreachable:
+    unsafeptr:
+    unusedresult:
+
+    # additional
+    fieldalignment:
+test: true
