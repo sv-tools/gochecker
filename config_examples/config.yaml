@@ -47,6 +47,7 @@ analyzers:
         asserts: "true"
         comparison: "true"
         errorf: "false"
+        errorf-multi: "true"
     errorsas: {}
     execinquery: {}
     exhaustive:
