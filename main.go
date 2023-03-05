@@ -5,6 +5,8 @@ import (
 	"os"
 
 	"golang.org/x/tools/go/analysis/multichecker"
+
+	"github.com/sv-tools/gochecker/analyzers"
 )
 
 const (
@@ -19,7 +21,7 @@ func main() {
 
 	if os.Getenv(interceptModeEnv) != "" {
 		// pass directly to multichecker
-		multichecker.Main(analyzers...)
+		multichecker.Main(analyzers.Analyzers...)
 	}
 
 	// check for any sub-commands
@@ -35,7 +37,7 @@ func commands() {
 	}
 	switch os.Args[1] {
 	case "help":
-		multichecker.Main(analyzers...)
+		multichecker.Main(analyzers.Analyzers...)
 	case "generate-config":
 		generateConfig()
 	}

@@ -10,6 +10,8 @@ import (
 
 	"golang.org/x/tools/go/analysis/multichecker"
 	"gopkg.in/yaml.v3"
+
+	"github.com/sv-tools/gochecker/analyzers"
 )
 
 const (
@@ -39,9 +41,11 @@ func parseConfig() *Config {
 	)
 	fs := flag.NewFlagSet(progname, flag.ContinueOnError)
 	fs.SetOutput(&bytes.Buffer{}) // mute any prints
+	var govetFlag bool
 	for _, set := range []*flag.FlagSet{flag.CommandLine, fs} {
 		set.StringVar(&configPath, "config", "", "A path to a config file in json or yaml format.")
 		set.StringVar(&config.Output, "output", "", "Output format, one of: "+oneOfOutputFormats)
+		set.BoolVar(&govetFlag, analyzers.GoVetName, false, analyzers.GoVetDoc)
 	}
 	// default flags multichecker flags
 	fs.StringVar(&config.Debug, "debug", "", "")
@@ -53,7 +57,7 @@ func parseConfig() *Config {
 	var jsonFlag bool
 	fs.BoolVar(&jsonFlag, "json", false, "")
 	// analyzer's flags
-	for _, analyzer := range analyzers {
+	for _, analyzer := range analyzers.Analyzers {
 		fs.Bool(analyzer.Name, false, "")
 		analyzer.Flags.VisitAll(func(f *flag.Flag) {
 			fs.Var(f.Value, strings.Join([]string{analyzer.Name, f.Name}, "."), "")
@@ -61,7 +65,7 @@ func parseConfig() *Config {
 	}
 	if err := fs.Parse(os.Args[1:]); err != nil {
 		// let the multichecker report about any parser errors
-		multichecker.Main(analyzers...)
+		multichecker.Main(analyzers.Analyzers...)
 	}
 	if configPath != "" {
 		f, err := os.Open(configPath)
@@ -88,7 +92,11 @@ func parseConfig() *Config {
 
 	fs.Visit(func(f *flag.Flag) {
 		switch f.Name {
-		case "config", "debug", "cpuprofile", "memprofile", "trace", "test", "fix", "json", "output":
+		case "config", "output":
+			return
+		case "debug", "cpuprofile", "memprofile", "trace", "test", "fix", "json":
+			return
+		case analyzers.GoVetName:
 			return
 		}
 		parts := strings.SplitN(f.Name, ".", 2)
@@ -102,6 +110,16 @@ func parseConfig() *Config {
 		}
 		config.Analyzers[name] = flags
 	})
+	if _, ok := config.Analyzers[analyzers.GoVetName]; ok || govetFlag {
+		// Add all go vet linters to config
+		delete(config.Analyzers, analyzers.GoVetName)
+		for _, analyzer := range analyzers.GoVet {
+			if _, ok := config.Analyzers[analyzer.Name]; !ok {
+				config.Analyzers[analyzer.Name] = make(map[string]string)
+			}
+		}
+	}
+
 	args := []string{"-json"}
 	if config.Test {
 		args = append(args, "-test")
@@ -143,13 +161,14 @@ func parseConfig() *Config {
 func generateConfig() {
 	var config Config
 	config.Analyzers = make(map[string]map[string]string)
-	for _, analyzer := range analyzers {
+	for _, analyzer := range analyzers.Analyzers {
 		flags := make(map[string]string)
 		analyzer.Flags.VisitAll(func(f *flag.Flag) {
 			flags[f.Name] = f.DefValue
 		})
 		config.Analyzers[analyzer.Name] = flags
 	}
+	config.Analyzers[analyzers.GoVetName] = make(map[string]string)
 	if err := yaml.NewEncoder(os.Stdout).Encode(config); err != nil {
 		log.Fatal(err)
 	}
