@@ -7,6 +7,7 @@ import (
 	"golang.org/x/tools/go/analysis/multichecker"
 
 	"github.com/sv-tools/gochecker/analyzers"
+	"github.com/sv-tools/gochecker/config"
 )
 
 const (
@@ -39,6 +40,6 @@ func commands() {
 	case "help":
 		multichecker.Main(analyzers.Analyzers...)
 	case "generate-config":
-		generateConfig()
+		config.GenerateConfig()
 	}
 }

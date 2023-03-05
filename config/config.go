@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"bytes"
@@ -34,12 +34,12 @@ type Config struct {
 	Fix        bool                         `json:"fix" yaml:"fix"`
 }
 
-func parseConfig() *Config {
+func ParseConfig() *Config {
 	var (
 		configPath string
 		config     Config
 	)
-	fs := flag.NewFlagSet(progname, flag.ContinueOnError)
+	fs := flag.NewFlagSet("", flag.ContinueOnError)
 	fs.SetOutput(&bytes.Buffer{}) // mute any prints
 	var govetFlag bool
 	for _, set := range []*flag.FlagSet{flag.CommandLine, fs} {
@@ -158,7 +158,7 @@ func parseConfig() *Config {
 	return &config
 }
 
-func generateConfig() {
+func GenerateConfig() {
 	var config Config
 	config.Analyzers = make(map[string]map[string]string)
 	for _, analyzer := range analyzers.Analyzers {

@@ -11,10 +11,12 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+
+	"github.com/sv-tools/gochecker/config"
 )
 
 func intercept() {
-	conf := parseConfig()
+	conf := config.ParseConfig()
 
 	buf := runMultiChecker(conf.Args...)
 	// exit if no issues
@@ -27,16 +29,16 @@ func intercept() {
 		os.Exit(0)
 	}
 	switch conf.Output {
-	case ConsoleOutput:
+	case config.ConsoleOutput:
 		printAsText(diag)
 		os.Exit(3)
-	case JSONOutput:
+	case config.JSONOutput:
 		e := json.NewEncoder(os.Stdout)
 		e.SetIndent("", "  ")
 		if err := e.Encode(diag); err != nil {
 			log.Fatalf("json ouput failed: %+v", err)
 		}
-	case GithubOutput:
+	case config.GithubOutput:
 		printAsGithub(diag)
 		os.Exit(3)
 	}
@@ -105,7 +107,7 @@ func parseOutput(data *bytes.Buffer) *Diagnostic {
 	return &out
 }
 
-func exclude(conf *Config, diag *Diagnostic) {
+func exclude(conf *config.Config, diag *Diagnostic) {
 	if conf.Fix {
 		// remove all issues with suggested fixes, because they are already applied
 		toDeletePkg := make([]string, 0, len(*diag))
