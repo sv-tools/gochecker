@@ -1,0 +1,26 @@
+name: gochecker
+
+on:
+  workflow_call:
+    inputs:
+      config:
+        required: true
+        type: string
+      version:
+        type: string
+        default: latest
+      args:
+        type: string
+
+jobs:
+  gochecker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Go
+        uses: actions/setup-go@v3
+      - name: Install gochecker
+        run: go install github.com/sv-tools/gochecker@${{ inputs.version }}
+      - name: gochecker
+        run: $(go env GOPATH)/bin/gochecker -config ${{ inputs.config }} -output github ${{ inputs.args }} ./...

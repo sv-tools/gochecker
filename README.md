@@ -29,10 +29,39 @@ gochecker -config config.yaml ./...
 or using cli flags:
 
 ```shell
-gochecker -fieldalignment ./...
+gochecker -fieldalignment -fix ./...
 ```
 
 and please check `gochecker help` or `gochecker help <analyzer>` for full help.
+
+### GitHub Action
+
+```yaml
+jobs:
+  gochecker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Go
+        uses: actions/setup-go@v3
+      - name: Install gochecker
+        run: go install github.com/sv-tools/gochecker@latest
+      - name: gochecker
+        run: gochecker -config gochecker.yaml -output github ./...
+```
+
+### GitHub Action with reusable workflow
+
+```yaml
+jobs:
+  gochecker:
+    uses: sv-tools/gochecker/.github/workflows/gochecker.yaml@main
+    with:
+      config: gochecker.yaml
+      version: latest # optional; `latest` by default
+      args: # optional; any additional command-line arguments
+```
 
 ## Supported analyzers
 
