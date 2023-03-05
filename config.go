@@ -15,9 +15,10 @@ import (
 const (
 	ConsoleOutput = "console"
 	JSONOutput    = "json"
+	GithubOutput  = "github"
 )
 
-var oneOfOutputFormats = strings.Join([]string{ConsoleOutput, JSONOutput}, ", ")
+var oneOfOutputFormats = strings.Join([]string{ConsoleOutput, JSONOutput, GithubOutput}, ", ")
 
 type Config struct {
 	Analyzers  map[string]map[string]string `json:"analyzers" yaml:"analyzers"`
@@ -80,7 +81,7 @@ func parseConfig() *Config {
 	switch config.Output {
 	case "":
 		config.Output = ConsoleOutput
-	case ConsoleOutput, JSONOutput:
+	case ConsoleOutput, JSONOutput, GithubOutput:
 	default:
 		log.Fatal("output must be one of: " + oneOfOutputFormats)
 	}

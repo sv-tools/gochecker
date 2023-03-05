@@ -36,6 +36,9 @@ func intercept() {
 		if err := e.Encode(diag); err != nil {
 			log.Fatalf("json ouput failed: %+v", err)
 		}
+	case GithubOutput:
+		printAsGithub(diag)
+		os.Exit(3)
 	}
 }
 
@@ -132,7 +135,6 @@ func exclude(conf *Config, diag *Diagnostic) {
 			delete(*diag, name)
 		}
 	}
-	return
 }
 
 type CachedFile struct {
@@ -186,39 +188,8 @@ func printAsText(diag *Diagnostic) {
 				issue := issue
 				go func() {
 					defer wg.Done()
-					var (
-						filename string
-						line     = -1
-						pos      = -1
-						err      error
-					)
-					parts := strings.Split(issue.PosN, ":")
-					l := len(parts)
-					switch {
-					case l > 3:
-						parts = []string{
-							strings.Join(parts[:l-2], ":"),
-							parts[l-3],
-							parts[l-2],
-						}
-						fallthrough
-					case l == 3:
-						pos, err = strconv.Atoi(parts[2])
-						if err != nil {
-							log.Printf("converting the position failed: %+v", err)
-							pos = -1
-						}
-						fallthrough
-					case l == 2:
-						line, err = strconv.Atoi(parts[1])
-						if err != nil {
-							log.Printf("converting the line number failed: %+v", err)
-							line = -1
-						}
-						fallthrough
-					default:
-						filename = parts[0]
-					}
+					filename, line, pos := parsePosN(issue.PosN)
+
 					f, err := getFile(filename)
 					if err != nil {
 						log.Printf("reading file %q failed: %+v", filename, err)
@@ -258,6 +229,110 @@ func printAsText(diag *Diagnostic) {
 							buf.WriteString(colorYellow)
 							buf.WriteRune('^')
 							buf.WriteString(colorReset)
+						}
+					}
+
+					buf.WriteRune('\n')
+					buf.WriteTo(os.Stdout)
+				}()
+			}
+		}
+	}
+	wg.Wait()
+}
+
+func parsePosN(posN string) (string, int, int) {
+	var (
+		filename string
+		line     = -1
+		pos      = -1
+		err      error
+	)
+	parts := strings.Split(posN, ":")
+	l := len(parts)
+	switch {
+	case l > 3:
+		parts = []string{
+			strings.Join(parts[:l-2], ":"),
+			parts[l-3],
+			parts[l-2],
+		}
+		fallthrough
+	case l == 3:
+		pos, err = strconv.Atoi(parts[2])
+		if err != nil {
+			log.Printf("converting the position failed: %+v", err)
+			pos = -1
+		}
+		fallthrough
+	case l == 2:
+		line, err = strconv.Atoi(parts[1])
+		if err != nil {
+			log.Printf("converting the line number failed: %+v", err)
+			line = -1
+		}
+		fallthrough
+	default:
+		filename = parts[0]
+	}
+	return filename, line, pos
+}
+
+func printAsGithub(diag *Diagnostic) {
+	// print console output for people
+	os.Stdout.WriteString("::group::console format\n")
+	printAsText(diag)
+	os.Stdout.WriteString("::endgroup::\n")
+
+	wg := sync.WaitGroup{}
+	for _, pkg := range *diag {
+		for name, issues := range pkg {
+			for _, issue := range issues {
+				wg.Add(1)
+				name := name
+				issue := issue
+				go func() {
+					defer wg.Done()
+					filename, line, pos := parsePosN(issue.PosN)
+
+					f, err := getFile(filename)
+					if err != nil {
+						log.Printf("reading file %q failed: %+v", filename, err)
+						return
+					}
+
+					buf := bytes.Buffer{}
+					buf.WriteString("::error file=")
+					buf.WriteString(f.Filename)
+					if line != -1 {
+						buf.WriteString(",line=")
+						buf.WriteString(strconv.Itoa(line))
+						if pos != -1 {
+							buf.WriteString(",col=")
+							buf.WriteString(strconv.Itoa(pos))
+						}
+					}
+					buf.WriteString("::")
+					if issue.Category != "" {
+						buf.WriteString(issue.Category)
+						buf.WriteString(": ")
+					}
+					if issue.Message != "" {
+						buf.WriteString(issue.Message)
+					}
+					buf.WriteString(" (")
+					buf.WriteString(name)
+					buf.WriteRune(')')
+					if line != -1 && line < len(f.Lines) {
+						buf.WriteString("%0A")
+						buf.WriteString(strings.Replace(f.Lines[line-1], "\t", " ", pos))
+						if pos != -1 {
+							buf.WriteString("%0A")
+							buf.Grow(pos)
+							for i := 0; i < pos-1; i++ {
+								buf.WriteRune(' ')
+							}
+							buf.WriteRune('^')
 						}
 					}
 

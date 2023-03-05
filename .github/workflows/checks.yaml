@@ -57,7 +57,7 @@ jobs:
             exit 1
           fi
       - name: go vet
-        run: make vet
+        run: make github-vet
       - name: generate config
         run: |
           make generate-config
