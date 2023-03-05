@@ -61,6 +61,7 @@ jobs:
       config: gochecker.yaml
       version: latest # optional; `latest` by default
       args: # optional; any additional command-line arguments
+      go-version: # optional; the version of go to be used
 ```
 
 ## Supported analyzers
