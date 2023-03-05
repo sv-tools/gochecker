@@ -38,7 +38,9 @@ and please check `gochecker help` or `gochecker help <analyzer>` for full help.
 
 ### Go passes
 
-All the passes are added as individual analyzers, which allows more precisely configuration of the `gochecker`, than using `go vet`.  
+- `govet` is an aggregator includes all below passes.
+
+Or all the passes are added as individual analyzers as well, which allows more precisely configuration of the `gochecker`.
 
 - [asmdecl](https://pkg.go.dev/golang.org/x/tools/go/analysis/passes/asmdecl) reports mismatches between assembly files and Go declarations. 
 - [assign](https://pkg.go.dev/golang.org/x/tools/go/analysis/passes/assign) detects useless assignments.
