@@ -9,6 +9,9 @@ fix:
 vet:
 	@go run ./... -config gochecker.yaml ./...
 
+github-vet:
+	@go run ./... -config gochecker.yaml -output github ./...
+
 test-all:
 	@go run ./... -config config_examples/config.yaml ./...
 

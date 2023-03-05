@@ -145,7 +145,7 @@ and then each analyzer was checked and imported if it provides an object of the 
 - [x] custom analyzers (linters)
 - [x] `console` output
 - [ ] `diff` output for suggested fixes
-- [ ] `github` output
+- [x] `github` output
 - [ ] `nolint` and/or global exclude rules
 
 ## Some other linters
