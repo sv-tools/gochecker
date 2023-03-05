@@ -48,7 +48,19 @@ jobs:
       - name: Install gochecker
         run: go install github.com/sv-tools/gochecker@latest
       - name: gochecker
-        run: gochecker -config gochecker.yaml -github ./...
+        run: gochecker -config gochecker.yaml -output github ./...
+```
+
+### GitHub Action with reusable workflow
+
+```yaml
+jobs:
+  gochecker:
+    uses: sv-tools/gochecker/.github/workflows/gochecker.yaml@main
+    with:
+      config: gochecker.yaml
+      version: latest # optional; `latest` by default
+      args: # optional; any additional command-line arguments
 ```
 
 ## Supported analyzers
