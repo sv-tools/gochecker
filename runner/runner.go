@@ -1,4 +1,4 @@
-package main
+package runner
 
 import (
 	"bytes"
@@ -12,7 +12,7 @@ import (
 	"github.com/sv-tools/gochecker/output"
 )
 
-func intercept() {
+func Intercept() {
 	conf := config.ParseConfig()
 
 	buf := runMultiChecker(conf.Args...)
@@ -56,7 +56,7 @@ func runMultiChecker(args ...string) *bytes.Buffer {
 	}
 
 	cmd := exec.Command(prog, args...)
-	cmd.Env = append(os.Environ(), interceptModeEnv+"=on")
+	cmd.Env = append(os.Environ(), InterceptModeEnv+"=on")
 	cmd.Stdout = &stdout
 	cmd.Stderr = &stderr
 	err = cmd.Run()
