@@ -158,8 +158,16 @@ func ParseConfig() *Config {
 			govetExcludeFlag = v[analyzers.GoVetExclude]
 		}
 		if govetExcludeFlag != "" {
+			vetAnalyzers := make(map[string]struct{}, len(analyzers.GoVet))
+			for _, a := range analyzers.GoVet {
+				vetAnalyzers[a.Name] = struct{}{}
+			}
 			for _, exc := range strings.Split(govetExcludeFlag, ",") {
-				excludes[strings.TrimSpace(exc)] = struct{}{}
+				name := strings.TrimSpace(exc)
+				if _, ok := vetAnalyzers[name]; !ok {
+					log.Fatalf("analyzer %q is not a part of go vet passes", name)
+				}
+				excludes[name] = struct{}{}
 			}
 		}
 		// Add all go vet linters to config
