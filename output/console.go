@@ -173,13 +173,13 @@ func PrintAsConsole(diag *Diagnostic) {
 						}
 						fix.Diff = diff
 						lines := difflib.SplitLines(diff)
-						buf.WriteString(colorPurple)
-						buf.WriteString(lines[0])
-						buf.WriteString(colorReset)
-						for i := 1; i < len(lines); i++ {
+						for i := 0; i < len(lines); i++ {
 							reset := false
 							s := lines[i]
 							switch {
+							case strings.HasPrefix(s, "@@"):
+								buf.WriteString(colorPurple)
+								reset = true
 							case strings.HasPrefix(s, "+"):
 								reset = true
 								buf.WriteString(colorGreen)
