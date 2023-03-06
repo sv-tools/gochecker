@@ -43,8 +43,11 @@ import (
 )
 
 const (
-	GoVetName = "govet"
-	GoVetDoc  = "enables the set of official go analyzers"
+	GoVetName        = "govet"
+	GoVetDoc         = "enables the set of official go analyzers"
+	GoVetExclude     = "exclude"
+	GoVetExcludeFlag = GoVetName + "." + GoVetExclude
+	GoVetExcludeDoc  = "comma separated list of official analyzers to exclude"
 )
 
 // GoVet the list of official go analyzers (passes)
