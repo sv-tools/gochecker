@@ -32,13 +32,16 @@ jobs:
         uses: github/codeql-action/analyze@v2
 
   Checks:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         go:
           - "1.18"
           - "1.19"
           - "1.20"
+        os:
+          - ubuntu-latest
+          - macos-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
