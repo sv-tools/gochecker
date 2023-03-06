@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"go/token"
 	"log"
-	"regexp"
 
 	"github.com/sv-tools/gochecker/config"
 )
@@ -57,56 +56,13 @@ type (
 	}
 )
 
-func ParseOutput(data *bytes.Buffer) *Diagnostic {
+func ParseOutput(conf *config.Config, data *bytes.Buffer) *Diagnostic {
 	out := make(Diagnostic)
 	d := json.NewDecoder(data)
 	d.DisallowUnknownFields()
 	if err := d.Decode(&out); err != nil {
 		log.Fatalf("unmarshaling failed: %+v", err)
 	}
+	Exclude(conf, &out)
 	return &out
-}
-
-var nolintRE = regexp.MustCompile(`//\s*nolint`)
-
-func Exclude(conf *config.Config, diag *Diagnostic) {
-	toDeletePkg := make([]string, 0, len(*diag))
-	for pkgName, pkg := range *diag {
-		toDeleteAnalyzer := make([]string, 0, len(pkg))
-		for analyzerName, issues := range pkg {
-			tmp := make([]*Issue, 0, len(issues))
-			for _, issue := range issues {
-				// remove all issues with suggested fixes, because they are already applied
-				if conf.Fix && len(issue.SuggestedFixes) != 0 {
-					continue
-				}
-				// remove issues with nolint comment
-				filename, line, _ := parsePosN(issue.PosN)
-				f, err := getFile(filename)
-				if err != nil {
-					log.Printf("reading file %q failed: %+v", filename, err)
-					return
-				}
-				if line != -1 && line < len(f.Lines) && nolintRE.MatchString(f.Lines[line-1]) {
-					continue
-				}
-
-				tmp = append(tmp, issue)
-			}
-			if len(tmp) == 0 {
-				toDeleteAnalyzer = append(toDeleteAnalyzer, analyzerName)
-			} else {
-				pkg[analyzerName] = tmp
-			}
-		}
-		for _, name := range toDeleteAnalyzer {
-			delete(pkg, name)
-		}
-		if len(pkg) == 0 {
-			toDeletePkg = append(toDeletePkg, pkgName)
-		}
-	}
-	for _, name := range toDeletePkg {
-		delete(*diag, name)
-	}
 }

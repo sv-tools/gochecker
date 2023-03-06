@@ -20,8 +20,7 @@ func Intercept() {
 	if buf.Len() == 3 && bytes.Equal(bytes.TrimSpace(buf.Bytes()), []byte("{}")) {
 		return
 	}
-	diag := output.ParseOutput(buf)
-	output.Exclude(conf, diag)
+	diag := output.ParseOutput(conf, buf)
 	if len(*diag) == 0 {
 		os.Exit(0)
 	}

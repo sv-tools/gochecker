@@ -160,7 +160,7 @@ func PrintAsConsole(diag *Diagnostic) {
 						d := difflib.UnifiedDiff{
 							A:       f.Lines,
 							B:       difflib.SplitLines(fixed.String()),
-							Context: 0,
+							Context: 1,
 						}
 						var diff string
 						diff, err = difflib.GetUnifiedDiffString(d)

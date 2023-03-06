@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"regexp"
 	"strings"
 
 	"golang.org/x/tools/go/analysis/multichecker"
@@ -30,8 +31,44 @@ type Config struct {
 	Trace      string                       `json:"trace" yaml:"trace"`
 	Output     string                       `json:"output" yaml:"output"`
 	Args       []string                     `json:"-" yaml:"-"`
+	Exclude    []*ExcludeRule               `json:"exclude" yaml:"exclude"`
 	Test       bool                         `json:"test" yaml:"test"`
 	Fix        bool                         `json:"fix" yaml:"fix"`
+}
+
+type ExcludeRule struct {
+	PackageRE *regexp.Regexp `json:"-" yaml:"-"`
+	PathRE    *regexp.Regexp `json:"-" yaml:"-"`
+	MessageRE *regexp.Regexp `json:"-" yaml:"-"`
+	Package   string         `json:"package" yaml:"package"`
+	Analyzer  string         `json:"analyzer" yaml:"analyzer"`
+	Path      string         `json:"path" yaml:"path"`
+	Message   string         `json:"message" yaml:"message"`
+}
+
+func compileExclude(exclude []*ExcludeRule) error {
+	var err error
+	for _, rule := range exclude {
+		if rule.Package != "" {
+			rule.PackageRE, err = regexp.Compile(rule.Package)
+			if err != nil {
+				return err
+			}
+		}
+		if rule.Path != "" {
+			rule.PathRE, err = regexp.Compile(rule.Path)
+			if err != nil {
+				return err
+			}
+		}
+		if rule.Message != "" {
+			rule.MessageRE, err = regexp.Compile(rule.Message)
+			if err != nil {
+				return err
+			}
+		}
+	}
+	return nil
 }
 
 func ParseConfig() *Config {
@@ -79,6 +116,9 @@ func ParseConfig() *Config {
 		d := yaml.NewDecoder(f)
 		d.KnownFields(true)
 		if err = d.Decode(&config); err != nil {
+			log.Fatal(err)
+		}
+		if err := compileExclude(config.Exclude); err != nil {
 			log.Fatal(err)
 		}
 	}
@@ -185,6 +225,14 @@ func GenerateConfig() {
 		config.Analyzers[analyzer.Name] = flags
 	}
 	config.Analyzers[analyzers.GoVetName] = map[string]string{analyzers.GoVetExclude: ""}
+	config.Exclude = []*ExcludeRule{
+		{
+			Analyzer: "",
+			Path:     "",
+			Package:  "",
+			Message:  "",
+		},
+	}
 	if err := yaml.NewEncoder(os.Stdout).Encode(config); err != nil {
 		log.Fatal(err)
 	}
