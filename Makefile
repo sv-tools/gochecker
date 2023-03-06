@@ -1,4 +1,4 @@
-all: tidy fmt generate-config fix
+all: tidy fix fmt generate-config
 
 fmt:
 	@go fmt ./...

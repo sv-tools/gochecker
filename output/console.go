@@ -2,12 +2,15 @@ package output
 
 import (
 	"bytes"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
 	"sync"
+
+	"github.com/pmezard/go-difflib/difflib"
 )
 
 type CachedFile struct {
@@ -33,7 +36,7 @@ func getFile(filename string) (*CachedFile, error) {
 		if err != nil {
 			return nil, err
 		}
-		lines := strings.Split(string(data), "\n")
+		lines := difflib.SplitLines(string(data))
 		f := &CachedFile{
 			Filename: rel,
 			Data:     data,
@@ -47,8 +50,9 @@ func getFile(filename string) (*CachedFile, error) {
 const (
 	colorReset  = "\033[0m"
 	colorRed    = "\033[31m"
-	colorGreen  = "\033[32m"
 	colorYellow = "\033[33m"
+	colorGreen  = "\033[32m"
+	colorPurple = "\033[35m"
 )
 
 func PrintAsConsole(diag *Diagnostic) {
@@ -94,7 +98,6 @@ func PrintAsConsole(diag *Diagnostic) {
 						buf.WriteRune('\n')
 						buf.WriteString(strings.Replace(f.Lines[line-1], "\t", " ", pos))
 						if pos != -1 {
-							buf.WriteRune('\n')
 							buf.Grow(pos)
 							for i := 0; i < pos-1; i++ {
 								buf.WriteRune(' ')
@@ -104,8 +107,89 @@ func PrintAsConsole(diag *Diagnostic) {
 							buf.WriteString(colorReset)
 						}
 					}
-
 					buf.WriteRune('\n')
+				FIXES:
+					for _, fix := range issue.SuggestedFixes {
+						buf.WriteString("Suggested Fix:")
+						if fix.Message != "" {
+							buf.WriteString(colorRed)
+							buf.WriteRune(' ')
+							buf.WriteString(fix.Message)
+							buf.WriteString(colorReset)
+						}
+						buf.WriteRune('\n')
+						reader := bytes.NewReader(f.Data)
+						fixed := bytes.Buffer{}
+						for _, edit := range fix.Edits {
+							if edit.Filename != filename {
+								// do not support modifications in multiple files for simplicity
+								log.Printf("suggested fix for a file %q modifies another file %q: %#v", filename, edit.Filename, fix)
+								break FIXES
+							}
+							cur, err := reader.Seek(0, io.SeekCurrent)
+							if err != nil {
+								log.Printf("seeking on buffer for file %q failed: %+v", filename, err)
+								break FIXES
+							}
+							if l := int64(edit.Start) - cur; l > 0 {
+								b := make([]byte, l)
+								if _, err = reader.Read(b); err != nil {
+									log.Printf("reading from buffer for file %q failed: %+v", filename, err)
+									break FIXES
+								}
+								fixed.Write(b)
+							}
+							fixed.WriteString(edit.New)
+							end := edit.End
+							if end < edit.Start {
+								end = edit.Start
+							}
+							if _, err = reader.Seek(int64(end), io.SeekStart); err != nil {
+								log.Printf("seeking on buffer for file %q failed: %+v", filename, err)
+								break FIXES
+							}
+							data, err := io.ReadAll(reader)
+							if err != nil {
+								log.Printf("reading remaining data from buffer for file %q failed: %+v", filename, err)
+								break FIXES
+							}
+							fixed.Write(data)
+						}
+						d := difflib.UnifiedDiff{
+							A:       f.Lines,
+							B:       difflib.SplitLines(fixed.String()),
+							Context: 0,
+						}
+						diff, err := difflib.GetUnifiedDiffString(d)
+						if err != nil {
+							log.Printf("getting diff for file %q failed: %+v", filename, err)
+							break FIXES
+						}
+						if diff == "" {
+							continue
+						}
+						fix.Diff = diff
+						lines := difflib.SplitLines(diff)
+						buf.WriteString(colorPurple)
+						buf.WriteString(lines[0])
+						buf.WriteString(colorReset)
+						for i := 1; i < len(lines); i++ {
+							reset := false
+							s := lines[i]
+							switch {
+							case strings.HasPrefix(s, "+"):
+								reset = true
+								buf.WriteString(colorGreen)
+							case strings.HasPrefix(s, "-"):
+								reset = true
+								buf.WriteString(colorRed)
+							}
+							buf.WriteString(lines[i])
+							if reset {
+								buf.WriteString(colorReset)
+							}
+						}
+					}
 					buf.WriteTo(os.Stdout)
 				}()
 			}
