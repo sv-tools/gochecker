@@ -89,7 +89,8 @@ analyzers:
     gocognit:
         over: "0"
     goprintffuncname: {}
-    govet: {}
+    govet:
+        exclude: ""
     grouper:
         const-require-grouping: "false"
         const-require-single-const: "false"

@@ -41,11 +41,15 @@ func ParseConfig() *Config {
 	)
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
 	fs.SetOutput(&bytes.Buffer{}) // mute any prints
-	var govetFlag bool
+	var (
+		govetFlag        bool
+		govetExcludeFlag string
+	)
 	for _, set := range []*flag.FlagSet{flag.CommandLine, fs} {
 		set.StringVar(&configPath, "config", "", "A path to a config file in json or yaml format.")
 		set.StringVar(&config.Output, "output", "", "Output format, one of: "+oneOfOutputFormats)
 		set.BoolVar(&govetFlag, analyzers.GoVetName, false, analyzers.GoVetDoc)
+		set.StringVar(&govetExcludeFlag, analyzers.GoVetExcludeFlag, "", analyzers.GoVetExcludeDoc)
 	}
 	// default flags multichecker flags
 	fs.StringVar(&config.Debug, "debug", "", "")
@@ -96,8 +100,6 @@ func ParseConfig() *Config {
 			return
 		case "debug", "cpuprofile", "memprofile", "trace", "test", "fix", "json":
 			return
-		case analyzers.GoVetName:
-			return
 		}
 		parts := strings.SplitN(f.Name, ".", 2)
 		name := parts[0]
@@ -110,12 +112,26 @@ func ParseConfig() *Config {
 		}
 		config.Analyzers[name] = flags
 	})
-	if _, ok := config.Analyzers[analyzers.GoVetName]; ok || govetFlag {
+	if v, ok := config.Analyzers[analyzers.GoVetName]; ok || govetFlag {
+		excludes := make(map[string]struct{})
+		if govetExcludeFlag == "" && v != nil {
+			govetExcludeFlag = v[analyzers.GoVetExclude]
+		}
+		if govetExcludeFlag != "" {
+			for _, exc := range strings.Split(govetExcludeFlag, ",") {
+				excludes[strings.TrimSpace(exc)] = struct{}{}
+			}
+		}
 		// Add all go vet linters to config
 		delete(config.Analyzers, analyzers.GoVetName)
 		for _, analyzer := range analyzers.GoVet {
-			if _, ok = config.Analyzers[analyzer.Name]; !ok {
-				config.Analyzers[analyzer.Name] = make(map[string]string)
+			name := analyzer.Name
+			if _, ok := excludes[name]; ok {
+				delete(config.Analyzers, name)
+				continue
+			}
+			if _, ok = config.Analyzers[name]; !ok {
+				config.Analyzers[name] = make(map[string]string)
 			}
 		}
 	}
@@ -168,7 +184,7 @@ func GenerateConfig() {
 		})
 		config.Analyzers[analyzer.Name] = flags
 	}
-	config.Analyzers[analyzers.GoVetName] = make(map[string]string)
+	config.Analyzers[analyzers.GoVetName] = map[string]string{analyzers.GoVetExclude: ""}
 	if err := yaml.NewEncoder(os.Stdout).Encode(config); err != nil {
 		log.Fatal(err)
 	}
