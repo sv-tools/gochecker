@@ -233,5 +233,10 @@ cpuprofile: ""
 memprofile: ""
 trace: ""
 output: ""
+exclude:
+    - package: ""
+      analyzer: ""
+      path: ""
+      message: ""
 test: false
 fix: false
