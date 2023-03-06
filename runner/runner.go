@@ -65,7 +65,12 @@ func runMultiChecker(args ...string) *bytes.Buffer {
 		code = cmd.ProcessState.ExitCode()
 	}
 	if stderr.Len() > 0 {
-		stderr.WriteTo(os.Stderr)
+		if _, err = stderr.WriteTo(os.Stderr); err != nil {
+			log.Printf("writing to stderr failed: %+v", err)
+			if code == 0 {
+				code = 1
+			}
+		}
 		os.Exit(code)
 	}
 	if err != nil {

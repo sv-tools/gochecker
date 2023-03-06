@@ -11,9 +11,15 @@ import (
 
 func PrintAsGithub(diag *Diagnostic) {
 	// print console output for people
-	os.Stdout.WriteString("::group::console format\n")
+	if _, err := os.Stdout.WriteString("::group::console format\n"); err != nil {
+		log.Printf("writing to stdout failed: %+v", err)
+		os.Exit(1)
+	}
 	PrintAsConsole(diag)
-	os.Stdout.WriteString("::endgroup::\n")
+	if _, err := os.Stdout.WriteString("::endgroup::\n"); err != nil {
+		log.Printf("writing to stdout failed: %+v", err)
+		os.Exit(1)
+	}
 
 	wg := sync.WaitGroup{}
 	for _, pkg := range *diag {
@@ -79,7 +85,10 @@ func PrintAsGithub(diag *Diagnostic) {
 					}
 
 					buf.WriteRune('\n')
-					buf.WriteTo(os.Stdout)
+					if _, err = buf.WriteTo(os.Stdout); err != nil {
+						log.Printf("writing to stdout failed: %+v", err)
+						os.Exit(1)
+					}
 				}()
 			}
 		}

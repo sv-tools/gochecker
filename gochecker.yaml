@@ -1,4 +1,7 @@
 analyzers:
     govet:
     fieldalignment:
+    errcheck:
+    shadow:
+        strict: true
 test: true
