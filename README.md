@@ -173,12 +173,8 @@ and then each analyzer was checked and imported if it provides an object of the 
 
 ## TODO
 
-- [x] go analyzers
-- [x] custom analyzers (linters)
-- [x] `console` output
-- [x] `diff` output for suggested fixes
-- [x] `github` output
-- [ ] `nolint` and/or global exclude rules
+- [ ] support `go fmt`
+- [ ] support `gofumpt`
 
 ## Some other linters
 
