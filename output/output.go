@@ -10,16 +10,43 @@ import (
 )
 
 type (
-	Diagnostic map[string]map[string][]Issue
+	// Diagnostic is a structure to hold the json output from multichecker
+	//
+	// JSON example:
+	// ```json
+	//	{
+	//	 "<package>": {
+	//	   "<analyzer>": {
+	//	     "posn": "</path/to/file.go>:<line num>:<column num>",
+	//	     "message": "<message>",
+	//	     "suggested_fixes": [
+	//	       {
+	//	         "message": "",
+	//	         "edits": [
+	//	           {
+	//	             "filename": "</path/to/file.go>",
+	//	             "start": 865,
+	//	             "end": 865,
+	//	             "new": "<new text>"
+	//	           }
+	//	         ]
+	//	       }
+	//	     ]
+	//	   }
+	//	 }
+	//	}
+	// ```
+	Diagnostic map[string]map[string][]*Issue
 	Issue      struct {
 		Message        string `json:"message"`
 		Category       string `json:"category,omitempty"`
 		PosN           string `json:"posn"`
-		SuggestedFixes []Fix  `json:"suggested_fixes,omitempty"`
+		SuggestedFixes []*Fix `json:"suggested_fixes,omitempty"`
 	}
 	Fix struct {
-		Message string `json:"message,omitempty"`
-		Edits   []Edit `json:"edits"`
+		Message string  `json:"message,omitempty"`
+		Diff    string  `json:"-"` // system field to contain calculated diff
+		Edits   []*Edit `json:"edits"`
 	}
 	Edit struct {
 		Filename string    `json:"filename"`
@@ -46,7 +73,7 @@ func Exclude(conf *config.Config, diag *Diagnostic) {
 		for pkgName, pkg := range *diag {
 			toDeleteAnalyzer := make([]string, 0, len(pkg))
 			for analyzerName, issues := range pkg {
-				tmp := make([]Issue, 0, len(issues))
+				tmp := make([]*Issue, 0, len(issues))
 				for _, issue := range issues {
 					if len(issue.SuggestedFixes) == 0 {
 						tmp = append(tmp, issue)

@@ -41,6 +41,7 @@ require (
 	github.com/nishanths/exhaustive v0.9.5
 	github.com/nishanths/predeclared v0.2.2
 	github.com/nunnatsa/ginkgolinter v0.8.1
+	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2
 	github.com/polyfloyd/go-errorlint v1.2.0
 	github.com/ryanrolds/sqlclosecheck v0.4.0
 	github.com/sanposhiho/wastedassign v1.0.0

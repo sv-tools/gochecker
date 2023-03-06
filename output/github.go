@@ -56,7 +56,7 @@ func PrintAsGithub(diag *Diagnostic) {
 					buf.WriteRune(')')
 					if line != -1 && line < len(f.Lines) {
 						buf.WriteString("%0A")
-						buf.WriteString(strings.Replace(f.Lines[line-1], "\t", " ", pos))
+						buf.WriteString(strings.Replace(strings.TrimSuffix(f.Lines[line-1], "\n"), "\t", " ", pos))
 						if pos != -1 {
 							buf.WriteString("%0A")
 							buf.Grow(pos)
@@ -65,6 +65,17 @@ func PrintAsGithub(diag *Diagnostic) {
 							}
 							buf.WriteRune('^')
 						}
+					}
+					for _, fix := range issue.SuggestedFixes {
+						buf.WriteString("%0A")
+						buf.WriteString("Suggested Fix:")
+						if fix.Message != "" {
+							buf.WriteRune(' ')
+							buf.WriteString(fix.Message)
+						}
+						buf.WriteString("%0A```diff%0A")
+						buf.WriteString(strings.ReplaceAll(fix.Diff, "\n", "%0A"))
+						buf.WriteString("```")
 					}
 
 					buf.WriteRune('\n')
