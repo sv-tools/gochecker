@@ -126,7 +126,8 @@ func PrintAsConsole(diag *Diagnostic) {
 								log.Printf("suggested fix for a file %q modifies another file %q: %#v", filename, edit.Filename, fix)
 								break FIXES
 							}
-							cur, err := reader.Seek(0, io.SeekCurrent)
+							var cur int64
+							cur, err = reader.Seek(0, io.SeekCurrent)
 							if err != nil {
 								log.Printf("seeking on buffer for file %q failed: %+v", filename, err)
 								break FIXES
@@ -148,7 +149,8 @@ func PrintAsConsole(diag *Diagnostic) {
 								log.Printf("seeking on buffer for file %q failed: %+v", filename, err)
 								break FIXES
 							}
-							data, err := io.ReadAll(reader)
+							var data []byte
+							data, err = io.ReadAll(reader)
 							if err != nil {
 								log.Printf("reading remaining data from buffer for file %q failed: %+v", filename, err)
 								break FIXES
@@ -160,7 +162,8 @@ func PrintAsConsole(diag *Diagnostic) {
 							B:       difflib.SplitLines(fixed.String()),
 							Context: 0,
 						}
-						diff, err := difflib.GetUnifiedDiffString(d)
+						var diff string
+						diff, err = difflib.GetUnifiedDiffString(d)
 						if err != nil {
 							log.Printf("getting diff for file %q failed: %+v", filename, err)
 							break FIXES
@@ -190,7 +193,10 @@ func PrintAsConsole(diag *Diagnostic) {
 							}
 						}
 					}
-					buf.WriteTo(os.Stdout)
+					if _, err = buf.WriteTo(os.Stdout); err != nil {
+						log.Printf("writing to stdout failed: %+v", err)
+						os.Exit(1)
+					}
 				}()
 			}
 		}

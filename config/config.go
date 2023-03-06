@@ -74,7 +74,7 @@ func ParseConfig() *Config {
 		}
 		d := yaml.NewDecoder(f)
 		d.KnownFields(true)
-		if err := d.Decode(&config); err != nil {
+		if err = d.Decode(&config); err != nil {
 			log.Fatal(err)
 		}
 	}
@@ -114,7 +114,7 @@ func ParseConfig() *Config {
 		// Add all go vet linters to config
 		delete(config.Analyzers, analyzers.GoVetName)
 		for _, analyzer := range analyzers.GoVet {
-			if _, ok := config.Analyzers[analyzer.Name]; !ok {
+			if _, ok = config.Analyzers[analyzer.Name]; !ok {
 				config.Analyzers[analyzer.Name] = make(map[string]string)
 			}
 		}
