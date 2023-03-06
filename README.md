@@ -175,6 +175,7 @@ and then each analyzer was checked and imported if it provides an object of the 
 
 - [ ] support `go fmt`
 - [ ] support `gofumpt`
+- [ ] support exclude rules 
 
 ## Some other linters
 
