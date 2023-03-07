@@ -193,7 +193,7 @@ func PrintAsConsole(diag *Diagnostic) {
 							}
 						}
 					}
-					if _, err = buf.WriteTo(os.Stdout); err != nil {
+					if _, err := buf.WriteTo(os.Stdout); err != nil {
 						log.Printf("writing to stdout failed: %+v", err)
 						os.Exit(1)
 					}

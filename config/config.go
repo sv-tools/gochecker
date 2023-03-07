@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 
 	"golang.org/x/tools/go/analysis/multichecker"
@@ -74,21 +75,15 @@ func compileExclude(exclude []*ExcludeRule) error {
 func ParseConfig() *Config {
 	var (
 		configPath string
-		config     Config
+		config     = Config{Analyzers: map[string]map[string]string{}}
 	)
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
 	fs.SetOutput(&bytes.Buffer{}) // mute any prints
-	var (
-		govetFlag        bool
-		govetExcludeFlag string
-	)
 	for _, set := range []*flag.FlagSet{flag.CommandLine, fs} {
 		set.StringVar(&configPath, "config", "", "A path to a config file in json or yaml format.")
 		set.StringVar(&config.Output, "output", "", "Output format, one of: "+oneOfOutputFormats)
-		set.BoolVar(&govetFlag, analyzers.GoVetName, false, analyzers.GoVetDoc)
-		set.StringVar(&govetExcludeFlag, analyzers.GoVetExcludeFlag, "", analyzers.GoVetExcludeDoc)
 	}
-	// default flags multichecker flags
+	// default multichecker flags
 	fs.StringVar(&config.Debug, "debug", "", "")
 	fs.StringVar(&config.CPUProfile, "cpuprofile", "", "")
 	fs.StringVar(&config.MemProfile, "memprofile", "", "")
@@ -152,17 +147,24 @@ func ParseConfig() *Config {
 		}
 		config.Analyzers[name] = flags
 	})
-	if v, ok := config.Analyzers[analyzers.GoVetName]; ok || govetFlag {
+	if v, ok := config.Analyzers[analyzers.GoVetName]; ok {
 		excludes := make(map[string]struct{})
-		if govetExcludeFlag == "" && v != nil {
-			govetExcludeFlag = v[analyzers.GoVetExclude]
+		govetAnalyzers := analyzers.GoVet
+		if s, ok := v[analyzers.GoVetExtraName]; ok {
+			t, err := strconv.ParseBool(s)
+			if err != nil {
+				log.Fatalf("unable to parse govet.extra: %+v", err)
+			}
+			if t {
+				govetAnalyzers = append(govetAnalyzers, analyzers.GoVetExtra...)
+			}
 		}
-		if govetExcludeFlag != "" {
-			vetAnalyzers := make(map[string]struct{}, len(analyzers.GoVet))
-			for _, a := range analyzers.GoVet {
+		if s := v[analyzers.GoVetExcludeName]; s != "" {
+			vetAnalyzers := make(map[string]struct{}, len(govetAnalyzers))
+			for _, a := range govetAnalyzers {
 				vetAnalyzers[a.Name] = struct{}{}
 			}
-			for _, exc := range strings.Split(govetExcludeFlag, ",") {
+			for _, exc := range strings.Split(s, ",") {
 				name := strings.TrimSpace(exc)
 				if _, ok := vetAnalyzers[name]; !ok {
 					log.Fatalf("analyzer %q is not a part of go vet passes", name)
@@ -172,7 +174,7 @@ func ParseConfig() *Config {
 		}
 		// Add all go vet linters to config
 		delete(config.Analyzers, analyzers.GoVetName)
-		for _, analyzer := range analyzers.GoVet {
+		for _, analyzer := range govetAnalyzers {
 			name := analyzer.Name
 			if _, ok := excludes[name]; ok {
 				delete(config.Analyzers, name)
@@ -232,7 +234,6 @@ func GenerateConfig() {
 		})
 		config.Analyzers[analyzer.Name] = flags
 	}
-	config.Analyzers[analyzers.GoVetName] = map[string]string{analyzers.GoVetExclude: ""}
 	config.Exclude = []*ExcludeRule{
 		{
 			Analyzer: "",
