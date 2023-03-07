@@ -17,7 +17,7 @@ func Intercept() {
 
 	buf := runMultiChecker(conf.Args...)
 	// exit if no issues
-	if buf.Len() == 3 && bytes.Equal(bytes.TrimSpace(buf.Bytes()), []byte("{}")) {
+	if len(buf) == 3 && bytes.Equal(bytes.TrimSpace(buf), []byte("{}")) {
 		return
 	}
 	diag := output.ParseOutput(conf, buf)
@@ -40,7 +40,7 @@ func Intercept() {
 	}
 }
 
-func runMultiChecker(args ...string) *bytes.Buffer {
+func runMultiChecker(args ...string) []byte {
 	var (
 		stderr bytes.Buffer
 		stdout bytes.Buffer
@@ -75,5 +75,5 @@ func runMultiChecker(args ...string) *bytes.Buffer {
 	if err != nil {
 		log.Fatalf("interception failed: %+v", err)
 	}
-	return &stdout
+	return stdout.Bytes()
 }

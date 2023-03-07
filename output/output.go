@@ -56,12 +56,12 @@ type (
 	}
 )
 
-func ParseOutput(conf *config.Config, data *bytes.Buffer) *Diagnostic {
+func ParseOutput(conf *config.Config, data []byte) *Diagnostic {
 	out := make(Diagnostic)
-	d := json.NewDecoder(data)
+	d := json.NewDecoder(bytes.NewReader(data))
 	d.DisallowUnknownFields()
 	if err := d.Decode(&out); err != nil {
-		log.Fatalf("unmarshaling failed \"%+v\" for response:\n%s", err, data.String())
+		log.Fatalf("unmarshaling failed \"%+v\" for response:\n%s", err, string(data))
 	}
 	Exclude(conf, &out)
 	return &out
