@@ -61,7 +61,7 @@ func ParseOutput(conf *config.Config, data *bytes.Buffer) *Diagnostic {
 	d := json.NewDecoder(data)
 	d.DisallowUnknownFields()
 	if err := d.Decode(&out); err != nil {
-		log.Fatalf("unmarshaling failed: %+v", err)
+		log.Fatalf("unmarshaling failed \"%+v\" for response:\n%s", err, data.String())
 	}
 	Exclude(conf, &out)
 	return &out
