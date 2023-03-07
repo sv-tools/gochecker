@@ -7,5 +7,6 @@ var Analyzers []*analysis.Analyzer
 
 func init() {
 	Analyzers = append(Analyzers, GoVet...)
+	Analyzers = append(Analyzers, GoVetExtra...)
 	Analyzers = append(Analyzers, External...)
 }

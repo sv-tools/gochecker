@@ -91,6 +91,7 @@ analyzers:
     goprintffuncname: {}
     govet:
         exclude: ""
+        extra: "false"
     grouper:
         const-require-grouping: "false"
         const-require-single-const: "false"

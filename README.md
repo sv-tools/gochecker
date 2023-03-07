@@ -68,9 +68,9 @@ jobs:
 
 ### Go passes
 
-- `govet` is an aggregator includes all below passes.
+- `govet` is an aggregator includes all passes mentioned here: https://pkg.go.dev/cmd/vet.
 
-Or all the passes are added as individual analyzers as well, which allows more precisely configuration of the `gochecker`.
+Or all the passes can be added as individual analyzers as well, which allows more precisely confixwguration of the `gochecker`.
 
 - [asmdecl](https://pkg.go.dev/golang.org/x/tools/go/analysis/passes/asmdecl) reports mismatches between assembly files and Go declarations. 
 - [assign](https://pkg.go.dev/golang.org/x/tools/go/analysis/passes/assign) detects useless assignments.
