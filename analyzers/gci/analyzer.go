@@ -51,18 +51,18 @@ func runAnalysis(pass *analysis.Pass) (any, error) {
 		if err != nil {
 			return nil, err
 		}
-		fixes, err := utils.GetSuggestedFixesFromDiff(file, unmodifiedFile, formattedFile)
+		fix, err := utils.GetSuggestedFix(file, unmodifiedFile, formattedFile)
 		if err != nil {
 			return nil, err
 		}
-		if len(fixes) == 0 {
+		if fix == nil {
 			// no difference
 			continue
 		}
 		pass.Report(analysis.Diagnostic{
-			Pos:            fixes[0].TextEdits[0].Pos,
+			Pos:            fix.TextEdits[0].Pos,
 			Message:        fmt.Sprintf("fix by `%s %s`", generateCmdLine(*gciCfg), filePath),
-			SuggestedFixes: fixes,
+			SuggestedFixes: []analysis.SuggestedFix{*fix},
 		})
 	}
 	return nil, nil

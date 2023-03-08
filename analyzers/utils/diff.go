@@ -13,7 +13,7 @@ import (
 
 var hunkRE = regexp.MustCompile(`@@ -(\d+),(\d+) \+\d+,\d+ @@`)
 
-func GetSuggestedFixesFromDiff(file *token.File, a, b []byte) ([]analysis.SuggestedFix, error) {
+func GetSuggestedFix(file *token.File, a, b []byte) (*analysis.SuggestedFix, error) {
 	d := difflib.UnifiedDiff{
 		A:       difflib.SplitLines(string(a)),
 		B:       difflib.SplitLines(string(b)),
@@ -28,24 +28,19 @@ func GetSuggestedFixesFromDiff(file *token.File, a, b []byte) ([]analysis.Sugges
 	}
 	var (
 		fix   analysis.SuggestedFix
-		first = true
+		found = false
 		edit  analysis.TextEdit
 		buf   bytes.Buffer
 	)
 	for _, line := range strings.Split(diff, "\n") {
-		if line == "" {
-			continue
-		}
-		hunk := hunkRE.FindStringSubmatch(line)
-		switch {
-		case len(hunk) > 0:
-			if !first {
+		if hunk := hunkRE.FindStringSubmatch(line); len(hunk) > 0 {
+			if found {
 				edit.NewText = buf.Bytes()
 				buf = bytes.Buffer{}
 				fix.TextEdits = append(fix.TextEdits, edit)
 				edit = analysis.TextEdit{}
 			}
-			first = false
+			found = true
 			start, err := strconv.Atoi(hunk[1])
 			if err != nil {
 				return nil, err
@@ -61,10 +56,20 @@ func GetSuggestedFixesFromDiff(file *token.File, a, b []byte) ([]analysis.Sugges
 			} else {
 				edit.End = file.LineStart(end)
 			}
-		case line[0] == '+':
+			continue
+		}
+		// skip any lines until first hunk found
+		if !found {
+			continue
+		}
+		if line == "" {
+			continue
+		}
+		switch line[0] {
+		case '+':
 			buf.WriteString(line[1:])
 			buf.WriteRune('\n')
-		case line[0] == '-':
+		case '-':
 			// just skip
 		default:
 			buf.WriteString(line)
@@ -74,5 +79,5 @@ func GetSuggestedFixesFromDiff(file *token.File, a, b []byte) ([]analysis.Sugges
 	edit.NewText = buf.Bytes()
 	fix.TextEdits = append(fix.TextEdits, edit)
 
-	return []analysis.SuggestedFix{fix}, nil
+	return &fix, nil
 }
