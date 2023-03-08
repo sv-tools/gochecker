@@ -20,6 +20,10 @@ const (
 	ConsoleOutput = "console"
 	JSONOutput    = "json"
 	GithubOutput  = "github"
+
+	ErrorLevel   = "error"
+	WarningLevel = "warning"
+	InfoLevel    = "info"
 )
 
 var oneOfOutputFormats = strings.Join([]string{ConsoleOutput, JSONOutput, GithubOutput}, ", ")
@@ -32,12 +36,13 @@ type Config struct {
 	Trace      string                       `json:"trace" yaml:"trace"`
 	Output     string                       `json:"output" yaml:"output"`
 	Args       []string                     `json:"-" yaml:"-"`
-	Exclude    []*ExcludeRule               `json:"exclude" yaml:"exclude"`
+	Exclude    []*Rule                      `json:"exclude" yaml:"exclude"`
+	Severity   []*SeverityRule              `json:"severity" yaml:"severity"`
 	Test       bool                         `json:"test" yaml:"test"`
 	Fix        bool                         `json:"fix" yaml:"fix"`
 }
 
-type ExcludeRule struct {
+type Rule struct {
 	PackageRE *regexp.Regexp `json:"-" yaml:"-"`
 	PathRE    *regexp.Regexp `json:"-" yaml:"-"`
 	MessageRE *regexp.Regexp `json:"-" yaml:"-"`
@@ -47,7 +52,12 @@ type ExcludeRule struct {
 	Message   string         `json:"message" yaml:"message"`
 }
 
-func compileExclude(exclude []*ExcludeRule) error {
+type SeverityRule struct {
+	Level string  `json:"level" yaml:"level"`
+	Rules []*Rule `json:"rules" yaml:"rules"`
+}
+
+func compileRules(exclude []*Rule) error {
 	var err error
 	for _, rule := range exclude {
 		if rule.Package != "" {
@@ -113,8 +123,18 @@ func ParseConfig() *Config {
 		if err = d.Decode(&config); err != nil {
 			log.Fatal(err)
 		}
-		if err := compileExclude(config.Exclude); err != nil {
+		if err := compileRules(config.Exclude); err != nil {
 			log.Fatal(err)
+		}
+		for _, sev := range config.Severity {
+			switch sev.Level {
+			case ErrorLevel, WarningLevel, InfoLevel:
+			default:
+				log.Fatal("severity level must be one of: ", strings.Join([]string{ErrorLevel, WarningLevel, InfoLevel}, ", "))
+			}
+			if err := compileRules(sev.Rules); err != nil {
+				log.Fatal(err)
+			}
 		}
 	}
 	if jsonFlag {
@@ -234,12 +254,25 @@ func GenerateConfig() {
 		})
 		config.Analyzers[analyzer.Name] = flags
 	}
-	config.Exclude = []*ExcludeRule{
+	config.Exclude = []*Rule{
 		{
 			Analyzer: "",
 			Path:     "",
 			Package:  "",
 			Message:  "",
+		},
+	}
+	config.Severity = []*SeverityRule{
+		{
+			Level: "error",
+			Rules: []*Rule{
+				{
+					Analyzer: "",
+					Path:     "",
+					Package:  "",
+					Message:  "",
+				},
+			},
 		},
 	}
 	if err := yaml.NewEncoder(os.Stdout).Encode(config); err != nil {

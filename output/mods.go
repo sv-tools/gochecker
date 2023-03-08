@@ -10,7 +10,7 @@ import (
 
 var nolintRE = regexp.MustCompile(`//\s*nolint`)
 
-func Exclude(conf *config.Config, diag *Diagnostic) {
+func Modify(conf *config.Config, diag *Diagnostic) {
 	toDeletePkg := make([]string, 0, len(*diag))
 	for pkgName, pkg := range *diag {
 		toDeleteAnalyzer := make([]string, 0, len(pkg))
@@ -20,8 +20,9 @@ func Exclude(conf *config.Config, diag *Diagnostic) {
 				switch {
 				case conf.Fix && len(issue.SuggestedFixes) != 0: // remove all issues with suggested fixes, because they are already applied
 				case isNolint(issue): // remove issues with nolint comment
-				case isExclude(conf, pkgName, analyzerName, issue):
+				case isExcluded(conf.Exclude, pkgName, analyzerName, issue):
 				default:
+					setSeverityLevel(conf.Severity, pkgName, analyzerName, issue)
 					tmp = append(tmp, issue)
 				}
 			}
@@ -53,21 +54,42 @@ func isNolint(issue *Issue) bool {
 	return line != -1 && line < len(f.Lines) && nolintRE.MatchString(f.Lines[line-1])
 }
 
-func isExclude(conf *config.Config, pkg, analyzer string, issue *Issue) bool {
-	for _, rule := range conf.Exclude {
-		if rule.Analyzer != "" && analyzer != rule.Analyzer {
-			continue
+func isExcluded(rules []*config.Rule, pkg, analyzer string, issue *Issue) bool {
+	for _, rule := range rules {
+		if matchRule(rule, pkg, analyzer, issue) {
+			return true
 		}
-		if rule.PackageRE != nil && !rule.PackageRE.MatchString(pkg) {
-			continue
-		}
-		if rule.PathRE != nil && !rule.PathRE.MatchString(issue.PosN) {
-			continue
-		}
-		if rule.MessageRE != nil && !rule.MessageRE.MatchString(issue.Message) {
-			continue
-		}
-		return true
 	}
 	return false
+}
+
+func matchRule(rule *config.Rule, pkg, analyzer string, issue *Issue) bool {
+	if rule.Analyzer == "" && rule.PackageRE == nil && rule.PathRE == nil && rule.MessageRE == nil {
+		return false
+	}
+	if rule.Analyzer != "" && analyzer != rule.Analyzer {
+		return false
+	}
+	if rule.PackageRE != nil && !rule.PackageRE.MatchString(pkg) {
+		return false
+	}
+	if rule.PathRE != nil && !rule.PathRE.MatchString(issue.PosN) {
+		return false
+	}
+	if rule.MessageRE != nil && !rule.MessageRE.MatchString(issue.Message) {
+		return false
+	}
+	return true
+}
+
+func setSeverityLevel(sevRules []*config.SeverityRule, pkg, analyzer string, issue *Issue) {
+	issue.SeverityLevel = config.ErrorLevel
+	for _, sev := range sevRules {
+		for _, rule := range sev.Rules {
+			if matchRule(rule, pkg, analyzer, issue) {
+				issue.SeverityLevel = sev.Level
+				return
+			}
+		}
+	}
 }

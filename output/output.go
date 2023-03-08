@@ -41,6 +41,7 @@ type (
 		Message        string `json:"message"`
 		Category       string `json:"category,omitempty"`
 		PosN           string `json:"posn"`
+		SeverityLevel  string `json:"severity_level"`
 		SuggestedFixes []*Fix `json:"suggested_fixes,omitempty"`
 	}
 	Fix struct {
@@ -63,6 +64,6 @@ func ParseOutput(conf *config.Config, data []byte) *Diagnostic {
 	if err := d.Decode(&out); err != nil {
 		log.Fatalf("unmarshaling failed \"%+v\" for response:\n%s", err, string(data))
 	}
-	Exclude(conf, &out)
+	Modify(conf, &out)
 	return &out
 }

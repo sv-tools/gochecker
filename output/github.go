@@ -7,15 +7,17 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+
+	"github.com/sv-tools/gochecker/config"
 )
 
-func PrintAsGithub(diag *Diagnostic) {
+func PrintAsGithub(diag *Diagnostic) (ret bool) {
 	// print console output for people
 	if _, err := os.Stdout.WriteString("::group::console format\n"); err != nil {
 		log.Printf("writing to stdout failed: %+v", err)
 		os.Exit(1)
 	}
-	PrintAsConsole(diag)
+	ret = PrintAsConsole(diag)
 	if _, err := os.Stdout.WriteString("::endgroup::\n"); err != nil {
 		log.Printf("writing to stdout failed: %+v", err)
 		os.Exit(1)
@@ -39,7 +41,14 @@ func PrintAsGithub(diag *Diagnostic) {
 					}
 
 					buf := bytes.Buffer{}
-					buf.WriteString("::error file=")
+					switch issue.SeverityLevel {
+					case config.ErrorLevel:
+						buf.WriteString("::error file=")
+					case config.WarningLevel:
+						buf.WriteString("::warning file=")
+					case config.InfoLevel:
+						buf.WriteString("::notice file=")
+					}
 					buf.WriteString(f.Filename)
 					if line != -1 {
 						buf.WriteString(",line=")
@@ -94,4 +103,5 @@ func PrintAsGithub(diag *Diagnostic) {
 		}
 	}
 	wg.Wait()
+	return
 }
