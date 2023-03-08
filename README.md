@@ -171,11 +171,6 @@ and then each analyzer was checked and imported if it provides an object of the 
 - [varnamelen](https://github.com/blizzy78/varnamelen) checks that the length of a variable's name matches its usage scope.
 - [wastedassign](https://github.com/sanposhiho/wastedassign) finds wasted assignment statements.
 
-## TODO
-
-- [ ] support `go fmt`
-- [ ] support `gofumpt`
-
 ## Some other linters
 
 - [go vet](https://pkg.go.dev/cmd/vet)
