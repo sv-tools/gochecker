@@ -87,6 +87,10 @@ analyzers:
         t: "false"
     gocognit:
         over: "0"
+    gofumpt:
+        extra: "false"
+        lang: ""
+        module: ""
     goprintffuncname: {}
     govet:
         exclude: ""

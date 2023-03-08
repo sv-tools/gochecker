@@ -58,6 +58,7 @@ import (
 	"golang.org/x/tools/go/analysis"
 
 	"github.com/sv-tools/gochecker/analyzers/gci"
+	"github.com/sv-tools/gochecker/analyzers/gofumpt"
 )
 
 // External is the list of all external analyzers (linters)
@@ -88,6 +89,7 @@ var External = []*analysis.Analyzer{
 	gci.Analyzer,                                           // https://github.com/daixiang0/gci
 	ginkgolinter.Analyzer,                                  // https://github.com/nunnatsa/ginkgolinter
 	gocognit.Analyzer,                                      // https://github.com/uudashr/gocognit
+	gofumpt.Analyzer,                                       // https://github.com/mvdan/gofumpt
 	goprintffuncname.Analyzer,                              // https://github.com/jirfag/go-printf-func-name
 	grouper.New(),                                          // https://github.com/leonklingele/grouper
 	ineffassign.Analyzer,                                   // https://github.com/gordonklaus/ineffassign

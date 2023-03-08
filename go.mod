@@ -62,6 +62,7 @@ require (
 	gitlab.com/bosi/decorder v0.2.3
 	golang.org/x/tools v0.6.0
 	gopkg.in/yaml.v3 v3.0.1
+	mvdan.cc/gofumpt v0.4.0
 )
 
 require (
