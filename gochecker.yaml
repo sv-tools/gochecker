@@ -2,6 +2,11 @@ analyzers:
     govet:
         extra: true
         exclude: shadow
-    fieldalignment:
     errcheck:
+    gci:
+        Sections: "standard,default,Prefix(github.com/sv-tools/gochecker)"
 test: true
+severity:
+    - level: warning
+      rules:
+          - analyzer: shadow

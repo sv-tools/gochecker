@@ -239,5 +239,12 @@ exclude:
       analyzer: ""
       path: ""
       message: ""
+severity:
+    - level: error
+      rules:
+        - package: ""
+          analyzer: ""
+          path: ""
+          message: ""
 test: false
 fix: false

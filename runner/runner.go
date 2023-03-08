@@ -26,8 +26,9 @@ func Intercept() {
 	}
 	switch conf.Output {
 	case config.ConsoleOutput:
-		output.PrintAsConsole(diag)
-		os.Exit(3)
+		if output.PrintAsConsole(diag) {
+			os.Exit(3)
+		}
 	case config.JSONOutput:
 		e := json.NewEncoder(os.Stdout)
 		e.SetIndent("", "  ")
@@ -35,8 +36,9 @@ func Intercept() {
 			log.Fatalf("json ouput failed: %+v", err)
 		}
 	case config.GithubOutput:
-		output.PrintAsGithub(diag)
-		os.Exit(3)
+		if output.PrintAsGithub(diag) {
+			os.Exit(3)
+		}
 	}
 }
 

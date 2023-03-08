@@ -11,6 +11,8 @@ import (
 	"sync"
 
 	"github.com/pmezard/go-difflib/difflib"
+
+	"github.com/sv-tools/gochecker/config"
 )
 
 type CachedFile struct {
@@ -55,11 +57,15 @@ const (
 	colorPurple = "\033[35m"
 )
 
-func PrintAsConsole(diag *Diagnostic) {
+// PrintAsConsole prinst the issues to console with colors and returns false in case only warning or info isues
+func PrintAsConsole(diag *Diagnostic) (ret bool) {
 	wg := sync.WaitGroup{}
 	for _, pkg := range *diag {
 		for name, issues := range pkg {
 			for _, issue := range issues {
+				if issue.SeverityLevel == config.ErrorLevel {
+					ret = true
+				}
 				wg.Add(1)
 				name := name
 				issue := issue
@@ -80,7 +86,17 @@ func PrintAsConsole(diag *Diagnostic) {
 							buf.WriteString(":" + strconv.Itoa(pos))
 						}
 					}
-					buf.WriteString(colorRed)
+					switch issue.SeverityLevel {
+					case config.ErrorLevel:
+						buf.WriteString(colorRed)
+						buf.WriteString(": ERR")
+					case config.WarningLevel:
+						buf.WriteString(colorYellow)
+						buf.WriteString(": WRN")
+					case config.InfoLevel:
+						buf.WriteString(colorGreen)
+						buf.WriteString(": INF")
+					}
 					if issue.Category != "" {
 						buf.WriteString(": ")
 						buf.WriteString(issue.Category)
@@ -202,6 +218,7 @@ func PrintAsConsole(diag *Diagnostic) {
 		}
 	}
 	wg.Wait()
+	return
 }
 
 func parsePosN(posN string) (string, int, int) {
