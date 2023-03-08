@@ -165,12 +165,15 @@ func PrintAsConsole(diag *Diagnostic) (ret bool) {
 								log.Printf("seeking on buffer for file %q failed: %+v", filename, err)
 								break FIXES
 							}
-							var data []byte
-							data, err = io.ReadAll(reader)
-							if err != nil {
-								log.Printf("reading remaining data from buffer for file %q failed: %+v", filename, err)
-								break FIXES
-							}
+						}
+						// read remaining data
+						var data []byte
+						data, err = io.ReadAll(reader)
+						if err != nil {
+							log.Printf("reading remaining data from buffer for file %q failed: %+v", filename, err)
+							break
+						}
+						if len(data) > 0 {
 							fixed.Write(data)
 						}
 						d := difflib.UnifiedDiff{
