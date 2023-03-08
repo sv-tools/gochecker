@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+
+	"github.com/sv-tools/gochecker/analyzers/gofumpt"
 )
 
 // ModInfo contains the version of go and module name
@@ -42,6 +44,16 @@ func ApplyModInfo(conf *Config) error {
 		}
 		if conf.GoVersion == "" {
 			conf.GoVersion = mod.GoVersion
+		}
+	}
+
+	// apply to gofumpt
+	if v, ok := conf.Analyzers[gofumpt.Name]; ok {
+		if v[gofumpt.LangFlag] == "" {
+			v[gofumpt.LangFlag] = conf.GoVersion
+		}
+		if v[gofumpt.ModuleFlag] == "" {
+			v[gofumpt.ModuleFlag] = conf.GoVersion
 		}
 	}
 
