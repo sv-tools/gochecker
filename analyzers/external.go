@@ -17,7 +17,6 @@ import (
 	ireturn "github.com/butuzov/ireturn/analyzer"
 	"github.com/charithe/durationcheck"
 	"github.com/curioswitch/go-reassign"
-	//gci "github.com/daixiang0/gci/pkg/analyzer"
 	nonamedreturns "github.com/firefart/nonamedreturns/analyzer"
 	critic "github.com/go-critic/go-critic/checkers/analyzer"
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"

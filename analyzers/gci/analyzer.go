@@ -23,6 +23,7 @@ var Analyzer = analyzer.Analyzer
 
 func init() {
 	Analyzer.Run = runAnalysis
+	Analyzer.Requires = nil
 }
 
 func runAnalysis(pass *analysis.Pass) (any, error) {
