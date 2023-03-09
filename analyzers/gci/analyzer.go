@@ -6,7 +6,7 @@ package gci
 import (
 	"flag"
 	"fmt"
-	"go/token"
+	"go/ast"
 	"strconv"
 	"strings"
 
@@ -16,6 +16,7 @@ import (
 	"github.com/daixiang0/gci/pkg/io"
 	"golang.org/x/tools/go/analysis"
 
+	"github.com/sv-tools/gochecker/analyzers/skipgenerated"
 	"github.com/sv-tools/gochecker/analyzers/utils"
 )
 
@@ -23,36 +24,37 @@ var Analyzer = analyzer.Analyzer
 
 func init() {
 	Analyzer.Run = runAnalysis
-	Analyzer.Requires = nil
+	Analyzer.Requires = []*analysis.Analyzer{
+		skipgenerated.Analyzer,
+	}
+
+	// removing the skipGenerated flag
+	fs := flag.NewFlagSet(Analyzer.Flags.Name(), Analyzer.Flags.ErrorHandling())
+	Analyzer.Flags.VisitAll(func(f *flag.Flag) {
+		if f.Name == analyzer.SkipGeneratedFlag {
+			return
+		}
+		fs.Var(f.Value, f.Name, f.Usage)
+	})
+	Analyzer.Flags = *fs
 }
 
 func runAnalysis(pass *analysis.Pass) (any, error) {
-	var fileReferences []*token.File
-	// extract file references for all files in the analyzer pass
-	for _, pkgFile := range pass.Files {
-		fileForPos := pass.Fset.File(pkgFile.Package)
-		if fileForPos != nil {
-			fileReferences = append(fileReferences, fileForPos)
-		}
-	}
-	expectedNumFiles := len(pass.Files)
-	foundNumFiles := len(fileReferences)
-	if expectedNumFiles != foundNumFiles {
-		return nil, fmt.Errorf("expected %d files in Analyzer input, found %d", expectedNumFiles, foundNumFiles)
-	}
-	// read configuration options
+	files := pass.ResultOf[skipgenerated.Analyzer].([]*ast.File)
+
 	gciCfg, err := parseGciConfiguration(Analyzer.Flags)
 	if err != nil {
 		return nil, err
 	}
 
-	for _, file := range fileReferences {
-		filePath := file.Name()
+	for _, file := range files {
+		fileRef := pass.Fset.File(file.Pos())
+		filePath := fileRef.Name()
 		unmodifiedFile, formattedFile, err := gci.LoadFormatGoFile(io.File{FilePath: filePath}, *gciCfg)
 		if err != nil {
 			return nil, err
 		}
-		fix, err := utils.GetSuggestedFix(file, unmodifiedFile, formattedFile)
+		fix, err := utils.GetSuggestedFix(fileRef, unmodifiedFile, formattedFile)
 		if err != nil {
 			return nil, err
 		}
@@ -73,7 +75,6 @@ func parseGciConfiguration(fs flag.FlagSet) (*config.Config, error) {
 	var (
 		noInlineComments     bool
 		noPrefixComments     bool
-		skipGenerated        bool
 		sectionsStr          string
 		sectionSeparatorsStr string
 
@@ -92,12 +93,6 @@ func parseGciConfiguration(fs flag.FlagSet) (*config.Config, error) {
 			return nil, err
 		}
 	}
-	if s := fs.Lookup(analyzer.SkipGeneratedFlag).Value.String(); s != "" {
-		skipGenerated, err = strconv.ParseBool(s)
-		if err != nil {
-			return nil, err
-		}
-	}
 	sectionsStr = fs.Lookup(analyzer.SectionsFlag).Value.String()
 	sectionSeparatorsStr = fs.Lookup(analyzer.SectionSeparatorsFlag).Value.String()
 
@@ -105,7 +100,7 @@ func parseGciConfiguration(fs flag.FlagSet) (*config.Config, error) {
 		NoInlineComments: noInlineComments,
 		NoPrefixComments: noPrefixComments,
 		Debug:            false,
-		SkipGenerated:    skipGenerated,
+		SkipGenerated:    false, // should be set to `false` to avoid unneeded scanning the file for the generated tokens
 	}
 
 	var sectionStrings []string
@@ -130,10 +125,6 @@ func generateCmdLine(cfg config.Config) string {
 
 	if cfg.BoolConfig.NoPrefixComments {
 		result += " --NoPrefixComments "
-	}
-
-	if cfg.BoolConfig.SkipGenerated {
-		result += " --skip-generated "
 	}
 
 	if cfg.BoolConfig.CustomOrder {
