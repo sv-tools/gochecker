@@ -228,16 +228,13 @@ analyzers:
         maxDistance: "5"
         minNameLength: "3"
     wastedassign: {}
+module: ""
 debug: ""
 cpuprofile: ""
 memprofile: ""
 trace: ""
 output: ""
-exclude:
-    - package: ""
-      analyzer: ""
-      path: ""
-      message: ""
+go_version: ""
 severity:
     - level: error
       rules:
@@ -245,5 +242,10 @@ severity:
           analyzer: ""
           path: ""
           message: ""
+exclude:
+    - package: ""
+      analyzer: ""
+      path: ""
+      message: ""
 test: false
 fix: false
