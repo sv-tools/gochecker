@@ -30,14 +30,16 @@ var oneOfOutputFormats = strings.Join([]string{ConsoleOutput, JSONOutput, Github
 
 type Config struct {
 	Analyzers  map[string]map[string]string `json:"analyzers" yaml:"analyzers"`
+	Module     string                       `json:"module" yaml:"module"`
 	Debug      string                       `json:"debug" yaml:"debug"`
 	CPUProfile string                       `json:"cpuprofile" yaml:"cpuprofile"`
 	MemProfile string                       `json:"memprofile" yaml:"memprofile"`
 	Trace      string                       `json:"trace" yaml:"trace"`
 	Output     string                       `json:"output" yaml:"output"`
+	GoVersion  string                       `json:"go_version" yaml:"go_version"`
 	Args       []string                     `json:"-" yaml:"-"`
-	Exclude    []*Rule                      `json:"exclude" yaml:"exclude"`
 	Severity   []*SeverityRule              `json:"severity" yaml:"severity"`
+	Exclude    []*Rule                      `json:"exclude" yaml:"exclude"`
 	Test       bool                         `json:"test" yaml:"test"`
 	Fix        bool                         `json:"fix" yaml:"fix"`
 }
@@ -205,6 +207,12 @@ func ParseConfig() *Config {
 			}
 		}
 	}
+
+	if err := ApplyModInfo(&config); err != nil {
+		log.Fatal("Reading info about go.mo failed: #+v", err)
+	}
+
+	// preparing the args
 
 	args := []string{"-json"}
 	if config.Test {
