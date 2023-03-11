@@ -52,6 +52,10 @@ func ApplyModInfo(conf *Config) error {
 
 	// apply to gofumpt
 	if v, ok := conf.Analyzers[gofumpt.Name]; ok {
+		if v == nil {
+			v = make(map[string]string)
+			conf.Analyzers[gofumpt.Name] = v
+		}
 		if v[gofumpt.LangFlag] == "" {
 			v[gofumpt.LangFlag] = conf.GoVersion
 		}
@@ -61,7 +65,7 @@ func ApplyModInfo(conf *Config) error {
 	}
 
 	// gci, replace module with conf.Module
-	if v, ok := conf.Analyzers[gci.Analyzer.Name]; ok {
+	if v, ok := conf.Analyzers[gci.Analyzer.Name]; ok && v != nil {
 		if sections := v[gci.SectionsFlag]; sections != "" {
 			parts := strings.Split(sections, gci.SectionDelimiter)
 			for i, section := range parts {
