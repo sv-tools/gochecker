@@ -258,7 +258,7 @@ func GenerateConfig() {
 	for _, analyzer := range analyzers.Analyzers {
 		flags := make(map[string]string)
 		analyzer.Flags.VisitAll(func(f *flag.Flag) {
-			flags[f.Name] = f.DefValue
+			flags[f.Name] = f.Value.String()
 		})
 		config.Analyzers[analyzer.Name] = flags
 	}

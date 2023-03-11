@@ -78,6 +78,7 @@ analyzers:
         Sections: ""
         noInlineComments: "false"
         noPrefixComments: "false"
+        skipGenerated: "true"
     ginkgolinter:
         suppress-err-assertion: "false"
         suppress-len-assertion: "false"

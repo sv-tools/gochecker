@@ -17,6 +17,7 @@ import (
 	ireturn "github.com/butuzov/ireturn/analyzer"
 	"github.com/charithe/durationcheck"
 	"github.com/curioswitch/go-reassign"
+	gci "github.com/daixiang0/gci/pkg/analyzer"
 	nonamedreturns "github.com/firefart/nonamedreturns/analyzer"
 	critic "github.com/go-critic/go-critic/checkers/analyzer"
 	"github.com/gordonklaus/ineffassign/pkg/ineffassign"
@@ -51,13 +52,12 @@ import (
 	"github.com/tdakkota/asciicheck"
 	"github.com/timakin/bodyclose/passes/bodyclose"
 	"github.com/timonwong/loggercheck"
-	magic_numbers "github.com/tommy-muehle/go-mnd/v2"
+	magicnumbers "github.com/tommy-muehle/go-mnd/v2"
 	"github.com/uudashr/gocognit"
 	"github.com/yagipy/maintidx"
 	"gitlab.com/bosi/decorder"
 	"golang.org/x/tools/go/analysis"
 
-	"github.com/sv-tools/gochecker/analyzers/gci"
 	"github.com/sv-tools/gochecker/analyzers/gofumpt"
 )
 
@@ -96,7 +96,7 @@ var External = []*analysis.Analyzer{
 	interfacebloat.New(),                                   // https://github.com/sashamelentyev/interfacebloat
 	ireturn.NewAnalyzer(),                                  // https://github.com/butuzov/ireturn
 	loggercheck.NewAnalyzer(),                              // https://github.com/timonwong/loggercheck
-	magic_numbers.Analyzer,                                 // https://github.com/tommy-muehle/go-mnd
+	magicnumbers.Analyzer,                                  // https://github.com/tommy-muehle/go-mnd
 	maintidx.Analyzer,                                      // https://github.com/yagipy/maintidx
 	makezero.NewAnalyzer(),                                 // https://github.com/ashanbrown/makezero
 	musttag.New(),                                          // https://github.com/junk1tm/musttag
@@ -119,4 +119,11 @@ var External = []*analysis.Analyzer{
 	usestdlibvars.New(),                                    // https://github.com/sashamelentyev/usestdlibvars
 	varnamelen.NewAnalyzer(),                               // https://github.com/blizzy78/varnamelen
 	wastedassign.Analyzer,                                  // https://github.com/sanposhiho/wastedassign
+}
+
+func init() {
+	// skip generated files by default for gci
+	if err := gci.Analyzer.Flags.Set(gci.SkipGeneratedFlag, "true"); err != nil {
+		panic(err)
+	}
 }
