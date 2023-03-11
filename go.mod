@@ -36,7 +36,7 @@ require (
 	github.com/leonklingele/grouper v1.1.1
 	github.com/lufeee/execinquery v1.2.1
 	github.com/maratori/testableexamples v1.0.0
-	github.com/maratori/testpackage v1.1.0
+	github.com/maratori/testpackage v1.1.1
 	github.com/moricho/tparallel v0.2.1
 	github.com/nishanths/exhaustive v0.9.5
 	github.com/nishanths/predeclared v0.2.2
