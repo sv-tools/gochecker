@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
+
+	gci "github.com/daixiang0/gci/pkg/analyzer"
 
 	"github.com/sv-tools/gochecker/analyzers/gofumpt"
 )
@@ -54,6 +57,21 @@ func ApplyModInfo(conf *Config) error {
 		}
 		if v[gofumpt.ModuleFlag] == "" {
 			v[gofumpt.ModuleFlag] = conf.GoVersion
+		}
+	}
+
+	// gci, replace module with conf.Module
+	if v, ok := conf.Analyzers[gci.Analyzer.Name]; ok {
+		if sections := v[gci.SectionsFlag]; sections != "" {
+			parts := strings.Split(sections, gci.SectionDelimiter)
+			for i, section := range parts {
+				s := strings.TrimSpace(section)
+				if s == "module" {
+					s = fmt.Sprintf("Prefix(%s)", conf.Module)
+				}
+				parts[i] = s
+			}
+			v[gci.SectionsFlag] = strings.Join(parts, gci.SectionDelimiter)
 		}
 	}
 
