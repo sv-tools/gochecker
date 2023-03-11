@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"go/token"
+	"io"
 	"log"
 
 	"github.com/sv-tools/gochecker/config"
@@ -36,8 +37,12 @@ type (
 	//	 }
 	//	}
 	// ```
-	Diagnostic map[string]map[string][]*Issue
-	Issue      struct {
+	Diagnostic    map[string]map[string]*IssuesOrError
+	IssuesOrError struct {
+		Error  string
+		Issues []*Issue
+	}
+	Issue struct {
 		Message        string `json:"message"`
 		Category       string `json:"category,omitempty"`
 		PosN           string `json:"posn"`
@@ -56,6 +61,33 @@ type (
 		End      token.Pos `json:"end,omitempty"`
 	}
 )
+
+func (o *IssuesOrError) UnmarshalJSON(data []byte) error {
+	var e struct {
+		Error string `json:"error"`
+	}
+	r := bytes.NewReader(data)
+	d := json.NewDecoder(r)
+	d.DisallowUnknownFields()
+	if d.Decode(&e) == nil {
+		o.Error = e.Error
+		return nil
+	}
+	if _, err := r.Seek(0, io.SeekStart); err != nil {
+		return err
+	}
+	return d.Decode(&o.Issues)
+}
+
+func (o *IssuesOrError) MarshalJSON() ([]byte, error) {
+	if o.Error != "" {
+		e := struct {
+			Error string `json:"error"`
+		}{o.Error}
+		return json.Marshal(e)
+	}
+	return json.Marshal(o.Issues)
+}
 
 func ParseOutput(conf *config.Config, data []byte) *Diagnostic {
 	out := make(Diagnostic)
