@@ -1,12 +1,12 @@
 analyzers:
+    errcheck:
+    gci:
+        Sections: "standard,default,module"
+    gofumpt:
+        extra: true
     govet:
         extra: true
         exclude: shadow
-    errcheck:
-    gci:
-        Sections: "standard,default,Prefix(github.com/sv-tools/gochecker)"
-    gofumpt:
-        extra: true
 test: true
 severity:
     - level: warning
