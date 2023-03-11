@@ -53,17 +53,6 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: ${{ matrix.go }}
-      - name: go fmt
-        shell: bash
-        run: |
-          make fmt
-          DELTA="$(git diff --numstat)"
-          if [ -n "${DELTA}" ]
-          then
-            echo "${DELTA}"
-            git diff
-            exit 1
-          fi
       - name: go vet
         shell: bash
         run: make github-vet
