@@ -61,8 +61,22 @@ const (
 func PrintAsConsole(diag *Diagnostic) (ret bool) {
 	wg := sync.WaitGroup{}
 	for _, pkg := range *diag {
-		for name, issues := range pkg {
-			for _, issue := range issues {
+		for name, obj := range pkg {
+			if obj.Error != "" {
+				buf := bytes.Buffer{}
+				buf.WriteString(name)
+				buf.WriteString(": ")
+				buf.WriteString(colorRed)
+				buf.WriteString(obj.Error)
+				buf.WriteString(colorReset)
+				buf.WriteRune('\n')
+				if _, err := buf.WriteTo(os.Stdout); err != nil {
+					log.Printf("writing to stdout failed: %+v", err)
+					os.Exit(1)
+				}
+				continue
+			}
+			for _, issue := range obj.Issues {
 				if issue.SeverityLevel == config.ErrorLevel {
 					ret = true
 				}
@@ -71,13 +85,14 @@ func PrintAsConsole(diag *Diagnostic) (ret bool) {
 				issue := issue
 				go func() {
 					defer wg.Done()
-					filename, line, pos := parsePosN(issue.PosN)
 
+					filename, line, pos := parsePosN(issue.PosN)
 					f, err := getFile(filename)
 					if err != nil {
 						log.Printf("reading file %q failed: %+v", filename, err)
 						return
 					}
+
 					buf := bytes.Buffer{}
 					buf.WriteString(f.Filename)
 					if line != -1 {

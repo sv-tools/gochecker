@@ -14,9 +14,12 @@ func Modify(conf *config.Config, diag *Diagnostic) {
 	toDeletePkg := make([]string, 0, len(*diag))
 	for pkgName, pkg := range *diag {
 		toDeleteAnalyzer := make([]string, 0, len(pkg))
-		for analyzerName, issues := range pkg {
-			tmp := make([]*Issue, 0, len(issues))
-			for _, issue := range issues {
+		for analyzerName, obj := range pkg {
+			if obj.Error != "" {
+				continue
+			}
+			tmp := make([]*Issue, 0, len(obj.Issues))
+			for _, issue := range obj.Issues {
 				switch {
 				case conf.Fix && len(issue.SuggestedFixes) != 0: // remove all issues with suggested fixes, because they are already applied
 				case isNolint(issue): // remove issues with nolint comment
@@ -29,7 +32,7 @@ func Modify(conf *config.Config, diag *Diagnostic) {
 			if len(tmp) == 0 {
 				toDeleteAnalyzer = append(toDeleteAnalyzer, analyzerName)
 			} else {
-				pkg[analyzerName] = tmp
+				pkg[analyzerName].Issues = tmp
 			}
 		}
 		for _, name := range toDeleteAnalyzer {

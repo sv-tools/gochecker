@@ -25,15 +25,27 @@ func PrintAsGithub(diag *Diagnostic) (ret bool) {
 
 	wg := sync.WaitGroup{}
 	for _, pkg := range *diag {
-		for name, issues := range pkg {
-			for _, issue := range issues {
+		for name, obj := range pkg {
+			if obj.Error != "" {
+				buf := bytes.Buffer{}
+				buf.WriteString("::error:: ")
+				buf.WriteString(name)
+				buf.WriteString(": ")
+				buf.WriteString(obj.Error)
+				buf.WriteRune('\n')
+				if _, err := buf.WriteTo(os.Stdout); err != nil {
+					log.Printf("writing to stdout failed: %+v", err)
+					os.Exit(1)
+				}
+			}
+			for _, issue := range obj.Issues {
 				wg.Add(1)
 				name := name
 				issue := issue
 				go func() {
 					defer wg.Done()
-					filename, line, pos := parsePosN(issue.PosN)
 
+					filename, line, pos := parsePosN(issue.PosN)
 					f, err := getFile(filename)
 					if err != nil {
 						log.Printf("reading file %q failed: %+v", filename, err)
