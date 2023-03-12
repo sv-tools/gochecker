@@ -200,6 +200,8 @@ analyzers:
     timeformat: {}
     tparallel: {}
     unmarshal: {}
+    unparam:
+        exported: "false"
     unreachable: {}
     unsafeptr: {}
     unusedresult:

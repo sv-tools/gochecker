@@ -167,6 +167,7 @@ and then each analyzer was checked and imported if it provides an object of the 
 - [testpackage](https://github.com/maratori/testpackage) checks if examples are testable (have an expected output).
 - [thelper](https://github.com/kulti/thelper) detects golang test helpers without `t.Helper()` call. Also, it checks the consistency of test helpers and has similar checks for benchmarks and TB interface.
 - [tparallel](https://github.com/moricho/tparallel) finds inappropriate usage of `t.Parallel()` method in your Go test codes.
+- [unparam](https://github.com/mvdan/unparam) reports unused function parameters and results in your code.
 - [usestdlibvars](https://github.com/sashamelentyev/usestdlibvars) detects the possibility to use variables/constants from the Go standard library.
 - [varnamelen](https://github.com/blizzy78/varnamelen) checks that the length of a variable's name matches its usage scope.
 - [wastedassign](https://github.com/sanposhiho/wastedassign) finds wasted assignment statements.
