@@ -140,6 +140,7 @@ and then each analyzer was checked and imported if it provides an object of the 
 - [gci](https://github.com/daixiang0/gci) controls golang package import order and makes it always deterministic.
 - [ginkgolinter](https://github.com/nunnatsa/ginkgolinter) enforces some standards while using the ginkgo and gomega packages.
 - [gocognit](https://github.com/uudashr/gocognit) calculates cognitive complexities of functions in Go source code. A measurement of how hard does the code is intuitively to understand.
+- [gofumpt](https://github.com/mvdan/gofumpt) enforce a stricter format than gofmt, while being backwards compatible.
 - [goprintffuncname](https://github.com/jirfag/go-printf-func-name) checks that printf-like functions are named with f at the end.
 - [grouper](https://github.com/leonklingele/grouper) analyzes expression groups.
 - [ineffassign](https://github.com/gordonklaus/ineffassign) detects ineffectual assignments in Go code. An assignment is ineffectual if the variable assigned is not thereafter used.
