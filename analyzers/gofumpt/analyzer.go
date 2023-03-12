@@ -41,6 +41,10 @@ func init() {
 
 func run(pass *analysis.Pass) (any, error) {
 	files := pass.ResultOf[skipgenerated.Analyzer].([]*ast.File)
+	if len(files) == 0 {
+		return nil, nil
+	}
+
 	for _, f := range files {
 		fileRef := pass.Fset.File(f.Pos())
 		data, err := os.ReadFile(fileRef.Name())
