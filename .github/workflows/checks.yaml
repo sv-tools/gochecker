@@ -14,24 +14,70 @@ concurrency:
   group: ${{ format('{0}-{1}-{2}', github.workflow, github.head_ref, github.ref_name) }}
   cancel-in-progress: true
 
+env:
+  GO: "1.20"
+
 jobs:
-  CodeQL:
+  codeql:
     runs-on: ubuntu-latest
     permissions:
       security-events: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
           languages: go
-
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
 
-  Checks:
+  fmt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ env.GO }}
+      - name: go fmt
+        run: make fmt
+      - name: check for dirty state
+        run: |
+          DELTA="$(git diff --numstat)"
+          if [ -n "${DELTA}" ]
+          then
+            echo "${DELTA}"
+            git diff
+            exit 1
+          fi
+
+  generate-config:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ env.GO }}
+      - name: generate config
+        run: make generate-config
+      - name: check for dirty state
+        run: |
+          DELTA="$(git diff --numstat)"
+          if [ -n "${DELTA}" ]
+          then
+            echo "${DELTA}"
+            git diff
+            exit 1
+          fi
+
+  vet:
+    defaults:
+      run:
+        shell: bash
     strategy:
       matrix:
         go:
@@ -41,10 +87,10 @@ jobs:
         os:
           - ubuntu-latest
         include:
-          - os: macos-latest
-            go: "1.20"
-          - os: windows-latest
-            go: "1.20"
+          - go: "1.20"
+            os: macos-latest
+          - go: "1.20"
+            os: windows-latest
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
@@ -53,35 +99,15 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: ${{ matrix.go }}
-      - name: go fmt
-        shell: bash
-        run: |
-          make fmt
-          DELTA="$(git diff --numstat)"
-          if [ -n "${DELTA}" ]
-          then
-            echo "${DELTA}"
-            git diff
-            exit 1
-          fi
+      - name: format for windows
+        if: matrix.os == 'windows-latest'
+        run: go fmt ./...
       - name: go vet
-        shell: bash
         run: make github-vet
-      - name: generate config
-        shell: bash
-        run: |
-          make generate-config
-          DELTA="$(git diff --numstat)"
-          if [ -n "${DELTA}" ]
-          then
-            echo "${DELTA}"
-            git diff
-            exit 1
-          fi
 
   tested:
     runs-on: ubuntu-latest
-    needs: [CodeQL, Checks]
+    needs: [CodeQL, fmt, generate-config, vet]
     if: always()
     steps:
       - name: All tests ok
