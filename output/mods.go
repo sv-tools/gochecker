@@ -1,9 +1,12 @@
 package output
 
 import (
+	"bytes"
+	"io"
 	"log"
 	"os"
 	"regexp"
+	"sort"
 
 	"github.com/sv-tools/gochecker/config"
 )
@@ -11,6 +14,7 @@ import (
 var nolintRE = regexp.MustCompile(`//\s*nolint`)
 
 func Modify(conf *config.Config, diag *Diagnostic) {
+	toFix := make(map[string][]*Edit)
 	toDeletePkg := make([]string, 0, len(*diag))
 	for pkgName, pkg := range *diag {
 		toDeleteAnalyzer := make([]string, 0, len(pkg))
@@ -21,9 +25,14 @@ func Modify(conf *config.Config, diag *Diagnostic) {
 			tmp := make([]*Issue, 0, len(obj.Issues))
 			for _, issue := range obj.Issues {
 				switch {
-				case conf.Fix && len(issue.SuggestedFixes) != 0: // remove all issues with suggested fixes, because they are already applied
 				case isNolint(issue): // remove issues with nolint comment
 				case isExcluded(conf.Exclude, pkgName, analyzerName, issue):
+				case conf.Fix && len(issue.SuggestedFixes) > 0: // must be last in the order, so other rules are applied
+					for _, fix := range issue.SuggestedFixes {
+						for _, edit := range fix.Edits {
+							toFix[edit.Filename] = append(toFix[edit.Filename], edit)
+						}
+					}
 				default:
 					setSeverityLevel(conf.Severity, pkgName, analyzerName, issue)
 					tmp = append(tmp, issue)
@@ -44,6 +53,9 @@ func Modify(conf *config.Config, diag *Diagnostic) {
 	}
 	for _, name := range toDeletePkg {
 		delete(*diag, name)
+	}
+	if len(toFix) > 0 {
+		ApplySuggestedFixes(toFix)
 	}
 }
 
@@ -93,6 +105,49 @@ func setSeverityLevel(sevRules []*config.SeverityRule, pkg, analyzer string, iss
 				issue.SeverityLevel = sev.Level
 				return
 			}
+		}
+	}
+}
+
+func ApplySuggestedFixes(fixes map[string][]*Edit) {
+	for filename, edits := range fixes {
+		sort.Slice(edits, func(i, j int) bool {
+			return edits[i].Start < edits[j].Start
+		})
+		f, err := getFile(filename)
+		if err != nil {
+			log.Fatalf("reading file %q failed: %+v", filename, err)
+		}
+		var end int64
+		r := bytes.NewReader(f.Data)
+		buf := bytes.Buffer{}
+		for _, edit := range edits {
+			l := int64(edit.Start) - end
+			switch {
+			case l < 0:
+				log.Fatalf("overlapped change for file %q: %#v", filename, edit)
+			case l > 0:
+				b := make([]byte, l)
+				if _, err := r.Read(b); err != nil {
+					log.Fatalf("reading failed: %+v", err)
+				}
+				buf.Write(b)
+			}
+			buf.WriteString(edit.New)
+			if end, err = r.Seek(int64(edit.End), io.SeekStart); err != nil {
+				log.Fatalf("seeking failed: %+v", end)
+			}
+		}
+		b, err := io.ReadAll(r)
+		if err != nil {
+			log.Fatalf("reading leftovers failed: %#v", err)
+		}
+		if len(b) > 0 {
+			buf.Write(b)
+		}
+		f.Data = buf.Bytes()
+		if err := os.WriteFile(f.Filename, f.Data, 0o644); err != nil {
+			log.Fatalf("writing to file %q failed: %#v", f.Filename, err)
 		}
 	}
 }
