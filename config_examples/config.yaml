@@ -204,6 +204,7 @@ analyzers:
         exported: "false"
     unreachable: {}
     unsafeptr: {}
+    unused: {}
     unusedresult:
         funcs: context.WithCancel,context.WithDeadline,context.WithTimeout,context.WithValue,errors.New,fmt.Errorf,fmt.Sprint,fmt.Sprintf,sort.Reverse
         stringmethods: Error,String

@@ -60,6 +60,7 @@ import (
 	"github.com/sv-tools/gochecker/analyzers/gci"
 	"github.com/sv-tools/gochecker/analyzers/gofumpt"
 	"github.com/sv-tools/gochecker/analyzers/unparam"
+	"github.com/sv-tools/gochecker/analyzers/unused"
 )
 
 // External is the list of all external analyzers (linters)
@@ -118,6 +119,7 @@ var External = []*analysis.Analyzer{
 	thelper.NewAnalyzer(),                                  // https://github.com/kulti/thelper
 	tparallel.Analyzer,                                     // https://github.com/moricho/tparallel
 	unparam.Analyzer,                                       // https://github.com/mvdan/unparam
+	unused.Analyzer,                                        // https://github.com/dominikh/go-tools/tree/master/unused
 	usestdlibvars.New(),                                    // https://github.com/sashamelentyev/usestdlibvars
 	varnamelen.NewAnalyzer(),                               // https://github.com/blizzy78/varnamelen
 	wastedassign.Analyzer,                                  // https://github.com/sanposhiho/wastedassign
