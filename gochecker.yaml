@@ -1,14 +1,16 @@
 analyzers:
-    errcheck:
-    gci:
-        Sections: "standard,default,module"
-    gofumpt:
-        extra: true
-    govet:
-        extra: true
-        exclude: shadow
+  errcheck:
+  gci:
+    Sections: "standard,default,module"
+  gofumpt:
+    extra: true
+  govet:
+    extra: true
+  unparam:
+    exported: true
+  unused:
 test: true
 severity:
-    - level: warning
-      rules:
-          - analyzer: shadow
+  - level: warning
+    rules:
+      - analyzer: shadow
