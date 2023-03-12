@@ -41,6 +41,9 @@ func init() {
 
 func runAnalysis(pass *analysis.Pass) (any, error) {
 	files := pass.ResultOf[skipgenerated.Analyzer].([]*ast.File)
+	if len(files) == 0 {
+		return nil, nil
+	}
 
 	gciCfg, err := parseGciConfiguration(Analyzer.Flags)
 	if err != nil {

@@ -2,8 +2,6 @@
 package unparam
 
 import (
-	"go/ast"
-
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/buildssa"
 	"golang.org/x/tools/go/packages"
@@ -29,14 +27,13 @@ func init() {
 }
 
 func run(pass *analysis.Pass) (any, error) {
-	files := pass.ResultOf[skipgenerated.Analyzer].([]*ast.File)
 	ssa := pass.ResultOf[buildssa.Analyzer].(*buildssa.SSA)
 
 	checker := check.Checker{}
 	checker.CheckExportedFuncs(checkExported)
 	checker.Packages([]*packages.Package{{
 		Fset:      pass.Fset,
-		Syntax:    files,
+		Syntax:    pass.Files,
 		Types:     pass.Pkg,
 		TypesInfo: pass.TypesInfo,
 	}})
