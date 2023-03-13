@@ -17,7 +17,7 @@ require (
 	github.com/breml/bidichk v0.2.3
 	github.com/breml/errchkjson v0.3.0
 	github.com/butuzov/ireturn v0.1.1
-	github.com/charithe/durationcheck v0.0.9
+	github.com/charithe/durationcheck v0.0.10
 	github.com/curioswitch/go-reassign v0.2.0
 	github.com/daixiang0/gci v0.10.1
 	github.com/firefart/nonamedreturns v1.0.4
