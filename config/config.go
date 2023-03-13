@@ -52,6 +52,7 @@ type Rule struct {
 	Analyzer  string         `json:"analyzer" yaml:"analyzer"`
 	Path      string         `json:"path" yaml:"path"`
 	Message   string         `json:"message" yaml:"message"`
+	Severity  string         `json:"severity" yaml:"severity"`
 }
 
 type SeverityRule struct {
@@ -79,6 +80,13 @@ func compileRules(exclude []*Rule) error {
 			if err != nil {
 				return err
 			}
+		}
+		rule.Severity = strings.ToLower(rule.Severity)
+		switch rule.Severity {
+		case "":
+		case ErrorLevel, WarningLevel, InfoLevel:
+		default:
+			return fmt.Errorf("wrong severity level %q, must be one of: %s", rule.Severity, strings.Join([]string{ErrorLevel, WarningLevel, InfoLevel}, ", "))
 		}
 	}
 	return nil
@@ -129,10 +137,13 @@ func ParseConfig() *Config {
 			log.Fatal(err)
 		}
 		for _, sev := range config.Severity {
+			sev.Level = strings.ToLower(sev.Level)
 			switch sev.Level {
+			case "":
+				sev.Level = ErrorLevel
 			case ErrorLevel, WarningLevel, InfoLevel:
 			default:
-				log.Fatal("severity level must be one of: ", strings.Join([]string{ErrorLevel, WarningLevel, InfoLevel}, ", "))
+				log.Fatalf("wrong severity level %q, must be one of: %s", sev.Level, strings.Join([]string{ErrorLevel, WarningLevel, InfoLevel}, ", "))
 			}
 			if err := compileRules(sev.Rules); err != nil {
 				log.Fatal(err)

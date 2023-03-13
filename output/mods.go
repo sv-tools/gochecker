@@ -24,6 +24,7 @@ func Modify(conf *config.Config, diag *Diagnostic) {
 			}
 			tmp := make([]*Issue, 0, len(obj.Issues))
 			for _, issue := range obj.Issues {
+				setSeverityLevel(conf.Severity, pkgName, analyzerName, issue)
 				switch {
 				case isNolint(issue): // remove issues with nolint comment
 				case isExcluded(conf.Exclude, pkgName, analyzerName, issue):
@@ -34,7 +35,6 @@ func Modify(conf *config.Config, diag *Diagnostic) {
 						}
 					}
 				default:
-					setSeverityLevel(conf.Severity, pkgName, analyzerName, issue)
 					tmp = append(tmp, issue)
 				}
 			}
@@ -79,7 +79,7 @@ func isExcluded(rules []*config.Rule, pkg, analyzer string, issue *Issue) bool {
 }
 
 func matchRule(rule *config.Rule, pkg, analyzer string, issue *Issue) bool {
-	if rule.Analyzer == "" && rule.PackageRE == nil && rule.PathRE == nil && rule.MessageRE == nil {
+	if rule.Analyzer == "" && rule.PackageRE == nil && rule.PathRE == nil && rule.MessageRE == nil && rule.Severity == "" {
 		return false
 	}
 	if rule.Analyzer != "" && analyzer != rule.Analyzer {
@@ -92,6 +92,9 @@ func matchRule(rule *config.Rule, pkg, analyzer string, issue *Issue) bool {
 		return false
 	}
 	if rule.MessageRE != nil && !rule.MessageRE.MatchString(issue.Message) {
+		return false
+	}
+	if rule.Severity != "" && rule.Severity != issue.SeverityLevel {
 		return false
 	}
 	return true
