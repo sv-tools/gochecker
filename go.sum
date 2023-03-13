@@ -43,9 +43,8 @@ github.com/go-critic/go-critic v0.6.7 h1:1evPrElnLQ2LZtJfmNDzlieDhjnq36SLgNzisx0
 github.com/go-critic/go-critic v0.6.7/go.mod h1:fYZUijFdcnxgx6wPjQA2QEjIRaNCT0gO8bhexy6/QmE=
 github.com/go-toolsmith/astcast v1.1.0 h1:+JN9xZV1A+Re+95pgnMgDboWNVnIMMQXwfBwLRPgSC8=
 github.com/go-toolsmith/astcast v1.1.0/go.mod h1:qdcuFWeGGS2xX5bLM/c3U9lewg7+Zu4mr+xPwZIB4ZU=
-github.com/go-toolsmith/astcopy v1.0.2 h1:YnWf5Rnh1hUudj11kei53kI57quN/VH6Hp1n+erozn0=
-github.com/go-toolsmith/astcopy v1.0.2/go.mod h1:4TcEdbElGc9twQEYpVo/aieIXfHhiuLh4aLAck6dO7Y=
-github.com/go-toolsmith/astequal v1.0.2/go.mod h1:9Ai4UglvtR+4up+bAD4+hCj7iTo4m/OXVTSLnCyTAx4=
+github.com/go-toolsmith/astcopy v1.1.0 h1:YGwBN0WM+ekI/6SS6+52zLDEf8Yvp3n2seZITCUBt5s=
+github.com/go-toolsmith/astcopy v1.1.0/go.mod h1:hXM6gan18VA1T/daUEHCFcYiW8Ai1tIwIzHY6srfEAw=
 github.com/go-toolsmith/astequal v1.0.3/go.mod h1:9Ai4UglvtR+4up+bAD4+hCj7iTo4m/OXVTSLnCyTAx4=
 github.com/go-toolsmith/astequal v1.1.0 h1:kHKm1AWqClYn15R0K1KKE4RG614D46n+nqUQ06E1dTw=
 github.com/go-toolsmith/astequal v1.1.0/go.mod h1:sedf7VIdCL22LD8qIvv7Nn9MuWJruQA/ysswh64lffQ=
@@ -118,8 +117,8 @@ github.com/nishanths/exhaustive v0.9.5 h1:TzssWan6orBiLYVqewCG8faud9qlFntJE30ACp
 github.com/nishanths/exhaustive v0.9.5/go.mod h1:IbwrGdVMizvDcIxPYGVdQn5BqWJaOwpCvg4RGb8r/TA=
 github.com/nishanths/predeclared v0.2.2 h1:V2EPdZPliZymNAn79T8RkNApBjMmVKh5XRpLm/w98Vk=
 github.com/nishanths/predeclared v0.2.2/go.mod h1:RROzoN6TnGQupbC+lqggsOlcgysk3LMK/HI84Mp280c=
-github.com/nunnatsa/ginkgolinter v0.8.1 h1:/y4o/0hV+ruUHj4xXh89xlFjoaitnI4LnkpuYs02q1c=
-github.com/nunnatsa/ginkgolinter v0.8.1/go.mod h1:FYYLtszIdmzCH8XMaMPyxPVXZ7VCaIm55bA+gugx+14=
+github.com/nunnatsa/ginkgolinter v0.9.0 h1:Sm0zX5QfjJzkeCjEp+t6d3Ha0jwvoDjleP9XCsrEzOA=
+github.com/nunnatsa/ginkgolinter v0.9.0/go.mod h1:FHaMLURXP7qImeH6bvxWJUpyH+2tuqe5j4rW1gxJRmI=
 github.com/otiai10/copy v1.2.0 h1:HvG945u96iNadPoG2/Ja2+AUJeW5YuFQMixq9yirC+k=
 github.com/otiai10/copy v1.2.0/go.mod h1:rrF5dJ5F0t/EWSYODDu4j9/vEeYHMkc8jt0zJChqQWw=
 github.com/otiai10/curr v0.0.0-20150429015615-9b4961190c95/go.mod h1:9qAhocn7zKJG+0mI8eUu6xqkFDYS2kb2saOteoSB3cE=
