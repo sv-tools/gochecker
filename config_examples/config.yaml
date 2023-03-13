@@ -249,10 +249,12 @@ severity:
           analyzer: ""
           path: ""
           message: ""
+          severity: ""
 exclude:
     - package: ""
       analyzer: ""
       path: ""
       message: ""
+      severity: ""
 test: false
 fix: false
