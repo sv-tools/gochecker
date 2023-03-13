@@ -4,8 +4,8 @@
 4d63.com/gochecknoglobals v0.2.1/go.mod h1:KRE8wtJB3CXCsb1xy421JfTHIIbmT3U5ruxw2Qu8fSU=
 github.com/Abirdcfly/dupword v0.0.9 h1:MxprGjKq3yDBICXDgEEsyGirIXfMYXkLNT/agPsE1tk=
 github.com/Abirdcfly/dupword v0.0.9/go.mod h1:PzmHVLLZ27MvHSzV7eFmMXSFArWXZPZmfuuziuUrf2g=
-github.com/Antonboom/errname v0.1.7 h1:mBBDKvEYwPl4WFFNwec1CZO096G6vzK9vvDQzAwkako=
-github.com/Antonboom/errname v0.1.7/go.mod h1:g0ONh16msHIPgJSGsecu1G/dcF2hlYR/0SddnIAGavU=
+github.com/Antonboom/errname v0.1.9 h1:BZDX4r3l4TBZxZ2o2LNrlGxSHran4d1u4veZdoORTT4=
+github.com/Antonboom/errname v0.1.9/go.mod h1:nLTcJzevREuAsgTbG85UsuiWpMpAqbKD1HNZ29OzE58=
 github.com/Antonboom/nilnil v0.1.1 h1:PHhrh5ANKFWRBh7TdYmyyq2gyT2lotnvFvvFbylF81Q=
 github.com/Antonboom/nilnil v0.1.1/go.mod h1:L1jBqoWM7AOeTD+tSquifKSesRHs4ZdaxvZR+xdJEaI=
 github.com/Djarvur/go-err113 v0.1.0 h1:uCRZZOdMQ0TZPHYTdYpoC0bLYJKPEHPUJ8MeAa51lNU=
