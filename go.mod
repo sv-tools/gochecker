@@ -29,7 +29,7 @@ require (
 	github.com/jirfag/go-printf-func-name v0.0.0-20200119135958-7558a9eaa5af
 	github.com/junk1tm/musttag v0.5.0
 	github.com/kisielk/errcheck v1.6.3
-	github.com/kkHAIKE/contextcheck v1.1.3
+	github.com/kkHAIKE/contextcheck v1.1.4
 	github.com/kulti/thelper v0.6.3
 	github.com/kunwardeep/paralleltest v1.0.6
 	github.com/kyoh86/exportloopref v0.1.11
