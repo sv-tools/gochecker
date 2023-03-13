@@ -14,3 +14,6 @@ severity:
   - level: warning
     rules:
       - analyzer: shadow
+exclude:
+  - severity: warning
+    git_ref: origin/main
