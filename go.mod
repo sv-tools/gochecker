@@ -40,7 +40,7 @@ require (
 	github.com/moricho/tparallel v0.3.0
 	github.com/nishanths/exhaustive v0.9.5
 	github.com/nishanths/predeclared v0.2.2
-	github.com/nunnatsa/ginkgolinter v0.8.1
+	github.com/nunnatsa/ginkgolinter v0.9.0
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2
 	github.com/polyfloyd/go-errorlint v1.4.0
 	github.com/ryanrolds/sqlclosecheck v0.4.0
@@ -70,7 +70,7 @@ require (
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/go-toolsmith/astcast v1.1.0 // indirect
-	github.com/go-toolsmith/astcopy v1.0.2 // indirect
+	github.com/go-toolsmith/astcopy v1.1.0 // indirect
 	github.com/go-toolsmith/astequal v1.1.0 // indirect
 	github.com/go-toolsmith/astfmt v1.1.0 // indirect
 	github.com/go-toolsmith/astp v1.1.0 // indirect

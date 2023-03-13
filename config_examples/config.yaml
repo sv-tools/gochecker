@@ -79,6 +79,8 @@ analyzers:
         noInlineComments: "false"
         noPrefixComments: "false"
     ginkgolinter:
+        allow-havelen-0: "false"
+        suppress-compare-assertion: "false"
         suppress-err-assertion: "false"
         suppress-len-assertion: "false"
         suppress-nil-assertion: "false"
