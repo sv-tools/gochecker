@@ -53,6 +53,7 @@ type Rule struct {
 	Path      string         `json:"path" yaml:"path"`
 	Message   string         `json:"message" yaml:"message"`
 	Severity  string         `json:"severity" yaml:"severity"`
+	GitRef    string         `json:"git_ref" yaml:"git_ref"`
 }
 
 type SeverityRule struct {

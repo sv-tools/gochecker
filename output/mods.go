@@ -5,8 +5,11 @@ import (
 	"io"
 	"log"
 	"os"
+	"os/exec"
+	"path/filepath"
 	"regexp"
 	"sort"
+	"strings"
 
 	"github.com/sv-tools/gochecker/config"
 )
@@ -79,7 +82,7 @@ func isExcluded(rules []*config.Rule, pkg, analyzer string, issue *Issue) bool {
 }
 
 func matchRule(rule *config.Rule, pkg, analyzer string, issue *Issue) bool {
-	if rule.Analyzer == "" && rule.PackageRE == nil && rule.PathRE == nil && rule.MessageRE == nil && rule.Severity == "" {
+	if rule.Analyzer == "" && rule.PackageRE == nil && rule.PathRE == nil && rule.MessageRE == nil && rule.Severity == "" && rule.GitRef == "" {
 		return false
 	}
 	if rule.Analyzer != "" && analyzer != rule.Analyzer {
@@ -97,7 +100,47 @@ func matchRule(rule *config.Rule, pkg, analyzer string, issue *Issue) bool {
 	if rule.Severity != "" && rule.Severity != issue.SeverityLevel {
 		return false
 	}
+	if rule.GitRef != "" {
+		filename, _, _ := parsePosN(issue.PosN)
+		wd, err := os.Getwd()
+		if err != nil {
+			log.Fatalf("getting working directory failed: %+v", err)
+		}
+		rel, err := filepath.Rel(wd, filename)
+		if err != nil {
+			log.Fatalf("getting relative path to file %q failed: %+v", filename, err)
+		}
+		changed := getGitChangedFiles(rule.GitRef)
+		if _, ok := changed[rel]; ok {
+			return false
+		}
+	}
 	return true
+}
+
+var gitChangedFiles = make(map[string]map[string]struct{})
+
+func getGitChangedFiles(ref string) map[string]struct{} {
+	if v, ok := gitChangedFiles[ref]; ok {
+		return v
+	}
+
+	cmd := exec.Command("git", "diff", "--name-only", ref+"...HEAD")
+	cmd.Env = os.Environ()
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		log.Fatalf("getting changed files for reference %q failed with error '%+v' and output: %s", ref, err, string(out))
+	}
+	changed := make(map[string]struct{})
+	for _, line := range strings.Split(string(out), "\n") {
+		line = strings.TrimSpace(line)
+		if line == "" {
+			continue
+		}
+		changed[line] = struct{}{}
+	}
+	gitChangedFiles[ref] = changed
+	return changed
 }
 
 func setSeverityLevel(sevRules []*config.SeverityRule, pkg, analyzer string, issue *Issue) {

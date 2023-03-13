@@ -250,11 +250,13 @@ severity:
           path: ""
           message: ""
           severity: ""
+          git_ref: ""
 exclude:
     - package: ""
       analyzer: ""
       path: ""
       message: ""
       severity: ""
+      git_ref: ""
 test: false
 fix: false
