@@ -40,7 +40,7 @@ import (
 	"github.com/nunnatsa/ginkgolinter"
 	"github.com/polyfloyd/go-errorlint/errorlint"
 	sqlclosecheck "github.com/ryanrolds/sqlclosecheck/pkg/analyzer"
-	"github.com/sanposhiho/wastedassign"
+	wastedassign "github.com/sanposhiho/wastedassign/v2"
 	interfacebloat "github.com/sashamelentyev/interfacebloat/pkg/analyzer"
 	usestdlibvars "github.com/sashamelentyev/usestdlibvars/pkg/analyzer"
 	"github.com/sivchari/containedctx"
