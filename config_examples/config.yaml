@@ -62,8 +62,8 @@ analyzers:
         ignore-pattern: ""
         package-scope-only: "false"
     exhaustruct:
-        exclude: ""
-        include: ""
+        e: ""
+        i: ""
     exportloopref: {}
     fieldalignment: {}
     forbidigo:

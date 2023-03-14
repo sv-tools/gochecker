@@ -7,7 +7,7 @@ import (
 	errname "github.com/Antonboom/errname/pkg/analyzer"
 	nilnil "github.com/Antonboom/nilnil/pkg/analyzer"
 	"github.com/Djarvur/go-err113"
-	exhaustruct "github.com/GaijinEntertainment/go-exhaustruct/pkg/analyzer"
+	exhaustruct "github.com/GaijinEntertainment/go-exhaustruct/v2/pkg/analyzer"
 	forbidigo "github.com/ashanbrown/forbidigo/pkg/analyzer"
 	makezero "github.com/ashanbrown/makezero/pkg/analyzer"
 	cyclop "github.com/bkielbasa/cyclop/pkg/analyzer"
@@ -61,6 +61,7 @@ import (
 	"github.com/sv-tools/gochecker/analyzers/gofumpt"
 	"github.com/sv-tools/gochecker/analyzers/unparam"
 	"github.com/sv-tools/gochecker/analyzers/unused"
+	"github.com/sv-tools/gochecker/analyzers/utils"
 )
 
 // External is the list of all external analyzers (linters)
@@ -84,7 +85,6 @@ var External = []*analysis.Analyzer{
 	errorlint.NewAnalyzer(),                                // https://github.com/polyfloyd/go-errorlint
 	execinquery.Analyzer,                                   // https://github.com/1uf3/execinquery
 	exhaustive.Analyzer,                                    // https://github.com/nishanths/exhaustive
-	exhaustruct.Analyzer,                                   // https://github.com/GaijinEntertainment/go-exhaustruct
 	exportloopref.Analyzer,                                 // https://github.com/kyoh86/exportloopref
 	forbidigo.NewAnalyzer(),                                // https://github.com/ashanbrown/forbidigo
 	forcetypeassert.Analyzer,                               // https://github.com/gostaticanalysis/forcetypeassert
@@ -123,4 +123,8 @@ var External = []*analysis.Analyzer{
 	usestdlibvars.New(),                                    // https://github.com/sashamelentyev/usestdlibvars
 	varnamelen.NewAnalyzer(),                               // https://github.com/blizzy78/varnamelen
 	wastedassign.Analyzer,                                  // https://github.com/sanposhiho/wastedassign
+
+	utils.MustNew(func() (*analysis.Analyzer, error) {
+		return exhaustruct.NewAnalyzer(nil, nil) // https://github.com/GaijinEntertainment/go-exhaustruct
+	}),
 }
