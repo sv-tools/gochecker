@@ -9,7 +9,7 @@ require (
 	github.com/Antonboom/errname v0.1.9
 	github.com/Antonboom/nilnil v0.1.3
 	github.com/Djarvur/go-err113 v0.1.0
-	github.com/GaijinEntertainment/go-exhaustruct v1.0.0
+	github.com/GaijinEntertainment/go-exhaustruct/v2 v2.3.0
 	github.com/ashanbrown/forbidigo v1.5.1
 	github.com/ashanbrown/makezero v1.1.1
 	github.com/bkielbasa/cyclop v1.2.0
@@ -87,6 +87,7 @@ require (
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	go.uber.org/zap v1.24.0 // indirect
+	golang.org/x/exp v0.0.0-20220722155223-a9213eeb770e // indirect
 	golang.org/x/exp/typeparams v0.0.0-20230203172020-98cc5a0785f9 // indirect
 	golang.org/x/mod v0.9.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
