@@ -21,7 +21,7 @@ require (
 	github.com/curioswitch/go-reassign v0.2.0
 	github.com/daixiang0/gci v0.10.1
 	github.com/firefart/nonamedreturns v1.0.4
-	github.com/go-critic/go-critic v0.6.7
+	github.com/go-critic/go-critic v0.7.0
 	github.com/gordonklaus/ineffassign v0.0.0-20230107090616-13ace0543b28
 	github.com/gostaticanalysis/forcetypeassert v0.1.0
 	github.com/gostaticanalysis/nilerr v0.1.1
@@ -82,13 +82,13 @@ require (
 	github.com/hexops/gotextdiff v1.0.3 // indirect
 	github.com/quasilyte/go-ruleguard v0.3.19 // indirect
 	github.com/quasilyte/gogrep v0.5.0 // indirect
-	github.com/quasilyte/regex/syntax v0.0.0-20200407221936-30656e2c4a95 // indirect
+	github.com/quasilyte/regex/syntax v0.0.0-20210819130434-b3f0c404a727 // indirect
 	github.com/quasilyte/stdinfo v0.0.0-20220114132959-f7386bf02567 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	go.uber.org/zap v1.24.0 // indirect
 	golang.org/x/exp v0.0.0-20220722155223-a9213eeb770e // indirect
-	golang.org/x/exp/typeparams v0.0.0-20230203172020-98cc5a0785f9 // indirect
+	golang.org/x/exp/typeparams v0.0.0-20230213192124-5e25df0256eb // indirect
 	golang.org/x/mod v0.9.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.6.0 // indirect
