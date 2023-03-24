@@ -173,6 +173,7 @@ and then each analyzer was checked and imported if it provides an object of the 
 - [usestdlibvars](https://github.com/sashamelentyev/usestdlibvars) detects the possibility to use variables/constants from the Go standard library.
 - [varnamelen](https://github.com/blizzy78/varnamelen) checks that the length of a variable's name matches its usage scope.
 - [wastedassign](https://github.com/sanposhiho/wastedassign) finds wasted assignment statements.
+- [zerologlint](https://github.com/ykadowak/zerologlint) detects the wrong usage of zerolog that a user forgets to dispatch zerolog.Event with Send or Msg function, in which case nothing will be logged.
 
 ## Some other linters
 
