@@ -47,7 +47,7 @@ require (
 	github.com/sanposhiho/wastedassign/v2 v2.0.7
 	github.com/sashamelentyev/interfacebloat v1.1.0
 	github.com/sashamelentyev/usestdlibvars v1.23.0
-	github.com/sivchari/containedctx v1.0.2
+	github.com/sivchari/containedctx v1.0.3
 	github.com/sivchari/tenv v1.7.1
 	github.com/sonatard/noctx v0.0.2
 	github.com/ssgreg/nlreturn/v2 v2.2.1
