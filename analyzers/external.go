@@ -40,7 +40,7 @@ import (
 	"github.com/nunnatsa/ginkgolinter"
 	"github.com/polyfloyd/go-errorlint/errorlint"
 	sqlclosecheck "github.com/ryanrolds/sqlclosecheck/pkg/analyzer"
-	wastedassign "github.com/sanposhiho/wastedassign/v2"
+	"github.com/sanposhiho/wastedassign/v2"
 	interfacebloat "github.com/sashamelentyev/interfacebloat/pkg/analyzer"
 	usestdlibvars "github.com/sashamelentyev/usestdlibvars/pkg/analyzer"
 	"github.com/sivchari/containedctx"
@@ -54,6 +54,7 @@ import (
 	magicnumbers "github.com/tommy-muehle/go-mnd/v2"
 	"github.com/uudashr/gocognit"
 	"github.com/yagipy/maintidx"
+	"github.com/ykadowak/zerologlint"
 	"gitlab.com/bosi/decorder"
 	"golang.org/x/tools/go/analysis"
 
@@ -123,6 +124,7 @@ var External = []*analysis.Analyzer{
 	usestdlibvars.New(),                                    // https://github.com/sashamelentyev/usestdlibvars
 	varnamelen.NewAnalyzer(),                               // https://github.com/blizzy78/varnamelen
 	wastedassign.Analyzer,                                  // https://github.com/sanposhiho/wastedassign
+	zerologlint.Analyzer,                                   // https://github.com/ykadowak/zerologlint
 
 	utils.MustNew(func() (*analysis.Analyzer, error) {
 		return exhaustruct.NewAnalyzer(nil, nil) // https://github.com/GaijinEntertainment/go-exhaustruct

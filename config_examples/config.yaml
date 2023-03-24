@@ -238,6 +238,7 @@ analyzers:
         maxDistance: "5"
         minNameLength: "3"
     wastedassign: {}
+    zerologlinter: {}
 module: ""
 debug: ""
 cpuprofile: ""

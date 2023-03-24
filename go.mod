@@ -59,6 +59,7 @@ require (
 	github.com/tommy-muehle/go-mnd/v2 v2.5.1
 	github.com/uudashr/gocognit v1.0.6
 	github.com/yagipy/maintidx v1.0.0
+	github.com/ykadowak/zerologlint v0.1.1
 	gitlab.com/bosi/decorder v0.2.3
 	golang.org/x/tools v0.7.0
 	gopkg.in/yaml.v3 v3.0.1
