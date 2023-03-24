@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"strings"
 
+	critic "github.com/go-critic/go-critic/checkers/analyzer"
 	"golang.org/x/tools/go/analysis/multichecker"
 	"gopkg.in/yaml.v3"
 
@@ -295,6 +296,9 @@ func GenerateConfig() {
 			},
 		},
 	}
+	// set the default value in example config to 8 to avoid the difference between local and GitHub checks
+	config.Analyzers[critic.Analyzer.Name]["concurrency"] = "8"
+
 	if err := yaml.NewEncoder(os.Stdout).Encode(config); err != nil {
 		log.Fatal(err)
 	}
