@@ -28,7 +28,10 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
+          queries: security-and-quality
           languages: go
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
 
@@ -109,7 +112,7 @@ jobs:
 
   tested:
     runs-on: ubuntu-latest
-    needs: [CodeQL, fmt, generate-config, vet]
+    needs: [ CodeQL, fmt, generate-config, vet ]
     if: always()
     steps:
       - name: All tests ok
