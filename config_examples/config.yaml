@@ -175,6 +175,7 @@ analyzers:
         '@truncateCmp.skipArchDependent': "true"
         '@underef.skipRecvDeref': "true"
         '@unnamedResult.checkExported': "false"
+        concurrency: "8"
         debug-init: "false"
         disable: <default>
         enable: '#diagnostic,#style,#security'
