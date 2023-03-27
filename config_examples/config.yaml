@@ -80,6 +80,7 @@ analyzers:
         noPrefixComments: "false"
     ginkgolinter:
         allow-havelen-0: "false"
+        suppress-async-assertion: "false"
         suppress-compare-assertion: "false"
         suppress-err-assertion: "false"
         suppress-len-assertion: "false"
