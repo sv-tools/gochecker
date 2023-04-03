@@ -116,8 +116,8 @@ github.com/nishanths/exhaustive v0.10.0 h1:BMznKAcVa9WOoLq/kTGp4NJOJSMwEpcpjFNAV
 github.com/nishanths/exhaustive v0.10.0/go.mod h1:IbwrGdVMizvDcIxPYGVdQn5BqWJaOwpCvg4RGb8r/TA=
 github.com/nishanths/predeclared v0.2.2 h1:V2EPdZPliZymNAn79T8RkNApBjMmVKh5XRpLm/w98Vk=
 github.com/nishanths/predeclared v0.2.2/go.mod h1:RROzoN6TnGQupbC+lqggsOlcgysk3LMK/HI84Mp280c=
-github.com/nunnatsa/ginkgolinter v0.10.0 h1:rvyeUUkkqqmSsxm2Lb9K9+2TYxvOUDpks1O2+7MV6Tc=
-github.com/nunnatsa/ginkgolinter v0.10.0/go.mod h1:KOhl2jFTkMIWZUxXToYuq2hQsM0VHSCdPoK2+52e5JI=
+github.com/nunnatsa/ginkgolinter v0.11.0 h1:yRKz5FQXw8vL8/KlqdSoFkb38zf73wyZZ/D5LyE5C6U=
+github.com/nunnatsa/ginkgolinter v0.11.0/go.mod h1:KOhl2jFTkMIWZUxXToYuq2hQsM0VHSCdPoK2+52e5JI=
 github.com/otiai10/copy v1.2.0 h1:HvG945u96iNadPoG2/Ja2+AUJeW5YuFQMixq9yirC+k=
 github.com/otiai10/copy v1.2.0/go.mod h1:rrF5dJ5F0t/EWSYODDu4j9/vEeYHMkc8jt0zJChqQWw=
 github.com/otiai10/curr v0.0.0-20150429015615-9b4961190c95/go.mod h1:9qAhocn7zKJG+0mI8eUu6xqkFDYS2kb2saOteoSB3cE=
