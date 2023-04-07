@@ -151,7 +151,7 @@ analyzers:
         ignore: ""
         q: "false"
     printf:
-        funcs: (*log.Logger).Fatal,(*log.Logger).Fatalf,(*log.Logger).Fatalln,(*log.Logger).Panic,(*log.Logger).Panicf,(*log.Logger).Panicln,(*log.Logger).Print,(*log.Logger).Printf,(*log.Logger).Println,(*testing.common).Error,(*testing.common).Errorf,(*testing.common).Fatal,(*testing.common).Fatalf,(*testing.common).Log,(*testing.common).Logf,(*testing.common).Skip,(*testing.common).Skipf,(testing.TB).Error,(testing.TB).Errorf,(testing.TB).Fatal,(testing.TB).Fatalf,(testing.TB).Log,(testing.TB).Logf,(testing.TB).Skip,(testing.TB).Skipf,fmt.Errorf,fmt.Fprint,fmt.Fprintf,fmt.Fprintln,fmt.Print,fmt.Printf,fmt.Println,fmt.Sprint,fmt.Sprintf,fmt.Sprintln,log.Fatal,log.Fatalf,log.Fatalln,log.Panic,log.Panicf,log.Panicln,log.Print,log.Printf,log.Println,runtime/trace.Logf
+        funcs: (*log.Logger).Fatal,(*log.Logger).Fatalf,(*log.Logger).Fatalln,(*log.Logger).Panic,(*log.Logger).Panicf,(*log.Logger).Panicln,(*log.Logger).Print,(*log.Logger).Printf,(*log.Logger).Println,(*testing.common).Error,(*testing.common).Errorf,(*testing.common).Fatal,(*testing.common).Fatalf,(*testing.common).Log,(*testing.common).Logf,(*testing.common).Skip,(*testing.common).Skipf,(testing.TB).Error,(testing.TB).Errorf,(testing.TB).Fatal,(testing.TB).Fatalf,(testing.TB).Log,(testing.TB).Logf,(testing.TB).Skip,(testing.TB).Skipf,fmt.Append,fmt.Appendf,fmt.Appendln,fmt.Errorf,fmt.Fprint,fmt.Fprintf,fmt.Fprintln,fmt.Print,fmt.Printf,fmt.Println,fmt.Sprint,fmt.Sprintf,fmt.Sprintln,log.Fatal,log.Fatalf,log.Fatalln,log.Panic,log.Panicf,log.Panicln,log.Print,log.Printf,log.Println,runtime/trace.Logf
     reassign:
         pattern: ^(Err.*|EOF)$
     reflectvaluecompare: {}
