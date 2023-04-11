@@ -64,7 +64,7 @@ require (
 	golang.org/x/tools v0.8.0
 	gopkg.in/yaml.v3 v3.0.1
 	honnef.co/go/tools v0.4.3
-	mvdan.cc/gofumpt v0.4.0
+	mvdan.cc/gofumpt v0.5.0
 	mvdan.cc/unparam v0.0.0-20230312165513-e84e2d14e3b8
 )
 
