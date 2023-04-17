@@ -16,7 +16,7 @@ require (
 	github.com/blizzy78/varnamelen v0.8.0
 	github.com/breml/bidichk v0.2.4
 	github.com/breml/errchkjson v0.3.1
-	github.com/butuzov/ireturn v0.1.1
+	github.com/butuzov/ireturn v0.2.0
 	github.com/charithe/durationcheck v0.0.10
 	github.com/curioswitch/go-reassign v0.2.0
 	github.com/daixiang0/gci v0.10.1
