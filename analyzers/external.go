@@ -24,7 +24,6 @@ import (
 	"github.com/gostaticanalysis/nilerr"
 	"github.com/jingyugao/rowserrcheck/passes/rowserr"
 	goprintffuncname "github.com/jirfag/go-printf-func-name/pkg/analyzer"
-	"github.com/junk1tm/musttag"
 	"github.com/kisielk/errcheck/errcheck"
 	"github.com/kkHAIKE/contextcheck"
 	thelper "github.com/kulti/thelper/pkg/analyzer"
@@ -56,6 +55,7 @@ import (
 	"github.com/yagipy/maintidx"
 	"github.com/ykadowak/zerologlint"
 	"gitlab.com/bosi/decorder"
+	"go.tmz.dev/musttag"
 	"golang.org/x/tools/go/analysis"
 
 	"github.com/sv-tools/gochecker/analyzers/gci"
