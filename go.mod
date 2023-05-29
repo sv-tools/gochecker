@@ -60,7 +60,7 @@ require (
 	github.com/yagipy/maintidx v1.0.0
 	github.com/ykadowak/zerologlint v0.1.1
 	gitlab.com/bosi/decorder v0.2.3
-	go.tmz.dev/musttag v0.6.1
+	go.tmz.dev/musttag v0.7.0
 	golang.org/x/tools v0.9.1
 	gopkg.in/yaml.v3 v3.0.1
 	honnef.co/go/tools v0.4.3
