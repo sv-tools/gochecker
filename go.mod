@@ -12,7 +12,7 @@ require (
 	github.com/GaijinEntertainment/go-exhaustruct/v2 v2.3.0
 	github.com/ashanbrown/forbidigo v1.5.1
 	github.com/ashanbrown/makezero v1.1.1
-	github.com/bkielbasa/cyclop v1.2.0
+	github.com/bkielbasa/cyclop v1.2.1
 	github.com/blizzy78/varnamelen v0.8.0
 	github.com/breml/bidichk v0.2.4
 	github.com/breml/errchkjson v0.3.1
