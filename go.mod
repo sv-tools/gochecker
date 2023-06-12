@@ -37,7 +37,7 @@ require (
 	github.com/maratori/testableexamples v1.0.0
 	github.com/maratori/testpackage v1.1.1
 	github.com/moricho/tparallel v0.3.1
-	github.com/nishanths/exhaustive v0.10.0
+	github.com/nishanths/exhaustive v0.11.0
 	github.com/nishanths/predeclared v0.2.2
 	github.com/nunnatsa/ginkgolinter v0.12.1
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2
