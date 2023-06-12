@@ -10,7 +10,7 @@ require (
 	github.com/Antonboom/nilnil v0.1.5
 	github.com/Djarvur/go-err113 v0.1.0
 	github.com/GaijinEntertainment/go-exhaustruct/v2 v2.3.0
-	github.com/ashanbrown/forbidigo v1.5.1
+	github.com/ashanbrown/forbidigo v1.5.3
 	github.com/ashanbrown/makezero v1.1.1
 	github.com/bkielbasa/cyclop v1.2.1
 	github.com/blizzy78/varnamelen v0.8.0
