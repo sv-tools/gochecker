@@ -5,7 +5,7 @@ go 1.20
 require (
 	4d63.com/gocheckcompilerdirectives v1.2.1
 	4d63.com/gochecknoglobals v0.2.1
-	github.com/Abirdcfly/dupword v0.0.11
+	github.com/Abirdcfly/dupword v0.0.12
 	github.com/Antonboom/errname v0.1.10
 	github.com/Antonboom/nilnil v0.1.5
 	github.com/Djarvur/go-err113 v0.1.0
@@ -61,7 +61,7 @@ require (
 	github.com/ykadowak/zerologlint v0.1.3
 	gitlab.com/bosi/decorder v0.2.3
 	go.tmz.dev/musttag v0.7.1
-	golang.org/x/tools v0.10.0
+	golang.org/x/tools v0.11.0
 	gopkg.in/yaml.v3 v3.0.1
 	honnef.co/go/tools v0.4.3
 	mvdan.cc/gofumpt v0.5.0
@@ -90,8 +90,8 @@ require (
 	go.uber.org/zap v1.24.0 // indirect
 	golang.org/x/exp v0.0.0-20220722155223-a9213eeb770e // indirect
 	golang.org/x/exp/typeparams v0.0.0-20230213192124-5e25df0256eb // indirect
-	golang.org/x/mod v0.11.0 // indirect
+	golang.org/x/mod v0.12.0 // indirect
 	golang.org/x/sync v0.3.0 // indirect
-	golang.org/x/sys v0.9.0 // indirect
+	golang.org/x/sys v0.10.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
