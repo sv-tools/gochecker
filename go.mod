@@ -56,7 +56,7 @@ require (
 	github.com/timakin/bodyclose v0.0.0-20221125081123-e39cf3fc478e
 	github.com/timonwong/loggercheck v0.9.4
 	github.com/tommy-muehle/go-mnd/v2 v2.5.1
-	github.com/uudashr/gocognit v1.0.6
+	github.com/uudashr/gocognit v1.0.7
 	github.com/yagipy/maintidx v1.0.0
 	github.com/ykadowak/zerologlint v0.1.3
 	gitlab.com/bosi/decorder v0.2.3
