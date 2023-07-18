@@ -185,8 +185,8 @@ github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9dec
 github.com/yuin/goldmark v1.3.5/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
 github.com/yuin/goldmark v1.4.1/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
-gitlab.com/bosi/decorder v0.2.3 h1:gX4/RgK16ijY8V+BRQHAySfQAb354T7/xQpDB2n10P0=
-gitlab.com/bosi/decorder v0.2.3/go.mod h1:9K1RB5+VPNQYtXtTDAzd2OEftsZb1oV0IrJrzChSdGE=
+gitlab.com/bosi/decorder v0.3.0 h1:pr+XVoDD3D+sleyHZhrukqU+Vxdfue2+cajJt+a9B5c=
+gitlab.com/bosi/decorder v0.3.0/go.mod h1:1+BmLr0+lAeh0TBQOAbo7rwxWKd6yaptSqO2Jhqvheo=
 go-simpler.org/assert v0.5.0 h1:+5L/lajuQtzmbtEfh69sr5cRf2/xZzyJhFjoOz/PPqs=
 go.tmz.dev/musttag v0.7.1 h1:9lFmeSFnFfPuMq4IksHGomItE6NgKMNW2Nt2FPOhCfU=
 go.tmz.dev/musttag v0.7.1/go.mod h1:oJLkpR56EsIryktZJk/B0IroSMi37YWver47fibGh5U=
