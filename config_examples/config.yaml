@@ -23,9 +23,13 @@ analyzers:
         skipTests: "false"
     decorder:
         dec-order: type,const,var,func
+        disable-const-dec-num-check: "false"
         disable-dec-num-check: "false"
         disable-dec-order-check: "false"
         disable-init-func-first-check: "false"
+        disable-type-dec-num-check: "false"
+        disable-var-dec-num-check: "false"
+        ignore-underscore-vars: "false"
     deepequalerrors: {}
     directive: {}
     dupword:
