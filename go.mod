@@ -21,7 +21,7 @@ require (
 	github.com/curioswitch/go-reassign v0.2.0
 	github.com/daixiang0/gci v0.10.1
 	github.com/firefart/nonamedreturns v1.0.4
-	github.com/go-critic/go-critic v0.8.1
+	github.com/go-critic/go-critic v0.8.2
 	github.com/gordonklaus/ineffassign v0.0.0-20230107090616-13ace0543b28
 	github.com/gostaticanalysis/forcetypeassert v0.1.0
 	github.com/gostaticanalysis/nilerr v0.1.1
