@@ -84,9 +84,11 @@ analyzers:
         noPrefixComments: "false"
     ginkgolinter:
         allow-havelen-0: "false"
+        forbid-focus-container: "false"
         suppress-async-assertion: "false"
         suppress-compare-assertion: "false"
         suppress-err-assertion: "false"
+        suppress-focus-container: "true"
         suppress-len-assertion: "false"
         suppress-nil-assertion: "false"
     gocheckcompilerdirectives: {}
