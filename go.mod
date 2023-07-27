@@ -59,7 +59,7 @@ require (
 	github.com/uudashr/gocognit v1.0.7
 	github.com/yagipy/maintidx v1.0.0
 	github.com/ykadowak/zerologlint v0.1.3
-	gitlab.com/bosi/decorder v0.3.0
+	gitlab.com/bosi/decorder v0.4.0
 	go.tmz.dev/musttag v0.7.1
 	golang.org/x/tools v0.11.0
 	gopkg.in/yaml.v3 v3.0.1
