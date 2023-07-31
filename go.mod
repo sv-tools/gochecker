@@ -61,7 +61,7 @@ require (
 	github.com/ykadowak/zerologlint v0.1.3
 	gitlab.com/bosi/decorder v0.4.0
 	go.tmz.dev/musttag v0.7.1
-	golang.org/x/tools v0.11.0
+	golang.org/x/tools v0.11.1
 	gopkg.in/yaml.v3 v3.0.1
 	honnef.co/go/tools v0.4.3
 	mvdan.cc/gofumpt v0.5.0
