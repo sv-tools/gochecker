@@ -153,6 +153,7 @@ analyzers:
     nosprintfhostport: {}
     paralleltest:
         i: "false"
+        ignoremissingsubtests: "false"
     predeclared:
         ignore: ""
         q: "false"

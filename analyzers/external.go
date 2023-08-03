@@ -109,7 +109,7 @@ var External = []*analysis.Analyzer{
 	noctx.Analyzer,                                         // https://github.com/sonatard/noctx
 	nonamedreturns.Analyzer,                                // https://github.com/firefart/nonamedreturns
 	nosprintfhostport.Analyzer,                             // https://github.com/stbenjam/no-sprintf-host-port
-	paralleltest.Analyzer,                                  // https://github.com/kunwardeep/paralleltest
+	paralleltest.NewAnalyzer(),                             // https://github.com/kunwardeep/paralleltest
 	predeclared.Analyzer,                                   // https://github.com/nishanths/predeclared
 	reassign.NewAnalyzer(),                                 // https://github.com/curioswitch/go-reassign
 	rowserr.NewAnalyzer(),                                  // https://github.com/jingyugao/rowserrcheck
