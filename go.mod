@@ -61,7 +61,7 @@ require (
 	github.com/ykadowak/zerologlint v0.1.3
 	gitlab.com/bosi/decorder v0.4.0
 	go.tmz.dev/musttag v0.7.1
-	golang.org/x/tools v0.11.1
+	golang.org/x/tools v0.12.0
 	gopkg.in/yaml.v3 v3.0.1
 	honnef.co/go/tools v0.4.3
 	mvdan.cc/gofumpt v0.5.0
@@ -92,6 +92,6 @@ require (
 	golang.org/x/exp/typeparams v0.0.0-20230213192124-5e25df0256eb // indirect
 	golang.org/x/mod v0.12.0 // indirect
 	golang.org/x/sync v0.3.0 // indirect
-	golang.org/x/sys v0.10.0 // indirect
+	golang.org/x/sys v0.11.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
