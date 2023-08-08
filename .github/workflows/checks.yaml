@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  GO: "1.20"
+  GO: "1.21"
 
 jobs:
   codeql:
@@ -84,15 +84,16 @@ jobs:
     strategy:
       matrix:
         go:
+          - "1.21"
           - "1.20"
           - "1.19"
           - "1.18"
         os:
           - ubuntu-latest
         include:
-          - go: "1.20"
+          - go: "1.21"
             os: macos-latest
-          - go: "1.20"
+          - go: "1.21"
             os: windows-latest
     runs-on: ${{ matrix.os }}
     steps:
