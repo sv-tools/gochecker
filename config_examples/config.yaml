@@ -201,6 +201,7 @@ analyzers:
     stdmethods: {}
     stringintconv: {}
     structtag: {}
+    tagalign: {}
     tenv:
         all: "false"
     testableexamples: {}

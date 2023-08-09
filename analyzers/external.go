@@ -3,6 +3,7 @@ package analyzers
 import (
 	"4d63.com/gocheckcompilerdirectives/checkcompilerdirectives"
 	"4d63.com/gochecknoglobals/checknoglobals"
+	"github.com/4meepo/tagalign"
 	"github.com/Abirdcfly/dupword"
 	errname "github.com/Antonboom/errname/pkg/analyzer"
 	nilnil "github.com/Antonboom/nilnil/pkg/analyzer"
@@ -116,6 +117,7 @@ var External = []*analysis.Analyzer{
 	reassign.NewAnalyzer(),                                 // https://github.com/curioswitch/go-reassign
 	rowserr.NewAnalyzer(),                                  // https://github.com/jingyugao/rowserrcheck
 	sqlclosecheck.NewAnalyzer(),                            // https://github.com/ryanrolds/sqlclosecheck
+	tagalign.NewAnalyzer(),                                 // https://github.com/4meepo/tagalign
 	tenv.Analyzer,                                          // https://github.com/sivchari/tenv
 	testableexamples.NewAnalyzer(),                         // https://github.com/maratori/testableexamples
 	testpackage.NewAnalyzer(),                              // https://github.com/maratori/testpackage
