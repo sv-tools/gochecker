@@ -15,6 +15,7 @@ import (
 	"github.com/breml/bidichk/pkg/bidichk"
 	"github.com/breml/errchkjson"
 	ireturn "github.com/butuzov/ireturn/analyzer"
+	"github.com/butuzov/mirror"
 	"github.com/charithe/durationcheck"
 	"github.com/curioswitch/go-reassign"
 	nonamedreturns "github.com/firefart/nonamedreturns/analyzer"
@@ -102,6 +103,7 @@ var External = []*analysis.Analyzer{
 	magicnumbers.Analyzer,                                  // https://github.com/tommy-muehle/go-mnd
 	maintidx.Analyzer,                                      // https://github.com/yagipy/maintidx
 	makezero.NewAnalyzer(),                                 // https://github.com/ashanbrown/makezero
+	mirror.NewAnalyzer(),                                   // https://github.com/butuzov/mirror
 	musttag.New(),                                          // https://github.com/junk1tm/musttag
 	nilerr.Analyzer,                                        // https://github.com/gostaticanalysis/nilerr
 	nilnil.New(),                                           // https://github.com/Antonboom/nilnil

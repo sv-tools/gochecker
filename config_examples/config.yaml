@@ -132,6 +132,9 @@ analyzers:
         under: "20"
     makezero:
         always: "false"
+    mirror:
+        with-debug: "false"
+        with-tests: "false"
     mnd:
         checks: argument,case,condition,operation,return,assign
         excludes: ""
