@@ -140,6 +140,7 @@ and then each analyzer was checked and imported if it provides an object of the 
 - [gci](https://github.com/daixiang0/gci) controls golang package import order and makes it always deterministic.
 - [ginkgolinter](https://github.com/nunnatsa/ginkgolinter) enforces some standards while using the ginkgo and gomega packages.
 - [gocognit](https://github.com/uudashr/gocognit) calculates cognitive complexities of functions in Go source code. A measurement of how hard does the code is intuitively to understand.
+- [gosmopolitan](https://github.com/xen0n/gosmopolitan) checks your Go codebase for code smells that may prove to be hindrance to internationalization ("i18n") and/or localization ("l10n").
 - [gofumpt](https://github.com/mvdan/gofumpt) enforce a stricter format than gofmt, while being backwards compatible.
 - [goprintffuncname](https://github.com/jirfag/go-printf-func-name) checks that printf-like functions are named with f at the end.
 - [grouper](https://github.com/leonklingele/grouper) analyzes expression groups.
@@ -149,6 +150,7 @@ and then each analyzer was checked and imported if it provides an object of the 
 - [loggercheck](https://github.com/timonwong/loggercheck) checks the odd number of key and value pairs for common logger libraries.
 - [maintidx](https://github.com/yagipy/maintidx) measures the maintainability index of each function.
 - [makezero](https://github.com/ashanbrown/makezero) finds slice declarations that are not initialized with zero length and are later used with append.
+- [mirror](https://github.com/butuzov/mirror) suggests use of alternative functions/methods in order to gain performance boosts by avoiding unnecessary []byte/string conversion calls.
 - [mnd or magic_number](https://github.com/tommy-muehle/go-mnd) detects magic numbers.
 - [musttag](https://github.com/junk1tm/musttag) checks that exported fields of a struct passed to a Marshal-like function are annotated with the relevant tag.
 - [nilerr](https://github.com/gostaticanalysis/nilerr) finds code which returns nil even though it checks that error is not nil.
@@ -163,6 +165,7 @@ and then each analyzer was checked and imported if it provides an object of the 
 - [rowserrcheck](https://github.com/jingyugao/rowserrcheck) checks whether sql.Rows.Err is correctly checked.
 - [ruleguard or go-critic](https://github.com/go-critic/go-critic) is the most opinionated Go source code linter.
 - [sqlclosecheck](https://github.com/ryanrolds/sqlclosecheck) checks if SQL rows/statements are closed. Unclosed rows and statements may cause DB connection pool exhaustion.
+- [tagalign](https://github.com/4meepo/tagalign) aligns and sorts tags in Go struct. It can make the struct more readable and easier to maintain.
 - [tenv](https://github.com/sivchari/tenv) detects using os.Setenv instead of `t.Setenv` since Go1.17.
 - [testableexamples](https://github.com/maratori/testableexamples)
 - [testpackage](https://github.com/maratori/testpackage) checks if examples are testable (have an expected output).
