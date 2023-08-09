@@ -101,6 +101,11 @@ analyzers:
         lang: ""
         module: ""
     goprintffuncname: {}
+    gosmopolitan:
+        allowtimelocal: "false"
+        escapehatches: ""
+        lookattests: "false"
+        watchforscripts: Han
     govet:
         exclude: ""
         extra: "false"

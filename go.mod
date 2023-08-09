@@ -59,6 +59,7 @@ require (
 	github.com/timonwong/loggercheck v0.9.4
 	github.com/tommy-muehle/go-mnd/v2 v2.5.1
 	github.com/uudashr/gocognit v1.0.7
+	github.com/xen0n/gosmopolitan v1.2.1
 	github.com/yagipy/maintidx v1.0.0
 	github.com/ykadowak/zerologlint v0.1.3
 	gitlab.com/bosi/decorder v0.4.0
@@ -96,5 +97,6 @@ require (
 	golang.org/x/mod v0.12.0 // indirect
 	golang.org/x/sync v0.3.0 // indirect
 	golang.org/x/sys v0.11.0 // indirect
+	golang.org/x/text v0.7.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
