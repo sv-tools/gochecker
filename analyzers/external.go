@@ -54,6 +54,7 @@ import (
 	"github.com/timonwong/loggercheck"
 	magicnumbers "github.com/tommy-muehle/go-mnd/v2"
 	"github.com/uudashr/gocognit"
+	"github.com/xen0n/gosmopolitan"
 	"github.com/yagipy/maintidx"
 	"github.com/ykadowak/zerologlint"
 	"gitlab.com/bosi/decorder"
@@ -96,6 +97,7 @@ var External = []*analysis.Analyzer{
 	gocognit.Analyzer,                                      // https://github.com/uudashr/gocognit
 	gofumpt.Analyzer,                                       // https://github.com/mvdan/gofumpt
 	goprintffuncname.Analyzer,                              // https://github.com/jirfag/go-printf-func-name
+	gosmopolitan.DefaultAnalyzer,                           // https://github.com/xen0n/gosmopolitan
 	grouper.New(),                                          // https://github.com/leonklingele/grouper
 	ineffassign.Analyzer,                                   // https://github.com/gordonklaus/ineffassign
 	interfacebloat.New(),                                   // https://github.com/sashamelentyev/interfacebloat
