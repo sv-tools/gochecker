@@ -5,6 +5,7 @@ go 1.21
 require (
 	4d63.com/gocheckcompilerdirectives v1.2.1
 	4d63.com/gochecknoglobals v0.2.1
+	github.com/4meepo/tagalign v1.3.2
 	github.com/Abirdcfly/dupword v0.0.12
 	github.com/Antonboom/errname v0.1.10
 	github.com/Antonboom/nilnil v0.1.5
@@ -71,6 +72,7 @@ require (
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/fatih/structtag v1.2.0 // indirect
 	github.com/go-toolsmith/astcast v1.1.0 // indirect
 	github.com/go-toolsmith/astcopy v1.1.0 // indirect
 	github.com/go-toolsmith/astequal v1.1.0 // indirect
