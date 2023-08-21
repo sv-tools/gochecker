@@ -139,8 +139,8 @@ github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINE
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 h1:Jamvg5psRIccs7FGNTlIRMkT8wgtp5eCXdBlqhYGL6U=
 github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/polyfloyd/go-errorlint v1.4.3 h1:P6NALOLV8BrWhm6PsqOraUK05E5h8IZnpXYJ+CIg+0U=
-github.com/polyfloyd/go-errorlint v1.4.3/go.mod h1:VPlWPh6hB/wruVG803SuNpLuTGNjLHYlvcdSy4RhdPA=
+github.com/polyfloyd/go-errorlint v1.4.4 h1:A9gytp+p6TYqeALTYRoxJESYP8wJRETRX2xzGWFsEBU=
+github.com/polyfloyd/go-errorlint v1.4.4/go.mod h1:ry5NqF7l9Q77V+XqAfUg1zfryrEtyac3G5+WVpIK0xU=
 github.com/quasilyte/go-ruleguard v0.4.0 h1:DyM6r+TKL+xbKB4Nm7Afd1IQh9kEUKQs2pboWGKtvQo=
 github.com/quasilyte/go-ruleguard v0.4.0/go.mod h1:Eu76Z/R8IXtViWUIHkE3p8gdH3/PKk1eh3YGfaEof10=
 github.com/quasilyte/gogrep v0.5.0 h1:eTKODPXbI8ffJMN+W2aE0+oL0z/nh8/5eNdiO34SOAo=
