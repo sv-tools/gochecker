@@ -8,7 +8,7 @@ require (
 	github.com/4meepo/tagalign v1.3.2
 	github.com/Abirdcfly/dupword v0.0.12
 	github.com/Antonboom/errname v0.1.12
-	github.com/Antonboom/nilnil v0.1.6
+	github.com/Antonboom/nilnil v0.1.7
 	github.com/Djarvur/go-err113 v0.1.0
 	github.com/GaijinEntertainment/go-exhaustruct/v2 v2.3.0
 	github.com/ashanbrown/forbidigo v1.6.0
@@ -43,7 +43,7 @@ require (
 	github.com/nishanths/predeclared v0.2.2
 	github.com/nunnatsa/ginkgolinter v0.13.5
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2
-	github.com/polyfloyd/go-errorlint v1.4.3
+	github.com/polyfloyd/go-errorlint v1.4.4
 	github.com/ryanrolds/sqlclosecheck v0.4.0
 	github.com/sanposhiho/wastedassign/v2 v2.0.7
 	github.com/sashamelentyev/interfacebloat v1.1.0
