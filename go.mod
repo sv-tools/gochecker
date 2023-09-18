@@ -15,7 +15,7 @@ require (
 	github.com/ashanbrown/makezero v1.1.1
 	github.com/bkielbasa/cyclop v1.2.1
 	github.com/blizzy78/varnamelen v0.8.0
-	github.com/breml/bidichk v0.2.4
+	github.com/breml/bidichk v0.2.6
 	github.com/breml/errchkjson v0.3.1
 	github.com/butuzov/ireturn v0.2.0
 	github.com/butuzov/mirror v1.1.0

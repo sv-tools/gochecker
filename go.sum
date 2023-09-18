@@ -24,8 +24,8 @@ github.com/bkielbasa/cyclop v1.2.1 h1:AeF71HZDob1P2/pRm1so9cd1alZnrpyc4q2uP2l0gJ
 github.com/bkielbasa/cyclop v1.2.1/go.mod h1:K/dT/M0FPAiYjBgQGau7tz+3TMh4FWAEqlMhzFWCrgM=
 github.com/blizzy78/varnamelen v0.8.0 h1:oqSblyuQvFsW1hbBHh1zfwrKe3kcSj0rnXkKzsQ089M=
 github.com/blizzy78/varnamelen v0.8.0/go.mod h1:V9TzQZ4fLJ1DSrjVDfl89H7aMnTvKkApdHeyESmyR7k=
-github.com/breml/bidichk v0.2.4 h1:i3yedFWWQ7YzjdZJHnPo9d/xURinSq3OM+gyM43K4/8=
-github.com/breml/bidichk v0.2.4/go.mod h1:7Zk0kRFt1LIZxtQdl9W9JwGAcLTTkOs+tN7wuEYGJ3s=
+github.com/breml/bidichk v0.2.6 h1:m++e3nzqd4OwgJKFAuNpROkGB5QJFXCTD5/3TEFCfqc=
+github.com/breml/bidichk v0.2.6/go.mod h1:Uj07vpi03vZf+TJRNaBzUIcAe/dQ+POeJiuikz/b6Gs=
 github.com/breml/errchkjson v0.3.1 h1:hlIeXuspTyt8Y/UmP5qy1JocGNR00KQHgfaNtRAjoxQ=
 github.com/breml/errchkjson v0.3.1/go.mod h1:XroxrzKjdiutFyW3nWhw34VGg7kiMsDQox73yWCGI2U=
 github.com/butuzov/ireturn v0.2.0 h1:kCHi+YzC150GE98WFuZQu9yrTn6GEydO2AuPLbTgnO4=
