@@ -15,7 +15,7 @@ require (
 	github.com/ashanbrown/makezero v1.1.1
 	github.com/bkielbasa/cyclop v1.2.1
 	github.com/blizzy78/varnamelen v0.8.0
-	github.com/breml/bidichk v0.2.4
+	github.com/breml/bidichk v0.2.7
 	github.com/breml/errchkjson v0.3.1
 	github.com/butuzov/ireturn v0.2.0
 	github.com/butuzov/mirror v1.1.0
@@ -64,7 +64,7 @@ require (
 	github.com/ykadowak/zerologlint v0.1.3
 	gitlab.com/bosi/decorder v0.4.0
 	go.tmz.dev/musttag v0.7.2
-	golang.org/x/tools v0.12.0
+	golang.org/x/tools v0.13.0
 	gopkg.in/yaml.v3 v3.0.1
 	honnef.co/go/tools v0.4.5
 	mvdan.cc/gofumpt v0.5.0
@@ -96,7 +96,7 @@ require (
 	golang.org/x/exp/typeparams v0.0.0-20230307190834-24139beb5833 // indirect
 	golang.org/x/mod v0.12.0 // indirect
 	golang.org/x/sync v0.3.0 // indirect
-	golang.org/x/sys v0.11.0 // indirect
+	golang.org/x/sys v0.12.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
