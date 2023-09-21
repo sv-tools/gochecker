@@ -43,7 +43,7 @@ require (
 	github.com/nishanths/predeclared v0.2.2
 	github.com/nunnatsa/ginkgolinter v0.13.5
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2
-	github.com/polyfloyd/go-errorlint v1.4.4
+	github.com/polyfloyd/go-errorlint v1.4.5
 	github.com/ryanrolds/sqlclosecheck v0.4.0
 	github.com/sanposhiho/wastedassign/v2 v2.0.7
 	github.com/sashamelentyev/interfacebloat v1.1.0
