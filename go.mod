@@ -62,7 +62,7 @@ require (
 	github.com/xen0n/gosmopolitan v1.2.2
 	github.com/yagipy/maintidx v1.0.0
 	github.com/ykadowak/zerologlint v0.1.3
-	gitlab.com/bosi/decorder v0.4.0
+	gitlab.com/bosi/decorder v0.4.1
 	go.tmz.dev/musttag v0.7.2
 	golang.org/x/tools v0.13.0
 	gopkg.in/yaml.v3 v3.0.1
