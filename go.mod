@@ -21,7 +21,7 @@ require (
 	github.com/butuzov/mirror v1.1.0
 	github.com/charithe/durationcheck v0.0.10
 	github.com/curioswitch/go-reassign v0.2.0
-	github.com/daixiang0/gci v0.11.0
+	github.com/daixiang0/gci v0.11.2
 	github.com/firefart/nonamedreturns v1.0.4
 	github.com/go-critic/go-critic v0.9.0
 	github.com/gordonklaus/ineffassign v0.0.0-20230107090616-13ace0543b28
