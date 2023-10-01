@@ -34,6 +34,7 @@ analyzers:
     directive: {}
     dupword:
         V: ""
+        ignore: ""
         keyword: ""
     durationcheck: {}
     err113: {}
